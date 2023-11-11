@@ -8,22 +8,35 @@
 
 /* Begin PBXBuildFile section */
 		F31C30A12AFF9729005454FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C30A02AFF9729005454FE /* AppDelegate.swift */; };
-		F31C30A32AFF9729005454FE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C30A22AFF9729005454FE /* SceneDelegate.swift */; };
-		F31C30A52AFF9729005454FE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C30A42AFF9729005454FE /* ViewController.swift */; };
-		F31C30A82AFF9729005454FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F31C30A62AFF9729005454FE /* Main.storyboard */; };
+		F31C30A52AFF9729005454FE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C30A42AFF9729005454FE /* HomeViewController.swift */; };
 		F31C30AA2AFF972B005454FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F31C30A92AFF972B005454FE /* Assets.xcassets */; };
 		F31C30AD2AFF972B005454FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F31C30AB2AFF972B005454FE /* LaunchScreen.storyboard */; };
+		F31C30B82AFF9B10005454FE /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C30B72AFF9B10005454FE /* MainTabBarController.swift */; };
+		F31C30BF2AFFA660005454FE /* NewestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C30BE2AFFA660005454FE /* NewestViewController.swift */; };
+		F31C30C12AFFA682005454FE /* PopularViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C30C02AFFA682005454FE /* PopularViewController.swift */; };
+		F31C30C32AFFA68F005454FE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C30C22AFFA68F005454FE /* ProfileViewController.swift */; };
+		F31C30C52AFFA791005454FE /* SideNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C30C42AFFA791005454FE /* SideNavigationController.swift */; };
+		F31C30CC2AFFC6D3005454FE /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C30CB2AFFC6D3005454FE /* UIColor+Extension.swift */; };
+		F31C30CE2AFFC7AE005454FE /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C30CD2AFFC7AE005454FE /* Theme.swift */; };
+		F31C30D12AFFC95C005454FE /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = F31C30D02AFFC95C005454FE /* SideMenu */; };
+		F31C30D42AFFCA1D005454FE /* CategoriesMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C30D32AFFCA1D005454FE /* CategoriesMenuViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		F31C309D2AFF9729005454FE /* Tuzlanski.ba.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tuzlanski.ba.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F31C30A02AFF9729005454FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F31C30A22AFF9729005454FE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F31C30A42AFF9729005454FE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		F31C30A72AFF9729005454FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F31C30A42AFF9729005454FE /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		F31C30A92AFF972B005454FE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F31C30AC2AFF972B005454FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F31C30AE2AFF972B005454FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F31C30B72AFF9B10005454FE /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		F31C30BE2AFFA660005454FE /* NewestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewestViewController.swift; sourceTree = "<group>"; };
+		F31C30C02AFFA682005454FE /* PopularViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularViewController.swift; sourceTree = "<group>"; };
+		F31C30C22AFFA68F005454FE /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		F31C30C42AFFA791005454FE /* SideNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideNavigationController.swift; sourceTree = "<group>"; };
+		F31C30CB2AFFC6D3005454FE /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		F31C30CD2AFFC7AE005454FE /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		F31C30D32AFFCA1D005454FE /* CategoriesMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesMenuViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F31C30D12AFFC95C005454FE /* SideMenu in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,15 +70,133 @@
 		F31C309F2AFF9729005454FE /* Tuzlanski.ba */ = {
 			isa = PBXGroup;
 			children = (
-				F31C30A02AFF9729005454FE /* AppDelegate.swift */,
-				F31C30A22AFF9729005454FE /* SceneDelegate.swift */,
-				F31C30A42AFF9729005454FE /* ViewController.swift */,
-				F31C30A62AFF9729005454FE /* Main.storyboard */,
-				F31C30A92AFF972B005454FE /* Assets.xcassets */,
-				F31C30AB2AFF972B005454FE /* LaunchScreen.storyboard */,
-				F31C30AE2AFF972B005454FE /* Info.plist */,
+				F31C30B42AFF9A43005454FE /* App */,
+				F31C30B52AFF9A7F005454FE /* Screens */,
+				F31C30C92AFFC5BF005454FE /* Components */,
+				F31C30C62AFFC4F7005454FE /* Models */,
+				F31C30C72AFFC501005454FE /* Network */,
+				F31C30CA2AFFC5C9005454FE /* Helpers */,
+				F31C30C82AFFC595005454FE /* Extensions */,
+				F31C30B92AFF9B9D005454FE /* Resources */,
 			);
 			path = Tuzlanski.ba;
+			sourceTree = "<group>";
+		};
+		F31C30B42AFF9A43005454FE /* App */ = {
+			isa = PBXGroup;
+			children = (
+				F31C30AE2AFF972B005454FE /* Info.plist */,
+				F31C30A02AFF9729005454FE /* AppDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		F31C30B52AFF9A7F005454FE /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				F31C30B62AFF9AC0005454FE /* Navigation */,
+				F31C30D22AFFC9F6005454FE /* CategoriesMenu */,
+				F31C30BA2AFFA62D005454FE /* Home */,
+				F31C30BB2AFFA639005454FE /* Newest */,
+				F31C30BC2AFFA642005454FE /* Popular */,
+				F31C30BD2AFFA64B005454FE /* Profile */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		F31C30B62AFF9AC0005454FE /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				F31C30B72AFF9B10005454FE /* MainTabBarController.swift */,
+				F31C30C42AFFA791005454FE /* SideNavigationController.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		F31C30B92AFF9B9D005454FE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F31C30A92AFF972B005454FE /* Assets.xcassets */,
+				F31C30AB2AFF972B005454FE /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		F31C30BA2AFFA62D005454FE /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				F31C30A42AFF9729005454FE /* HomeViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		F31C30BB2AFFA639005454FE /* Newest */ = {
+			isa = PBXGroup;
+			children = (
+				F31C30BE2AFFA660005454FE /* NewestViewController.swift */,
+			);
+			path = Newest;
+			sourceTree = "<group>";
+		};
+		F31C30BC2AFFA642005454FE /* Popular */ = {
+			isa = PBXGroup;
+			children = (
+				F31C30C02AFFA682005454FE /* PopularViewController.swift */,
+			);
+			path = Popular;
+			sourceTree = "<group>";
+		};
+		F31C30BD2AFFA64B005454FE /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				F31C30C22AFFA68F005454FE /* ProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		F31C30C62AFFC4F7005454FE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F31C30C72AFFC501005454FE /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		F31C30C82AFFC595005454FE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F31C30CB2AFFC6D3005454FE /* UIColor+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F31C30C92AFFC5BF005454FE /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		F31C30CA2AFFC5C9005454FE /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				F31C30CD2AFFC7AE005454FE /* Theme.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		F31C30D22AFFC9F6005454FE /* CategoriesMenu */ = {
+			isa = PBXGroup;
+			children = (
+				F31C30D32AFFCA1D005454FE /* CategoriesMenuViewController.swift */,
+			);
+			path = CategoriesMenu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +215,9 @@
 			dependencies = (
 			);
 			name = Tuzlanski.ba;
+			packageProductDependencies = (
+				F31C30D02AFFC95C005454FE /* SideMenu */,
+			);
 			productName = Tuzlanski.ba;
 			productReference = F31C309D2AFF9729005454FE /* Tuzlanski.ba.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +246,9 @@
 				Base,
 			);
 			mainGroup = F31C30942AFF9729005454FE;
+			packageReferences = (
+				F31C30CF2AFFC95C005454FE /* XCRemoteSwiftPackageReference "SideMenu" */,
+			);
 			productRefGroup = F31C309E2AFF9729005454FE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -127,7 +265,6 @@
 			files = (
 				F31C30AD2AFF972B005454FE /* LaunchScreen.storyboard in Resources */,
 				F31C30AA2AFF972B005454FE /* Assets.xcassets in Resources */,
-				F31C30A82AFF9729005454FE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +275,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F31C30A52AFF9729005454FE /* ViewController.swift in Sources */,
+				F31C30CE2AFFC7AE005454FE /* Theme.swift in Sources */,
+				F31C30C32AFFA68F005454FE /* ProfileViewController.swift in Sources */,
+				F31C30A52AFF9729005454FE /* HomeViewController.swift in Sources */,
+				F31C30C12AFFA682005454FE /* PopularViewController.swift in Sources */,
+				F31C30C52AFFA791005454FE /* SideNavigationController.swift in Sources */,
 				F31C30A12AFF9729005454FE /* AppDelegate.swift in Sources */,
-				F31C30A32AFF9729005454FE /* SceneDelegate.swift in Sources */,
+				F31C30BF2AFFA660005454FE /* NewestViewController.swift in Sources */,
+				F31C30B82AFF9B10005454FE /* MainTabBarController.swift in Sources */,
+				F31C30CC2AFFC6D3005454FE /* UIColor+Extension.swift in Sources */,
+				F31C30D42AFFCA1D005454FE /* CategoriesMenuViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		F31C30A62AFF9729005454FE /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F31C30A72AFF9729005454FE /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		F31C30AB2AFF972B005454FE /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -294,18 +430,18 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WP69V862HT;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Tuzlanski.ba/Info.plist;
+				INFOPLIST_FILE = Tuzlanski.ba/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.tuzlanski.ba.Tuzlanski-ba";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tuzlanski.ba.tuzlanski.ba;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -322,18 +458,18 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WP69V862HT;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Tuzlanski.ba/Info.plist;
+				INFOPLIST_FILE = Tuzlanski.ba/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.tuzlanski.ba.Tuzlanski-ba";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tuzlanski.ba.tuzlanski.ba;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -363,6 +499,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F31C30CF2AFFC95C005454FE /* XCRemoteSwiftPackageReference "SideMenu" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jonkykong/SideMenu.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F31C30D02AFFC95C005454FE /* SideMenu */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F31C30CF2AFFC95C005454FE /* XCRemoteSwiftPackageReference "SideMenu" */;
+			productName = SideMenu;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F31C30952AFF9729005454FE /* Project object */;
 }
