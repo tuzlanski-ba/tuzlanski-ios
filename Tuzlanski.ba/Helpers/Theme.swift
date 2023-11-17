@@ -14,4 +14,8 @@ extension UIColor {
     static var tintColor: UIColor {
         return UIColor(hex: "#EF4833")
     }
+    
+    static var primaryBackground: UIColor {
+        return UIColor(hex: "#091425")
+    }
 }

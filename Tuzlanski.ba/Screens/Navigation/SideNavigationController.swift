@@ -29,7 +29,7 @@ class SideNavigationController: UINavigationController {
         navigationBar.tintColor = .tintColor
         
         SideMenuManager.default.addPanGestureToPresent(toView: self.navigationBar)
-        SideMenuManager.default.addScreenEdgePanGesturesToPresent(toView: self.view)
+        SideMenuManager.default.addScreenEdgePanGesturesToPresent(toView: self.view, forMenu: .left)
     }
     
     // MARK: - Private methods
