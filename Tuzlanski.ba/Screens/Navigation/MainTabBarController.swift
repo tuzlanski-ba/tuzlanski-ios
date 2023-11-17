@@ -30,6 +30,9 @@ class MainTabBarController: UITabBarController {
         let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
         visualEffectView.frame = self.view.bounds
         tabBarController?.view.addSubview(visualEffectView)
+        
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.Montserrat(.bold, size: 10)], for: .normal)
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.Montserrat(.bold, size: 10)], for: .selected)
     }
     
     // MARK: - Private methods
