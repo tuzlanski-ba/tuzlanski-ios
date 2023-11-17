@@ -21,4 +21,17 @@ extension Date {
         
         return formatter.string(from: date)
     }
+    
+    static func formatToTime(apiDate: String) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        formatter.timeZone = NSTimeZone(name: "UTC")! as TimeZone
+        formatter.formatterBehavior = .default
+        
+        guard let date = formatter.date(from: apiDate) else { return apiDate }
+       
+        formatter.dateFormat = "HH:mm"
+        
+        return formatter.string(from: date)
+    }
 }

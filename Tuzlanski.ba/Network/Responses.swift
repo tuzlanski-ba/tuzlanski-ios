@@ -29,3 +29,12 @@ struct MenuItem: Codable {
     var status_code: String?
     var childs: [MenuItem]?
 }
+
+struct LatestArticleResponse: Codable {
+    
+    struct ArticlesResponse: Codable {
+        var data: [ListArticle]
+    }
+    
+    var articles: ArticlesResponse
+}

@@ -49,6 +49,44 @@ class ArticleCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
+    private lazy var timeLabel: UILabel = {
+        let timeLabel = UILabel().forAutoLayout()
+        timeLabel.font = .Montserrat(.bold, size: 11)
+        timeLabel.textColor = .white
+        timeLabel.numberOfLines = 1
+        
+        return timeLabel
+    }()
+    
+    private lazy var timeContainerView: UIView = {
+        let timeContainerView = UIView().forAutoLayout()
+        timeContainerView.backgroundColor = .tintColor
+        timeContainerView.round(corners: [.topLeft, .bottomRight], radius: 8)
+        
+        let clockImageView = UIImageView().forAutoLayout()
+        clockImageView.image = UIImage(named: "clock")
+        clockImageView.contentMode = .scaleAspectFit
+        clockImageView.tintColor = .white
+        NSLayoutConstraint.activate([
+            clockImageView.widthAnchor.constraint(equalToConstant: 12),
+            clockImageView.heightAnchor.constraint(equalTo: clockImageView.widthAnchor)
+        ])
+        
+        let stackView = UIStackView().forAutoLayout()
+        stackView.axis = .horizontal
+        stackView.spacing = 5
+        stackView.alignment = .center
+        
+        stackView.addArrangedSubview(clockImageView)
+        stackView.addArrangedSubview(timeLabel)
+        
+        timeContainerView.addSubview(stackView)
+        
+        stackView.pin(to: timeContainerView, padding: UIEdgeInsets(top: 6, left: 6, bottom: -6, right: -6))
+        
+        return timeContainerView
+    }()
+    
     // MARK: - Lifecycle
     
     override init(frame: CGRect) {
@@ -61,6 +99,7 @@ class ArticleCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(imageView)
         contentView.addSubview(contentStackView)
         contentView.addSubview(dateLabel)
+        contentView.addSubview(timeContainerView)
         
         contentStackView.addArrangedSubview(subtitleLabel)
         contentStackView.addArrangedSubview(titleLabel)
@@ -77,7 +116,10 @@ class ArticleCollectionViewCell: UICollectionViewCell {
             contentStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             
             dateLabel.bottomAnchor.constraint(equalTo: imageView.bottomAnchor),
-            dateLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 10)
+            dateLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 10),
+            
+            timeContainerView.topAnchor.constraint(equalTo: imageView.topAnchor),
+            timeContainerView.leadingAnchor.constraint(equalTo: imageView.leadingAnchor)
         ])
     }
     
@@ -88,6 +130,8 @@ class ArticleCollectionViewCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         imageView.layer.cornerRadius = 8
+        timeContainerView.relayout()
+        timeContainerView.round(corners: [.topLeft, .bottomRight], radius: 8)
     }
     
     override func prepareForReuse() {
@@ -97,11 +141,13 @@ class ArticleCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Public methods
     
-    func configure(article: ListArticle) {
+    func configure(article: ListArticle, displayTimeOnImage: Bool = false) {
         titleLabel.text = article.title
         subtitleLabel.text = article.preTitle?.uppercased() ?? article.section.name.uppercased()
         subtitleLabel.textColor = UIColor(hex: article.section.color_hex)
         imageView.url = URL(string: article.image.original)
         dateLabel.text = Date.format(apiDate: article.publishedAt)
+        timeLabel.text = Date.formatToTime(apiDate: article.publishedAt)
+        timeContainerView.isHidden = displayTimeOnImage == false
     }
 }

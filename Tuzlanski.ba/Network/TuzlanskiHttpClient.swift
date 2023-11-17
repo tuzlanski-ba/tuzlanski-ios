@@ -55,6 +55,22 @@ class TuzlanskiHttpClient {
         return dataResponse.data
     }
     
+    func getLatestArticles(page: Int = 1, sectionID: Int? = nil) async throws -> [ListArticle] {
+        guard var url = URL(string: host + "articles/latest") else { throw TuzlanskiHttpClientError.invalidURL }
+        url.appendQueryItem(name: "limit", value: "25")
+        url.appendQueryItem(name: "page", value: String(page))
+        if let sectionID {
+            url.appendQueryItem(name: "section_id", value: String(sectionID))
+        }
+        
+        var request = URLRequest(url: url)
+        request.setValue(auth, forHTTPHeaderField: "Authorization")
+        
+        let latestArticlesResponse: LatestArticleResponse = try await execute(request: request)
+        
+        return latestArticlesResponse.articles.data
+    }
+    
     // MARK: - Private methods
     
     private func execute<T: Codable>(request: URLRequest) async throws -> T {
