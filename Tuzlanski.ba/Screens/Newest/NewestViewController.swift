@@ -34,16 +34,29 @@ class NewestViewController: UIViewController {
     // MARK: - Properties
     
     private let httpClient = TuzlanskiHttpClient()
-    
+    private var category: Category?
     private var articles: [ListArticle] = []
     private var page = 0
     private var isFetching = false
     
     // MARK: - Lifecycle
     
+    init(category: Category? = nil) {
+        self.category = category
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadNextPage()
+        
+        if let category {
+            navigationItem.title = category.name
+        }
     }
     
     override func loadView() {
@@ -61,7 +74,7 @@ class NewestViewController: UIViewController {
         Task {
             do {
                 page += 1
-                let articles = try await httpClient.getLatestArticles(page: page)
+                let articles = try await httpClient.getLatestArticles(page: page, sectionID: category?.id)
                 
                 await MainActor.run {
                     self.articles.append(contentsOf: articles)

@@ -55,7 +55,7 @@ class TuzlanskiHttpClient {
         return dataResponse.data
     }
     
-    func getLatestArticles(page: Int = 1, sectionID: Int? = nil) async throws -> [ListArticle] {
+    func getLatestArticles(page: Int = 1, sectionID: Int64? = nil) async throws -> [ListArticle] {
         guard var url = URL(string: host + "articles/latest") else { throw TuzlanskiHttpClientError.invalidURL }
         url.appendQueryItem(name: "limit", value: "25")
         url.appendQueryItem(name: "page", value: String(page))

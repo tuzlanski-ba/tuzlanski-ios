@@ -87,7 +87,7 @@ class HomeViewController: UIViewController {
                     .init(articles: indexResponse.magazin, category: categoriesMap["magazin"]),
                     .init(articles: indexResponse.lifestyle, category: categoriesMap["lifestyle"]),
                     .init(articles: indexResponse.automoto, category: categoriesMap["automoto"]),
-                    .init(articles: indexResponse.scitech, category: categoriesMap["scitech"]),
+                    .init(articles: indexResponse.scitech, category: categoriesMap["sci-tech"]),
                     .init(articles: indexResponse.viral, category: categoriesMap["viral"]),
                     .init(articles: indexResponse.promo),
                 ]
@@ -138,9 +138,20 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         
         if let category = homeData[indexPath.section].category {
             headerView.configure(category: category)
+            headerView.delegate = self
         }
         
         return headerView
+    }
+}
+
+// MARK: - CategoryHeaderViewDelegate
+
+extension HomeViewController: CategoryHeaderViewDelegate {
+    
+    func moreButtonPressed(category: Category) {
+        let newestArticlesViewController = NewestViewController(category: category)
+        navigationController?.pushViewController(newestArticlesViewController, animated: true)
     }
 }
 

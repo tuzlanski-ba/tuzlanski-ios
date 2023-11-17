@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol CategoryHeaderViewDelegate: AnyObject {
+    func moreButtonPressed(category: Category)
+}
+
 class CategoryHeaderView: UICollectionReusableView {
     
     // MARK: - UI Components
@@ -27,9 +31,16 @@ class CategoryHeaderView: UICollectionReusableView {
     
     private lazy var moreButton: PillBorderButton = {
         let moreButton = PillBorderButton(title: "VIŠE").forAutoLayout()
+        moreButton.addTarget(self, action: #selector(moreButtonPressed), for: .touchUpInside)
         
         return moreButton
     }()
+    
+    // MARK: - Properties
+    
+    private var category: Category?
+    
+    weak var delegate: CategoryHeaderViewDelegate?
     
     // MARK: - Lifecycle
 
@@ -61,11 +72,20 @@ class CategoryHeaderView: UICollectionReusableView {
     // MARK: - Public methods
 
     func configure(category: Category) {
+        self.category = category
+        
         nameLabel.text = category.name
         
         let categoryColor = UIColor(hex: category.color)
         nameLabel.textColor = categoryColor
         lineView.backgroundColor = categoryColor
         moreButton.color = categoryColor
+    }
+    
+    // MARK: - Private methods
+    
+    @objc private func moreButtonPressed() {
+        guard let category else { return }
+        delegate?.moreButtonPressed(category: category)
     }
 }

@@ -30,6 +30,13 @@ class SideNavigationController: UINavigationController {
         
         SideMenuManager.default.addPanGestureToPresent(toView: self.navigationBar)
         SideMenuManager.default.addScreenEdgePanGesturesToPresent(toView: self.view, forMenu: .left)
+        
+        navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.Montserrat(.extraBold, size: 16)]
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        navigationBar.topItem?.backButtonDisplayMode = .minimal
     }
     
     // MARK: - Private methods
@@ -46,6 +53,10 @@ extension SideNavigationController: UINavigationControllerDelegate {
     
     // In this delegate method the goal is to set side menu icon and the logo on first view controller.
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        if presentedViewController is SideMenuNavigationController {
+            dismiss(animated: true)
+        }
+        
         if viewControllers.first == viewController && viewController.navigationItem.title?.isEmpty ?? true {
             viewController.navigationItem.titleView = logoImageView
             viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "line.3.horizontal"), style: .plain, target: self, action: #selector(openSideMenu))

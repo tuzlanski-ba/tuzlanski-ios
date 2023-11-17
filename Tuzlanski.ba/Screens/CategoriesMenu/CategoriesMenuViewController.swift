@@ -34,7 +34,9 @@ class CategoriesMenuViewController: UIViewController {
         view = UIView(frame: UIScreen.main.bounds)
         view.backgroundColor = .primaryBackground
         
-        let vc = UIHostingController(rootView: CategoriesView(menu: menu))
+        let vc = UIHostingController(rootView: CategoriesView(menu: menu, onCategoryPressed: { category in
+            NotificationCenter.dispatch(notification: .menuCategoryPressed, payload: ["category": category])
+        }))
         let swiftuiView = vc.view!
         swiftuiView.translatesAutoresizingMaskIntoConstraints = false
         addChild(vc)
@@ -48,6 +50,8 @@ struct CategoriesView: View {
     
     @ObservedObject var menu: MenuWithCategories
     
+    var onCategoryPressed: (Category) -> Void
+    
     var body: some View {
         ZStack {
             Color(UIColor.primaryBackground)
@@ -58,7 +62,9 @@ struct CategoriesView: View {
                     ForEach($menu.categories) { $category in
                         VStack {
                             HStack {
-                                Button(action: {}, label: {
+                                Button(action: {
+                                    onCategoryPressed(category)
+                                }, label: {
                                     Text(category.name)
                                         .foregroundStyle(Color(UIColor(hex: category.color)))
                                         .font(Font(UIFont.Montserrat(.bold, size: 20)))
@@ -67,7 +73,9 @@ struct CategoriesView: View {
                             }
                             ForEach(category.subcategories) { subcategory in
                                 HStack {
-                                    Button(action: {}, label: {
+                                    Button(action: {
+                                        onCategoryPressed(subcategory)
+                                    }, label: {
                                         Text(subcategory.name)
                                             .foregroundStyle(Color.white)
                                             .font(Font(UIFont.Montserrat(.semibold, size: 16)))

@@ -17,6 +17,7 @@ class MainTabBarController: UITabBarController {
         self.tabBar.tintColor = .tintColor
         
         setupViewControllers()
+        setupNotificationHandlers()
     }
     
     required init?(coder: NSCoder) {
@@ -56,5 +57,15 @@ class MainTabBarController: UITabBarController {
             SideNavigationController(rootViewController: popularViewController),
             SideNavigationController(rootViewController: profileViewController)
         ]
+    }
+    
+    private func setupNotificationHandlers() {
+        NotificationCenter.observe(notification: .menuCategoryPressed) { [unowned self] notification in
+            guard let navigationController = self.selectedViewController as? UINavigationController else { return }
+            guard let category = notification.userInfo?["category"] as? Category else { return }
+            
+            let newestViewController = NewestViewController(category: category)
+            navigationController.pushViewController(newestViewController, animated: true)
+        }
     }
 }
