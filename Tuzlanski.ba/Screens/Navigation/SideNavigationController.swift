@@ -39,6 +39,13 @@ class SideNavigationController: UINavigationController {
         navigationBar.topItem?.backButtonDisplayMode = .minimal
     }
     
+    // MARK: - Public methods
+    
+    func addLogoToCurrentViewController() {
+        guard let viewController = viewControllers.last else { return }
+        viewController.navigationItem.titleView = logoImageView
+    }
+    
     // MARK: - Private methods
     
     @objc private func openSideMenu() {

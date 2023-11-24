@@ -38,3 +38,7 @@ struct LatestArticleResponse: Codable {
     
     var articles: ArticlesResponse
 }
+
+struct ArticleResponse: Codable {
+    var article: Article
+}

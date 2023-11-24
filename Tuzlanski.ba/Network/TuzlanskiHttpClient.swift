@@ -71,6 +71,17 @@ class TuzlanskiHttpClient {
         return latestArticlesResponse.articles.data
     }
     
+    func getArticle(listArticle: ListArticle) async throws -> Article {
+        guard let url = URL(string: listArticle.apiURL) else { throw TuzlanskiHttpClientError.invalidURL }
+        
+        var request = URLRequest(url: url)
+        request.setValue(auth, forHTTPHeaderField: "Authorization")
+        
+        let articleResponse: ArticleResponse = try await execute(request: request)
+        
+        return articleResponse.article
+    }
+    
     // MARK: - Private methods
     
     private func execute<T: Codable>(request: URLRequest) async throws -> T {

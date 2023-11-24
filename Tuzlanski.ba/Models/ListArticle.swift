@@ -13,6 +13,7 @@ struct ListArticleImage: Codable {
 
 struct ListArticleSection: Codable {
     var name: String
+    var path: String
     var slug_short: String
     var color_hex: String
 }
@@ -28,6 +29,7 @@ struct ListArticle: Codable {
     var hasComments: Int?
     var image: ListArticleImage
     var section: ListArticleSection
+    var apiURL: String
     
     private enum CodingKeys: String, CodingKey {
         case id
@@ -40,6 +42,7 @@ struct ListArticle: Codable {
         case hasComments = "has_comments"
         case image
         case section
+        case apiURL = "api_url"
     }
 }
 

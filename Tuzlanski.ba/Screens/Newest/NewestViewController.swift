@@ -112,4 +112,9 @@ extension NewestViewController: UICollectionViewDataSource, UICollectionViewDele
         
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let articleViewController = ArticleViewController(listArticle: articles[indexPath.row])
+        navigationController?.pushViewController(articleViewController, animated: true)
+    }
 }

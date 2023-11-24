@@ -143,6 +143,11 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         
         return headerView
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let articleViewController = ArticleViewController(listArticle: homeData[indexPath.section].articles[indexPath.row])
+        navigationController?.pushViewController(articleViewController, animated: true)
+    }
 }
 
 // MARK: - CategoryHeaderViewDelegate
