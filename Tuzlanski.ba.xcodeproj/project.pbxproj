@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F3139AC02B11DFA70084AD31 /* SocialMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3139ABF2B11DFA70084AD31 /* SocialMenuButton.swift */; };
 		F31C30A12AFF9729005454FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C30A02AFF9729005454FE /* AppDelegate.swift */; };
 		F31C30A52AFF9729005454FE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C30A42AFF9729005454FE /* HomeViewController.swift */; };
 		F31C30AA2AFF972B005454FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F31C30A92AFF972B005454FE /* Assets.xcassets */; };
@@ -70,6 +71,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F3139ABF2B11DFA70084AD31 /* SocialMenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMenuButton.swift; sourceTree = "<group>"; };
 		F31C309D2AFF9729005454FE /* Tuzlanski.ba.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tuzlanski.ba.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F31C30A02AFF9729005454FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F31C30A42AFF9729005454FE /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -311,6 +313,7 @@
 			isa = PBXGroup;
 			children = (
 				F31C30D32AFFCA1D005454FE /* CategoriesMenuViewController.swift */,
+				F3139ABF2B11DFA70084AD31 /* SocialMenuButton.swift */,
 			);
 			path = CategoriesMenu;
 			sourceTree = "<group>";
@@ -492,6 +495,7 @@
 				F3EDC1542B00F7600050915B /* UIDate+Extension.swift in Sources */,
 				F3EDC1522B00EC970050915B /* UIKit+Extension.swift in Sources */,
 				F3881CD62B08A72300AAAAC6 /* ArticleViewController.swift in Sources */,
+				F3139AC02B11DFA70084AD31 /* SocialMenuButton.swift in Sources */,
 				F31C30D42AFFCA1D005454FE /* CategoriesMenuViewController.swift in Sources */,
 				F378151F2B040A4B005E9FEE /* Category.swift in Sources */,
 			);
