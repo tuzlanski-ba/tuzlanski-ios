@@ -54,7 +54,10 @@ class ArticleViewController: UIViewController {
         var articleView = ArticleView(observableArticle: observableArticle)
         articleView.onCategoryPress = { [unowned self] in
             let category = Category(id: observableArticle.listArticle.sectionID, slug: observableArticle.listArticle.section.slug_short, name: observableArticle.listArticle.section.name)
-            self.navigationController?.pushViewController(NewestViewController(category: category), animated: true)
+            self.navigationController?.pushViewController(LatestViewController(fetchDataSource: CategoryFetchDataSource(category: category)), animated: true)
+        }
+        articleView.onTagPress = { [unowned self] tag in
+            self.navigationController?.pushViewController(LatestViewController(fetchDataSource: TagFetchDataSource(tag: tag)), animated: true)
         }
         
         let vc = UIHostingController(rootView: articleView)
@@ -81,6 +84,7 @@ struct ArticleView: View {
     @State private var webViewHeight: CGFloat = .zero
     
     var onCategoryPress: (() -> Void)?
+    var onTagPress: ((Tag) -> Void)?
     
     var body: some View {
         ScrollView {
@@ -127,7 +131,7 @@ struct ArticleView: View {
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.top, 6)
                         WrappingHStack(article.tags, id:\.self, lineSpacing: 8) { tag in
-                            Button(action: {}) {
+                            Button(action: { onTagPress?(tag) }) {
                                 Text(tag.name.uppercased())
                                     .font(Font(UIFont.Montserrat(.bold, size: 12)))
                                     .padding(6)

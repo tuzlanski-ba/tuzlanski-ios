@@ -155,7 +155,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
 extension HomeViewController: CategoryHeaderViewDelegate {
     
     func moreButtonPressed(category: Category) {
-        let newestArticlesViewController = NewestViewController(category: category)
+        let newestArticlesViewController = LatestViewController(fetchDataSource: CategoryFetchDataSource(category: category))
         navigationController?.pushViewController(newestArticlesViewController, animated: true)
     }
 }

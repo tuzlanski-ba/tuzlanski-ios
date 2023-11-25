@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NewestViewController: UIViewController {
+class LatestViewController: UIViewController {
 
     // MARK: - UI Components
     
@@ -33,16 +33,15 @@ class NewestViewController: UIViewController {
     
     // MARK: - Properties
     
-    private let httpClient = TuzlanskiHttpClient()
-    private var category: Category?
+    private var fetchDataSource: FetchDataSource
     private var articles: [ListArticle] = []
     private var page = 0
     private var isFetching = false
     
     // MARK: - Lifecycle
     
-    init(category: Category? = nil) {
-        self.category = category
+    init(fetchDataSource: any FetchDataSource) {
+        self.fetchDataSource = fetchDataSource
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -54,8 +53,8 @@ class NewestViewController: UIViewController {
         super.viewDidLoad()
         loadNextPage()
         
-        if let category {
-            navigationItem.title = category.name
+        if let name = fetchDataSource.name {
+            navigationItem.title = name
         }
     }
     
@@ -74,7 +73,7 @@ class NewestViewController: UIViewController {
         Task {
             do {
                 page += 1
-                let articles = try await httpClient.getLatestArticles(page: page, sectionID: category?.id)
+                let articles = try await fetchDataSource.fetch(page: page)
                 
                 await MainActor.run {
                     self.articles.append(contentsOf: articles)
@@ -90,7 +89,7 @@ class NewestViewController: UIViewController {
 
 // MARK: - UICollectionView delegates
 
-extension NewestViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension LatestViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1

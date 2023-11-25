@@ -43,7 +43,7 @@ class MainTabBarController: UITabBarController {
         homeViewController.tabBarItem.title = "Početna"
         homeViewController.tabBarItem.image = UIImage(systemName: "house")
         
-        let newestViewController = NewestViewController()
+        let newestViewController = LatestViewController(fetchDataSource: LatestFetchDataSource())
         newestViewController.tabBarItem.title = "Najnovije"
         newestViewController.tabBarItem.image = UIImage(systemName: "calendar")
         
@@ -68,7 +68,7 @@ class MainTabBarController: UITabBarController {
             guard let navigationController = self.selectedViewController as? UINavigationController else { return }
             guard let category = notification.userInfo?["category"] as? Category else { return }
             
-            let newestViewController = NewestViewController(category: category)
+            let newestViewController = LatestViewController(fetchDataSource: CategoryFetchDataSource(category: category))
             navigationController.pushViewController(newestViewController, animated: true)
         }
     }
