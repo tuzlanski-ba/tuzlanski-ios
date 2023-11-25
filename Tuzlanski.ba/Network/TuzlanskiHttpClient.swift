@@ -19,7 +19,8 @@ struct DataResponse<T : Codable>: Codable {
 class TuzlanskiHttpClient {
     
     // MARK: - Properties
-    
+   
+    static let pageLimit = 25
     private let host = "https://dev.tuzlanski.ba/api/v1/"
     
     // TODO: Delete this when public system is released
@@ -57,7 +58,7 @@ class TuzlanskiHttpClient {
     
     func getLatestArticles(page: Int = 1, sectionID: Int64? = nil) async throws -> [ListArticle] {
         guard var url = URL(string: host + "articles/latest") else { throw TuzlanskiHttpClientError.invalidURL }
-        url.appendQueryItem(name: "limit", value: "25")
+        url.appendQueryItem(name: "limit", value: "\(Self.pageLimit)")
         url.appendQueryItem(name: "page", value: String(page))
         if let sectionID {
             url.appendQueryItem(name: "section_id", value: String(sectionID))
@@ -73,7 +74,7 @@ class TuzlanskiHttpClient {
     
     func getLatestArticles(page: Int = 1, tagSlug: String) async throws -> [ListArticle] {
         guard var url = URL(string: host + "articles/tags/" + tagSlug) else { throw TuzlanskiHttpClientError.invalidURL }
-        url.appendQueryItem(name: "limit", value: "25")
+        url.appendQueryItem(name: "limit", value: "\(Self.pageLimit)")
         url.appendQueryItem(name: "page", value: String(page))
         
         var request = URLRequest(url: url)

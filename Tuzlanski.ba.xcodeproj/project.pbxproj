@@ -35,6 +35,8 @@
 		F3881CEC2B0A88C100AAAAC6 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3881CEB2B0A88C100AAAAC6 /* WebView.swift */; };
 		F389F8DF2B06907000DFEDB5 /* CategoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F389F8DE2B06907000DFEDB5 /* CategoryHeaderView.swift */; };
 		F389F8E12B06980200DFEDB5 /* PillBorderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F389F8E02B06980200DFEDB5 /* PillBorderButton.swift */; };
+		F3B1B5E32B121DA300B70B70 /* Connectivity in Frameworks */ = {isa = PBXBuildFile; productRef = F3B1B5E22B121DA300B70B70 /* Connectivity */; };
+		F3B1B5E52B1226D500B70B70 /* ConnectivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B1B5E42B1226D500B70B70 /* ConnectivityService.swift */; };
 		F3C06EF82B07D31E00065735 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C06EF72B07D31E00065735 /* URL+Extension.swift */; };
 		F3C06EFA2B0817C300065735 /* NotificationCenter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C06EF92B0817C300065735 /* NotificationCenter+Extension.swift */; };
 		F3EDC1142AFFCD6D0050915B /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDC1132AFFCD6D0050915B /* Logging.swift */; };
@@ -101,6 +103,7 @@
 		F3881CEB2B0A88C100AAAAC6 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		F389F8DE2B06907000DFEDB5 /* CategoryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryHeaderView.swift; sourceTree = "<group>"; };
 		F389F8E02B06980200DFEDB5 /* PillBorderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillBorderButton.swift; sourceTree = "<group>"; };
+		F3B1B5E42B1226D500B70B70 /* ConnectivityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityService.swift; sourceTree = "<group>"; };
 		F3C06EF72B07D31E00065735 /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
 		F3C06EF92B0817C300065735 /* NotificationCenter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationCenter+Extension.swift"; sourceTree = "<group>"; };
 		F3EDC1132AFFCD6D0050915B /* Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
@@ -141,6 +144,7 @@
 				F31C30D12AFFC95C005454FE /* SideMenu in Frameworks */,
 				F3EDC1482B00EBAE0050915B /* Nuke in Frameworks */,
 				F3EDC14E2B00EBAE0050915B /* NukeVideo in Frameworks */,
+				F3B1B5E32B121DA300B70B70 /* Connectivity in Frameworks */,
 				F3EDC14A2B00EBAE0050915B /* NukeExtensions in Frameworks */,
 				F3EDC14C2B00EBAE0050915B /* NukeUI in Frameworks */,
 			);
@@ -185,6 +189,7 @@
 			children = (
 				F31C30AE2AFF972B005454FE /* Info.plist */,
 				F31C30A02AFF9729005454FE /* AppDelegate.swift */,
+				F3B1B5E42B1226D500B70B70 /* ConnectivityService.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -388,6 +393,7 @@
 				F3EDC1492B00EBAE0050915B /* NukeExtensions */,
 				F3EDC14B2B00EBAE0050915B /* NukeUI */,
 				F3EDC14D2B00EBAE0050915B /* NukeVideo */,
+				F3B1B5E22B121DA300B70B70 /* Connectivity */,
 			);
 			productName = Tuzlanski.ba;
 			productReference = F31C309D2AFF9729005454FE /* Tuzlanski.ba.app */;
@@ -420,6 +426,7 @@
 			packageReferences = (
 				F31C30CF2AFFC95C005454FE /* XCRemoteSwiftPackageReference "SideMenu" */,
 				F3EDC1462B00EBAE0050915B /* XCRemoteSwiftPackageReference "Nuke" */,
+				F3B1B5E12B121DA300B70B70 /* XCRemoteSwiftPackageReference "connectivity" */,
 			);
 			productRefGroup = F31C309E2AFF9729005454FE /* Products */;
 			projectDirPath = "";
@@ -499,6 +506,7 @@
 				F3EDC1542B00F7600050915B /* UIDate+Extension.swift in Sources */,
 				F3EDC1522B00EC970050915B /* UIKit+Extension.swift in Sources */,
 				F3881CD62B08A72300AAAAC6 /* ArticleViewController.swift in Sources */,
+				F3B1B5E52B1226D500B70B70 /* ConnectivityService.swift in Sources */,
 				F3139AC02B11DFA70084AD31 /* SocialMenuButton.swift in Sources */,
 				F31C30D42AFFCA1D005454FE /* CategoriesMenuViewController.swift in Sources */,
 				F378151F2B040A4B005E9FEE /* Category.swift in Sources */,
@@ -726,6 +734,14 @@
 				minimumVersion = 6.5.0;
 			};
 		};
+		F3B1B5E12B121DA300B70B70 /* XCRemoteSwiftPackageReference "connectivity" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/rwbutler/connectivity";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.1.1;
+			};
+		};
 		F3EDC1462B00EBAE0050915B /* XCRemoteSwiftPackageReference "Nuke" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kean/Nuke";
@@ -741,6 +757,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F31C30CF2AFFC95C005454FE /* XCRemoteSwiftPackageReference "SideMenu" */;
 			productName = SideMenu;
+		};
+		F3B1B5E22B121DA300B70B70 /* Connectivity */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F3B1B5E12B121DA300B70B70 /* XCRemoteSwiftPackageReference "connectivity" */;
+			productName = Connectivity;
 		};
 		F3EDC1472B00EBAE0050915B /* Nuke */ = {
 			isa = XCSwiftPackageProductDependency;

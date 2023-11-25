@@ -37,6 +37,7 @@ class LatestViewController: UIViewController {
     private var articles: [ListArticle] = []
     private var page = 0
     private var isFetching = false
+    private var canFetchMore = true
     
     // MARK: - Lifecycle
     
@@ -68,12 +69,16 @@ class LatestViewController: UIViewController {
     // MARK: - Private methods
     
     private func loadNextPage() {
-        guard !isFetching else { return }
+        guard !isFetching && canFetchMore else { return }
         isFetching = true
         Task {
             do {
                 page += 1
                 let articles = try await fetchDataSource.fetch(page: page)
+                
+                if articles.count < TuzlanskiHttpClient.pageLimit {
+                    canFetchMore = false
+                }
                 
                 await MainActor.run {
                     self.articles.append(contentsOf: articles)
