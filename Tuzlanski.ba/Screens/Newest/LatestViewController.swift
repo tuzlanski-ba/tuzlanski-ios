@@ -28,6 +28,10 @@ class LatestViewController: UIViewController {
         collectionView.delegate = self
         collectionView.register(ArticleCollectionViewCell.self, forCellWithReuseIdentifier: ArticleCollectionViewCell.identifier)
         
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(reloadData), for: .valueChanged)
+        collectionView.refreshControl = refreshControl
+        
         return collectionView
     }()
     
@@ -52,6 +56,7 @@ class LatestViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionView.refreshControl?.beginRefreshing()
         loadNextPage()
         
         if let name = fetchDataSource.name {
@@ -83,7 +88,30 @@ class LatestViewController: UIViewController {
                 await MainActor.run {
                     self.articles.append(contentsOf: articles)
                     collectionView.reloadData()
+                    collectionView.refreshControl?.endRefreshing()
                     isFetching = false
+                }
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
+    @objc private func reloadData(refreshControl: UIRefreshControl) {
+        isFetching = true
+        canFetchMore = true
+        page = 0
+        
+        Task {
+            do {
+                page += 1
+                let articles = try await fetchDataSource.fetch(page: page)
+                
+                await MainActor.run {
+                    self.articles = articles
+                    collectionView.reloadData()
+                    isFetching = false
+                    refreshControl.endRefreshing()
                 }
             } catch {
                 print(error)

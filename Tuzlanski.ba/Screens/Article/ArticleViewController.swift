@@ -59,6 +59,9 @@ class ArticleViewController: UIViewController {
         articleView.onTagPress = { [unowned self] tag in
             self.navigationController?.pushViewController(LatestViewController(fetchDataSource: TagFetchDataSource(tag: tag)), animated: true)
         }
+        articleView.fetchArticle = { [unowned self] in
+            return try await httpClient.getArticle(listArticle: observableArticle.listArticle)
+        }
         
         let vc = UIHostingController(rootView: articleView)
         let swiftuiView = vc.view!
@@ -85,6 +88,7 @@ struct ArticleView: View {
     
     var onCategoryPress: (() -> Void)?
     var onTagPress: ((Tag) -> Void)?
+    var fetchArticle: (() async throws -> Article)?
     
     var body: some View {
         ScrollView {
@@ -165,6 +169,15 @@ struct ArticleView: View {
             }
             .padding(.horizontal, 16)
             Spacer()
+        }
+        .refreshable {
+            guard let fetchArticle else { return }
+            do {
+                let article = try await fetchArticle()
+                self.observableArticle.article = article
+            } catch {
+                print("Error while refetching article:", error)
+            }
         }
     }
 }

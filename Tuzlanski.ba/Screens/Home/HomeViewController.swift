@@ -58,6 +58,10 @@ class HomeViewController: UIViewController {
         collectionView.register(FeaturedArticleCollectionViewCell.self, forCellWithReuseIdentifier: FeaturedArticleCollectionViewCell.identifier)
         collectionView.register(CategoryHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CategoryHeaderView.identifier)
         
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(reloadData), for: .valueChanged)
+        collectionView.refreshControl = refreshControl
+        
         return collectionView
     }()
     
@@ -72,6 +76,20 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        collectionView.refreshControl?.beginRefreshing()
+        reloadData()
+    }
+    
+    override func loadView() {
+        view = UIView.screen()
+        view.backgroundColor = .systemBackground
+        view.addSubview(collectionView)
+        collectionView.pin(to: view)
+    }
+    
+    // MARK: - Private methods
+    
+    @objc private func reloadData() {
         Task {
             do {
                 let categories = try await httpClient.fetchCategories()
@@ -94,18 +112,12 @@ class HomeViewController: UIViewController {
                 
                 await MainActor.run {
                     collectionView.reloadData()
+                    collectionView.refreshControl?.endRefreshing()
                 }
             } catch {
                 print(error)
             }
         }
-    }
-    
-    override func loadView() {
-        view = UIView.screen()
-        view.backgroundColor = .systemBackground
-        view.addSubview(collectionView)
-        collectionView.pin(to: view)
     }
 }
 
