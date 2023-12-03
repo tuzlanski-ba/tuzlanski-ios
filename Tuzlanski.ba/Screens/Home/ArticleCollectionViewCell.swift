@@ -87,6 +87,26 @@ class ArticleCollectionViewCell: UICollectionViewCell {
         return timeContainerView
     }()
     
+    private lazy var galleryContainerView: UIView = {
+        let galleryContainerView = UIView().forAutoLayout()
+        galleryContainerView.backgroundColor = .tintColor
+        galleryContainerView.round(corners: [.bottomLeft, .topRight], radius: 8)
+        
+        let galleryImageView = UIImageView().forAutoLayout()
+        galleryImageView.image = UIImage(named: "camera")
+        galleryImageView.contentMode = .scaleAspectFit
+        galleryImageView.tintColor = .white
+        NSLayoutConstraint.activate([
+            galleryImageView.widthAnchor.constraint(equalToConstant: 14),
+            galleryImageView.heightAnchor.constraint(equalTo: galleryImageView.heightAnchor)
+        ])
+        
+        galleryContainerView.addSubview(galleryImageView)
+        galleryImageView.pin(to: galleryContainerView, padding: .init(top: 3, left: 6, bottom: -3, right: -6))
+        
+        return galleryContainerView
+    }()
+    
     // MARK: - Lifecycle
     
     override init(frame: CGRect) {
@@ -100,6 +120,7 @@ class ArticleCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(contentStackView)
         contentView.addSubview(dateLabel)
         contentView.addSubview(timeContainerView)
+        contentView.addSubview(galleryContainerView)
         
         contentStackView.addArrangedSubview(subtitleLabel)
         contentStackView.addArrangedSubview(titleLabel)
@@ -119,7 +140,10 @@ class ArticleCollectionViewCell: UICollectionViewCell {
             dateLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 10),
             
             timeContainerView.topAnchor.constraint(equalTo: imageView.topAnchor),
-            timeContainerView.leadingAnchor.constraint(equalTo: imageView.leadingAnchor)
+            timeContainerView.leadingAnchor.constraint(equalTo: imageView.leadingAnchor),
+            
+            galleryContainerView.leadingAnchor.constraint(equalTo: imageView.leadingAnchor),
+            galleryContainerView.bottomAnchor.constraint(equalTo: imageView.bottomAnchor)
         ])
     }
     
@@ -132,6 +156,8 @@ class ArticleCollectionViewCell: UICollectionViewCell {
         imageView.layer.cornerRadius = 8
         timeContainerView.relayout()
         timeContainerView.round(corners: [.topLeft, .bottomRight], radius: 8)
+        galleryContainerView.relayout()
+        galleryContainerView.round(corners: [.bottomLeft, .topRight], radius: 8)
     }
     
     override func prepareForReuse() {
@@ -149,5 +175,8 @@ class ArticleCollectionViewCell: UICollectionViewCell {
         dateLabel.text = Date.format(apiDate: article.publishedAt)
         timeLabel.text = Date.formatToTime(apiDate: article.publishedAt)
         timeContainerView.isHidden = displayTimeOnImage == false
+        timeContainerView.backgroundColor = UIColor(hex: article.section.color_hex)
+        galleryContainerView.isHidden = !article.isGallery
+        galleryContainerView.backgroundColor = UIColor(hex: article.section.color_hex)
     }
 }

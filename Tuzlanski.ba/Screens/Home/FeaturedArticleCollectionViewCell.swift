@@ -49,6 +49,26 @@ class FeaturedArticleCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
+    private lazy var galleryContainerView: UIView = {
+        let galleryContainerView = UIView().forAutoLayout()
+        galleryContainerView.backgroundColor = .tintColor
+        galleryContainerView.round(corners: [.topLeft, .bottomRight], radius: 8)
+        
+        let galleryImageView = UIImageView().forAutoLayout()
+        galleryImageView.image = UIImage(named: "camera")
+        galleryImageView.contentMode = .scaleAspectFit
+        galleryImageView.tintColor = .white
+        NSLayoutConstraint.activate([
+            galleryImageView.widthAnchor.constraint(equalToConstant: 17),
+            galleryImageView.heightAnchor.constraint(equalTo: galleryImageView.heightAnchor)
+        ])
+        
+        galleryContainerView.addSubview(galleryImageView)
+        galleryImageView.pin(to: galleryContainerView, padding: .init(top: 3, left: 7, bottom: -3, right: -7))
+        
+        return galleryContainerView
+    }()
+    
     // MARK: - Lifecycle
     
     override init(frame: CGRect) {
@@ -72,6 +92,7 @@ class FeaturedArticleCollectionViewCell: UICollectionViewCell {
         containerView.addSubview(imageView)
         containerView.addSubview(gradientView)
         containerView.addSubview(contentStackView)
+        containerView.addSubview(galleryContainerView)
         
         imageView.pin(to: containerView)
         gradientView.pin(to: containerView)
@@ -86,6 +107,9 @@ class FeaturedArticleCollectionViewCell: UICollectionViewCell {
             contentStackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -8),
             contentStackView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10),
             contentStackView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10),
+            
+            galleryContainerView.topAnchor.constraint(equalTo: containerView.topAnchor),
+            galleryContainerView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor)
         ])
     }
     
@@ -96,6 +120,8 @@ class FeaturedArticleCollectionViewCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         imageView.layer.cornerRadius = 8
+        galleryContainerView.relayout()
+        galleryContainerView.round(corners: [.topLeft, .bottomRight], radius: 8)
     }
     
     override func prepareForReuse() {
@@ -111,6 +137,8 @@ class FeaturedArticleCollectionViewCell: UICollectionViewCell {
         subtitleLabel.textColor = UIColor(hex: article.section.color_hex)
         imageView.url = URL(string: article.image.original)
         dateLabel.text = Date.format(apiDate: article.publishedAt)
+        galleryContainerView.isHidden = !article.isGallery
+        galleryContainerView.backgroundColor = UIColor(hex: article.section.color_hex)
     }
 }
 
