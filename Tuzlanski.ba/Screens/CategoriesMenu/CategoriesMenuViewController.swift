@@ -80,7 +80,7 @@ struct CategoriesView: View {
                         Divider()
                         genericLinkRow(title: "Uslovi korištenja")
                         Spacer()
-                        HStack(alignment: .center, spacing: 18, content: {
+                        HStack(alignment: .center, spacing: 22, content: {
                             SocialMenuButton(socialNetwork: .facebook)
                             SocialMenuButton(socialNetwork: .instagram)
                             SocialMenuButton(socialNetwork: .youtube)
@@ -103,7 +103,7 @@ struct CategoriesView: View {
         Button(action: {}, label: {
             HStack {
                 Text(title)
-                    .font(Font(UIFont.Montserrat(.bold, size: 14)))
+                    .font(Font(UIFont.Montserrat(.bold, size: 15)))
                     .foregroundStyle(Color.white)
                 Spacer()
                 Image("arrow-right")
@@ -113,7 +113,7 @@ struct CategoriesView: View {
                     .frame(width: 14, height: 14, alignment: .center)
             }
         })
-        .frame(minHeight: 20)
+        .frame(minHeight: 26)
         .padding(.horizontal, 16)
     }
 }
@@ -134,7 +134,7 @@ struct CategoryRowView: View {
                 }, label: {
                     Text(category.name)
                         .foregroundStyle(Color(UIColor(hex: category.color)))
-                        .font(Font(UIFont.Montserrat(.bold, size: 14)))
+                        .font(Font(UIFont.Montserrat(.bold, size: 15)))
                 })
                 Spacer()
                 Button(action: {
@@ -151,7 +151,7 @@ struct CategoryRowView: View {
                 })
             }
             .padding(.horizontal, 16)
-            .frame(minHeight: 20)
+            .frame(minHeight: 26)
             Divider()
             if !collapsed {
                 ForEach(category.subcategories) { subcategory in
@@ -161,12 +161,12 @@ struct CategoryRowView: View {
                         }, label: {
                             Text(subcategory.name)
                                 .foregroundStyle(Color.white)
-                                .font(Font(UIFont.Montserrat(.bold, size: 13)))
+                                .font(Font(UIFont.Montserrat(.bold, size: 14)))
                         })
                         Spacer()
                     }
                     .padding(.horizontal, 24)
-                    .frame(minHeight: 20)
+                    .frame(minHeight: 26)
                     Divider()
                 }
             }
