@@ -16,6 +16,15 @@ class MainTabBarController: UITabBarController {
         
         self.tabBar.tintColor = .tintColor
         
+        let tabBarAppearance = UITabBarAppearance()
+        tabBarAppearance.configureWithOpaqueBackground()
+        tabBarAppearance.shadowColor = .clear
+        tabBarAppearance.stackedLayoutAppearance.normal.titleTextAttributes = [NSAttributedString.Key.font: UIFont.Montserrat(.bold, size: 10)]
+        tabBarAppearance.stackedLayoutAppearance.selected.titleTextAttributes = [NSAttributedString.Key.font: UIFont.Montserrat(.bold, size: 10)]
+        UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.Montserrat(.bold, size: 10)], for: .normal)
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.Montserrat(.bold, size: 10)], for: .selected)
+        
         setupViewControllers()
         setupNotificationHandlers()
     }
@@ -26,14 +35,6 @@ class MainTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.Montserrat(.bold, size: 10)], for: .normal)
-        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.Montserrat(.bold, size: 10)], for: .selected)
-        
-        let tabBarAppearance = UITabBarAppearance()
-        tabBarAppearance.configureWithOpaqueBackground()
-        tabBarAppearance.shadowColor = .clear
-        UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
     }
     
     // MARK: - Private methods

@@ -36,15 +36,9 @@ class CategoriesMenuViewController: UIViewController {
         
         overrideUserInterfaceStyle = .dark
         
-        let vc = UIHostingController(rootView: CategoriesView(menu: menu, onCategoryPressed: { category in
+        addSwiftUIView(CategoriesView(menu: menu, onCategoryPressed: { category in
             NotificationCenter.dispatch(notification: .menuCategoryPressed, payload: ["category": category])
         }))
-        let swiftuiView = vc.view!
-        swiftuiView.translatesAutoresizingMaskIntoConstraints = false
-        addChild(vc)
-        view.addSubview(swiftuiView)
-        swiftuiView.pin(to: view)
-        vc.didMove(toParent: self)
     }
 }
 

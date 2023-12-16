@@ -63,13 +63,7 @@ class ArticleViewController: UIViewController {
             return try await httpClient.getArticle(listArticle: observableArticle.listArticle)
         }
         
-        let vc = UIHostingController(rootView: articleView)
-        let swiftuiView = vc.view!
-        swiftuiView.translatesAutoresizingMaskIntoConstraints = false
-        addChild(vc)
-        view.addSubview(swiftuiView)
-        swiftuiView.pin(to: view)
-        vc.didMove(toParent: self)
+        addSwiftUIView(articleView)
     }
     
     override func loadView() {

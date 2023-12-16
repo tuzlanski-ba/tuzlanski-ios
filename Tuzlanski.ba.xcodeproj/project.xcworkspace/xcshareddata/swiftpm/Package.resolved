@@ -1,12 +1,30 @@
 {
   "pins" : [
     {
+      "identity" : "alertkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sparrowcode/AlertKit",
+      "state" : {
+        "revision" : "3d35de60ad26aab58395ebecdd63b533546862ed",
+        "version" : "5.1.8"
+      }
+    },
+    {
       "identity" : "connectivity",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/rwbutler/connectivity",
       "state" : {
         "revision" : "baf392cd229138c268e5dbaf3ee84e6ae0876173",
         "version" : "6.1.1"
+      }
+    },
+    {
+      "identity" : "keychain-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/evgenyneu/keychain-swift.git",
+      "state" : {
+        "revision" : "d108a1fa6189e661f91560548ef48651ed8d93b9",
+        "version" : "20.0.0"
       }
     },
     {

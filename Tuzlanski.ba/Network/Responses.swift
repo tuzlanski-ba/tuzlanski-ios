@@ -42,3 +42,16 @@ struct LatestArticleResponse: Codable {
 struct ArticleResponse: Codable {
     var article: Article
 }
+
+struct LoginResponse: Codable {
+    var user: User
+    var token: String
+}
+
+struct FailLoginResponse: Codable {
+    var message: String
+}
+
+struct InputErrorResponse: Codable, Error {
+    var errors: [String: [String]]
+}
