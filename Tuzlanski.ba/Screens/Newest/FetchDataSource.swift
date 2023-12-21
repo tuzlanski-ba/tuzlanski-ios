@@ -20,7 +20,7 @@ struct LatestFetchDataSource: FetchDataSource {
     var name: String? = nil
     
     func fetch(page: Int) async throws -> [ListArticle] {
-        return try await httpClient.getLatestArticles(page: 0)
+        return try await httpClient.getLatestArticles(page: page)
     }
 }
 
