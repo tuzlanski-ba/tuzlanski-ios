@@ -68,16 +68,20 @@ class HomeViewController: UIViewController {
     // MARK: - Properties
     
     private let httpClient = TuzlanskiHttpClient()
-    
     private var homeData: [HomeData] = []
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        collectionView.refreshControl?.beginRefreshing()
-        reloadData()
+    }
+    
+    override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(animated)
+        if homeData.isEmpty {
+            collectionView.refreshControl?.beginRefreshing()
+            reloadData()
+        }
     }
     
     override func loadView() {

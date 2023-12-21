@@ -55,3 +55,12 @@ struct FailLoginResponse: Codable {
 struct InputErrorResponse: Codable, Error {
     var errors: [String: [String]]
 }
+
+struct CommentReportResponse: Codable {
+    var comment_id: Int64
+    var type: String
+    var ip: String
+    var user_id: Int64
+    var uid: String
+    var id: Int64
+}

@@ -7,12 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F311F0E52B30DB0B007B73B4 /* CommentArticleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F311F0E42B30DB0B007B73B4 /* CommentArticleHeaderView.swift */; };
 		F3139AC02B11DFA70084AD31 /* SocialMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3139ABF2B11DFA70084AD31 /* SocialMenuButton.swift */; };
 		F3139AC22B1203F00084AD31 /* FetchDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3139AC12B1203F00084AD31 /* FetchDataSource.swift */; };
 		F319F16E2B2CC7F300C81793 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F16D2B2CC7F300C81793 /* String+Extension.swift */; };
 		F319F1702B2CC82E00C81793 /* SpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F16F2B2CC82E00C81793 /* SpinnerView.swift */; };
 		F319F1722B2D872E00C81793 /* AppNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F1712B2D872E00C81793 /* AppNotifications.swift */; };
 		F319F1752B2DEDE400C81793 /* AlertKit in Frameworks */ = {isa = PBXBuildFile; productRef = F319F1742B2DEDE400C81793 /* AlertKit */; };
+		F319F1772B2E46B900C81793 /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F1762B2E46B900C81793 /* CommentsViewController.swift */; };
+		F319F1792B2E48B800C81793 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F1782B2E48B800C81793 /* Comment.swift */; };
+		F319F17B2B2E4C9200C81793 /* CommentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F17A2B2E4C9200C81793 /* CommentCollectionViewCell.swift */; };
+		F319F17D2B2E60F900C81793 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F17C2B2E60F900C81793 /* UIImage+Extension.swift */; };
+		F319F17F2B2E649A00C81793 /* UserAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F319F17E2B2E649A00C81793 /* UserAvatarView.swift */; };
 		F31C30A12AFF9729005454FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C30A02AFF9729005454FE /* AppDelegate.swift */; };
 		F31C30A52AFF9729005454FE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C30A42AFF9729005454FE /* HomeViewController.swift */; };
 		F31C30AA2AFF972B005454FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F31C30A92AFF972B005454FE /* Assets.xcassets */; };
@@ -47,11 +53,15 @@
 		F3881CEC2B0A88C100AAAAC6 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3881CEB2B0A88C100AAAAC6 /* WebView.swift */; };
 		F389F8DF2B06907000DFEDB5 /* CategoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F389F8DE2B06907000DFEDB5 /* CategoryHeaderView.swift */; };
 		F389F8E12B06980200DFEDB5 /* PillBorderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F389F8E02B06980200DFEDB5 /* PillBorderButton.swift */; };
+		F3932B052B34C35700712046 /* EmbeddedCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3932B042B34C35700712046 /* EmbeddedCommentView.swift */; };
+		F3932B072B34C42100712046 /* CommentReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3932B062B34C42100712046 /* CommentReportViewController.swift */; };
+		F3932B092B34C56F00712046 /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3932B082B34C56F00712046 /* RadioButton.swift */; };
 		F3B1B5E32B121DA300B70B70 /* Connectivity in Frameworks */ = {isa = PBXBuildFile; productRef = F3B1B5E22B121DA300B70B70 /* Connectivity */; };
 		F3B1B5E52B1226D500B70B70 /* ConnectivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B1B5E42B1226D500B70B70 /* ConnectivityService.swift */; };
 		F3BD66492B1FA9E800D4AB3F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BD66482B1FA9E800D4AB3F /* User.swift */; };
 		F3C06EF82B07D31E00065735 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C06EF72B07D31E00065735 /* URL+Extension.swift */; };
 		F3C06EFA2B0817C300065735 /* NotificationCenter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C06EF92B0817C300065735 /* NotificationCenter+Extension.swift */; };
+		F3EB1E912B337BB0008818D7 /* NewCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EB1E902B337BB0008818D7 /* NewCommentViewController.swift */; };
 		F3EDC1142AFFCD6D0050915B /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDC1132AFFCD6D0050915B /* Logging.swift */; };
 		F3EDC1172AFFD0B40050915B /* TuzlanskiHttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDC1162AFFD0B40050915B /* TuzlanskiHttpClient.swift */; };
 		F3EDC1192B00142E0050915B /* ListArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDC1182B00142E0050915B /* ListArticle.swift */; };
@@ -87,11 +97,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F311F0E42B30DB0B007B73B4 /* CommentArticleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentArticleHeaderView.swift; sourceTree = "<group>"; };
 		F3139ABF2B11DFA70084AD31 /* SocialMenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMenuButton.swift; sourceTree = "<group>"; };
 		F3139AC12B1203F00084AD31 /* FetchDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchDataSource.swift; sourceTree = "<group>"; };
 		F319F16D2B2CC7F300C81793 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		F319F16F2B2CC82E00C81793 /* SpinnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerView.swift; sourceTree = "<group>"; };
 		F319F1712B2D872E00C81793 /* AppNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNotifications.swift; sourceTree = "<group>"; };
+		F319F1762B2E46B900C81793 /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
+		F319F1782B2E48B800C81793 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		F319F17A2B2E4C9200C81793 /* CommentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCollectionViewCell.swift; sourceTree = "<group>"; };
+		F319F17C2B2E60F900C81793 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		F319F17E2B2E649A00C81793 /* UserAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAvatarView.swift; sourceTree = "<group>"; };
 		F31C309D2AFF9729005454FE /* Tuzlanski.ba.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tuzlanski.ba.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F31C30A02AFF9729005454FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F31C30A42AFF9729005454FE /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -126,10 +142,14 @@
 		F3881CEB2B0A88C100AAAAC6 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		F389F8DE2B06907000DFEDB5 /* CategoryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryHeaderView.swift; sourceTree = "<group>"; };
 		F389F8E02B06980200DFEDB5 /* PillBorderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillBorderButton.swift; sourceTree = "<group>"; };
+		F3932B042B34C35700712046 /* EmbeddedCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedCommentView.swift; sourceTree = "<group>"; };
+		F3932B062B34C42100712046 /* CommentReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentReportViewController.swift; sourceTree = "<group>"; };
+		F3932B082B34C56F00712046 /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		F3B1B5E42B1226D500B70B70 /* ConnectivityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityService.swift; sourceTree = "<group>"; };
 		F3BD66482B1FA9E800D4AB3F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F3C06EF72B07D31E00065735 /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
 		F3C06EF92B0817C300065735 /* NotificationCenter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationCenter+Extension.swift"; sourceTree = "<group>"; };
+		F3EB1E902B337BB0008818D7 /* NewCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCommentViewController.swift; sourceTree = "<group>"; };
 		F3EDC1132AFFCD6D0050915B /* Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 		F3EDC1162AFFD0B40050915B /* TuzlanskiHttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuzlanskiHttpClient.swift; sourceTree = "<group>"; };
 		F3EDC1182B00142E0050915B /* ListArticle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListArticle.swift; sourceTree = "<group>"; };
@@ -302,6 +322,7 @@
 				F378151E2B040A4B005E9FEE /* Category.swift */,
 				F3881CD72B08AC1400AAAAC6 /* Article.swift */,
 				F3BD66482B1FA9E800D4AB3F /* User.swift */,
+				F319F1782B2E48B800C81793 /* Comment.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -329,6 +350,7 @@
 				F34046F52B28E84E00E16723 /* UIViewController+Extension.swift */,
 				F3829E642B2B5A330060BA9B /* UIAlertController+Extension.swift */,
 				F319F16D2B2CC7F300C81793 /* String+Extension.swift */,
+				F319F17C2B2E60F900C81793 /* UIImage+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -341,6 +363,9 @@
 				F3881CDB2B09063400AAAAC6 /* AttributedText.swift */,
 				F3881CEB2B0A88C100AAAAC6 /* WebView.swift */,
 				F319F16F2B2CC82E00C81793 /* SpinnerView.swift */,
+				F319F17E2B2E649A00C81793 /* UserAvatarView.swift */,
+				F3932B042B34C35700712046 /* EmbeddedCommentView.swift */,
+				F3932B082B34C56F00712046 /* RadioButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -375,6 +400,11 @@
 			isa = PBXGroup;
 			children = (
 				F3881CD52B08A72300AAAAC6 /* ArticleViewController.swift */,
+				F319F1762B2E46B900C81793 /* CommentsViewController.swift */,
+				F319F17A2B2E4C9200C81793 /* CommentCollectionViewCell.swift */,
+				F311F0E42B30DB0B007B73B4 /* CommentArticleHeaderView.swift */,
+				F3EB1E902B337BB0008818D7 /* NewCommentViewController.swift */,
+				F3932B062B34C42100712046 /* CommentReportViewController.swift */,
 			);
 			path = Article;
 			sourceTree = "<group>";
@@ -521,6 +551,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F319F17B2B2E4C9200C81793 /* CommentCollectionViewCell.swift in Sources */,
 				F3EDC1502B00EC090050915B /* ArticleCollectionViewCell.swift in Sources */,
 				F31C30CE2AFFC7AE005454FE /* Theme.swift in Sources */,
 				F3881CD82B08AC1400AAAAC6 /* Article.swift in Sources */,
@@ -530,6 +561,7 @@
 				F3881CEC2B0A88C100AAAAC6 /* WebView.swift in Sources */,
 				F3EDC11E2B001C980050915B /* UIView+Extension.swift in Sources */,
 				F3EDC1142AFFCD6D0050915B /* Logging.swift in Sources */,
+				F3932B072B34C42100712046 /* CommentReportViewController.swift in Sources */,
 				F3EDC1172AFFD0B40050915B /* TuzlanskiHttpClient.swift in Sources */,
 				F31C30C12AFFA682005454FE /* PopularViewController.swift in Sources */,
 				F31C30C52AFFA791005454FE /* SideNavigationController.swift in Sources */,
@@ -539,19 +571,25 @@
 				F3EDC1562B0109A20050915B /* FeaturedArticleCollectionViewCell.swift in Sources */,
 				F3829E632B2B50410060BA9B /* ThemedNavigationController.swift in Sources */,
 				F31C30A12AFF9729005454FE /* AppDelegate.swift in Sources */,
+				F3932B052B34C35700712046 /* EmbeddedCommentView.swift in Sources */,
 				F3881CE72B09289100AAAAC6 /* ViewType.swift in Sources */,
 				F34046F62B28E84E00E16723 /* UIViewController+Extension.swift in Sources */,
 				F3881CDA2B0905FB00AAAAC6 /* String+HTML.swift in Sources */,
 				F3881CE42B09289100AAAAC6 /* ContentManager.swift in Sources */,
+				F319F1792B2E48B800C81793 /* Comment.swift in Sources */,
 				F319F1702B2CC82E00C81793 /* SpinnerView.swift in Sources */,
+				F3932B092B34C56F00712046 /* RadioButton.swift in Sources */,
 				F31C30BF2AFFA660005454FE /* LatestViewController.swift in Sources */,
 				F34046F42B28E7C700E16723 /* AppStorage.swift in Sources */,
 				F31C30B82AFF9B10005454FE /* MainTabBarController.swift in Sources */,
 				F3EDC1192B00142E0050915B /* ListArticle.swift in Sources */,
+				F3EB1E912B337BB0008818D7 /* NewCommentViewController.swift in Sources */,
 				F3EDC11C2B0016500050915B /* Responses.swift in Sources */,
 				F3881CE52B09289100AAAAC6 /* WrappingHStack.swift in Sources */,
 				F31C30CC2AFFC6D3005454FE /* UIColor+Extension.swift in Sources */,
 				F3BD66492B1FA9E800D4AB3F /* User.swift in Sources */,
+				F319F17D2B2E60F900C81793 /* UIImage+Extension.swift in Sources */,
+				F319F17F2B2E649A00C81793 /* UserAvatarView.swift in Sources */,
 				F3C06EFA2B0817C300065735 /* NotificationCenter+Extension.swift in Sources */,
 				F3C06EF82B07D31E00065735 /* URL+Extension.swift in Sources */,
 				F34046F22B28E79E00E16723 /* Storage.swift in Sources */,
@@ -569,6 +607,8 @@
 				F3139AC02B11DFA70084AD31 /* SocialMenuButton.swift in Sources */,
 				F31C30D42AFFCA1D005454FE /* CategoriesMenuViewController.swift in Sources */,
 				F3829E5E2B2B48D80060BA9B /* PasswordForgotViewController.swift in Sources */,
+				F311F0E52B30DB0B007B73B4 /* CommentArticleHeaderView.swift in Sources */,
+				F319F1772B2E46B900C81793 /* CommentsViewController.swift in Sources */,
 				F378151F2B040A4B005E9FEE /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

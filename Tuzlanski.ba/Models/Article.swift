@@ -29,6 +29,7 @@ struct Article: Codable {
     var longText: String
     @BoolFromInt var isAdFree: Bool
     var tags: [Tag]
+    var commentsCount: Int
     
     private enum CodingKeys: String, CodingKey {
         case id
@@ -46,5 +47,6 @@ struct Article: Codable {
         case longText = "long_text"
         case isAdFree = "is_ad_free"
         case tags
+        case commentsCount = "comments_count"
     }
 }

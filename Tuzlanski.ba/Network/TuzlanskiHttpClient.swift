@@ -180,6 +180,81 @@ class TuzlanskiHttpClient {
         let _: User = try await execute(request: request)
     }
     
+    func getLatestComments(page: Int = 1, articleID: Int64) async throws -> [Comment] {
+        guard var url = URL(string: host + "comments") else { throw TuzlanskiHttpClientError.invalidURL }
+        url.appendQueryItem(name: "limit", value: "\(Self.pageLimit)")
+        url.appendQueryItem(name: "page", value: String(page))
+        url.appendQueryItem(name: "article_id", value: String(articleID))
+        url.appendQueryItem(name: "sort_column", value: String("upvotes"))
+        
+        var request = URLRequest(url: url)
+        request.setValue(auth, forHTTPHeaderField: "Authorization")
+        
+        let dataResponse: DataResponse<[Comment]> = try await execute(request: request)
+        
+        return dataResponse.data
+    }
+    
+    func upvote(comment: Comment) async throws -> Comment {
+        guard let url = URL(string: host + "comments/upvote/\(comment.id)") else { throw TuzlanskiHttpClientError.invalidURL }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue(getAuthHeader(), forHTTPHeaderField: "Authorization")
+        
+        let comment: Comment = try await execute(request: request)
+        
+        return comment
+    }
+    
+    func downvote(comment: Comment) async throws -> Comment {
+        guard let url = URL(string: host + "comments/downvote/\(comment.id)") else { throw TuzlanskiHttpClientError.invalidURL }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue(getAuthHeader(), forHTTPHeaderField: "Authorization")
+        
+        let comment: Comment = try await execute(request: request)
+        
+        return comment
+    }
+    
+    func report(comment: Comment, reason type: CommentReportType) async throws -> CommentReportResponse {
+        guard let url = URL(string: host + "comments/report/\(comment.id)") else { throw TuzlanskiHttpClientError.invalidURL }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        let userAuthHeader = getAuthHeader()
+        if !userAuthHeader.isEmpty {
+            request.setValue(userAuthHeader, forHTTPHeaderField: "Authorization")
+        }
+        request.httpBody = ["type": String(type.rawValue)].percentEncoded()
+        
+        let response: CommentReportResponse = try await execute(request: request)
+        
+        return response
+    }
+    
+    func post(comment: String, article: Article, replyToComment: Comment? = nil) async throws -> Comment {
+        guard let url = URL(string: host + "comments") else { throw TuzlanskiHttpClientError.invalidURL }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue(getAuthHeader(), forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        
+        var body = ["content": comment, "article_id": String(article.id)]
+        if let replyToComment {
+            body["thread_id"] = String(replyToComment.thread_id == 0 ? replyToComment.id : replyToComment.thread_id)
+        }
+        
+        request.httpBody = body.percentEncoded()
+        
+        let comment: Comment = try await execute(request: request)
+        
+        return comment
+    }
+    
     // MARK: - Private methods
     
     private func execute<T: Codable>(request: URLRequest) async throws -> T {
@@ -206,7 +281,12 @@ class TuzlanskiHttpClient {
     }
     
     private func getAuthHeader() -> String {
-        return "Bearer \(KeychainSwift().get("user_token") ?? "no-token")"
+        let token = KeychainSwift().get("user_token")
+        if token?.isEmpty ?? true {
+            return ""
+        }
+        
+        return "Bearer \(token ?? "no-token")"
     }
 }
 

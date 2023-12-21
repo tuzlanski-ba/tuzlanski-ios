@@ -56,11 +56,17 @@ class LatestViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.refreshControl?.beginRefreshing()
-        loadNextPage()
         
         if let name = fetchDataSource.name {
             navigationItem.title = name
+        }
+    }
+    
+    override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(animated)
+        if articles.isEmpty {
+            collectionView.refreshControl?.beginRefreshing()
+            loadNextPage()
         }
     }
     
@@ -106,6 +112,10 @@ class LatestViewController: UIViewController {
             do {
                 page += 1
                 let articles = try await fetchDataSource.fetch(page: page)
+                
+                if articles.count < TuzlanskiHttpClient.pageLimit {
+                    canFetchMore = false
+                }
                 
                 await MainActor.run {
                     self.articles = articles

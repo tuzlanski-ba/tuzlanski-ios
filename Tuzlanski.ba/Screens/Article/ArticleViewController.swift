@@ -62,6 +62,10 @@ class ArticleViewController: UIViewController {
         articleView.fetchArticle = { [unowned self] in
             return try await httpClient.getArticle(listArticle: observableArticle.listArticle)
         }
+        articleView.onCommentPress = { [unowned self] in
+            guard let article = observableArticle.article else { return }
+            self.navigationController?.pushViewController(CommentsViewController(article: article), animated: true)
+        }
         
         addSwiftUIView(articleView)
     }
@@ -83,6 +87,7 @@ struct ArticleView: View {
     var onCategoryPress: (() -> Void)?
     var onTagPress: ((Tag) -> Void)?
     var fetchArticle: (() async throws -> Article)?
+    var onCommentPress: (() -> Void)?
     
     var body: some View {
         ScrollView {
@@ -123,11 +128,11 @@ struct ArticleView: View {
                     if webViewHeight > 0 {
                     Divider()
                             .overlay(Color(UIColor(hex: article.section.color_hex)))
-                            .padding(.top, 6)
+                            .padding(.top, 10)
                         Text("TAGOVI")
                             .font(Font(UIFont.Montserrat(.extraBold, size: 13)))
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(.top, 6)
+                            .padding(.top, 10)
                         WrappingHStack(article.tags, id:\.self, lineSpacing: 8) { tag in
                             Button(action: { onTagPress?(tag) }) {
                                 Text(tag.name.uppercased())
@@ -141,9 +146,9 @@ struct ArticleView: View {
                         .padding(.top, 4)
                         Divider()
                             .overlay(Color(UIColor(hex: article.section.color_hex)))
-                            .padding(.top, 6)
-                        Button(action: {}) {
-                            Text("KOMENTARI (0)")
+                            .padding(.top, 10)
+                        Button(action: { onCommentPress?() }) {
+                            Text("KOMENTARI (\(article.commentsCount))")
                                 .font(Font(UIFont.Montserrat(.bold, size: 14)))
                                 .tint(Color.white)
                                 .frame(maxWidth: .infinity, alignment: .center)
@@ -151,7 +156,7 @@ struct ArticleView: View {
                         .frame(height: 40)
                         .background(Color(UIColor(hex: article.section.color_hex)))
                         .cornerRadius(6)
-                        .padding(.top, 6)
+                        .padding(.vertical, 12)
                         Spacer()
                             .frame(height: 10)
                     } else {
