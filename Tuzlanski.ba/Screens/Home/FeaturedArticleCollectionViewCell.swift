@@ -31,7 +31,7 @@ class FeaturedArticleCollectionViewCell: UICollectionViewCell {
     
     private lazy var dateLabel: UILabel = {
         let dateLabel = UILabel().forAutoLayout()
-        dateLabel.font = .Montserrat(.regular, size: 11)
+        dateLabel.font = .Montserrat(.semibold, size: 11)
         dateLabel.textColor = .systemGray4
         dateLabel.numberOfLines = 1
         
@@ -69,6 +69,36 @@ class FeaturedArticleCollectionViewCell: UICollectionViewCell {
         return galleryContainerView
     }()
     
+    private lazy var commentCountLabel: UILabel = {
+        let commentCountLabel = UILabel().forAutoLayout()
+        commentCountLabel.font = .Montserrat(.bold, size: 11)
+        commentCountLabel.textColor = .systemGray2
+        commentCountLabel.numberOfLines = 1
+        
+        return commentCountLabel
+    }()
+    
+    private lazy var commentStackView: UIStackView = {
+        let commentStackView = UIStackView().forAutoLayout()
+        commentStackView.alignment = .center
+        commentStackView.axis = .horizontal
+        commentStackView.spacing = 4
+        
+        let imageView = UIImageView(image: UIImage(named: "comments")).forAutoLayout()
+        imageView.contentMode = .scaleAspectFit
+        imageView.tintColor = .systemGray2
+        
+        commentStackView.addArrangedSubview(imageView)
+        commentStackView.addArrangedSubview(commentCountLabel)
+        
+        NSLayoutConstraint.activate([
+            imageView.widthAnchor.constraint(equalToConstant: 15),
+            imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor)
+        ])
+        
+        return commentStackView
+    }()
+    
     // MARK: - Lifecycle
     
     override init(frame: CGRect) {
@@ -81,7 +111,7 @@ class FeaturedArticleCollectionViewCell: UICollectionViewCell {
         
         let contentStackView = UIStackView().forAutoLayout()
         contentStackView.axis = .vertical
-        contentStackView.spacing = 3
+        contentStackView.spacing = 5
         contentStackView.addArrangedSubview(subtitleLabel)
         contentStackView.addArrangedSubview(titleLabel)
         contentStackView.addArrangedSubview(dateLabel)
@@ -93,6 +123,7 @@ class FeaturedArticleCollectionViewCell: UICollectionViewCell {
         containerView.addSubview(gradientView)
         containerView.addSubview(contentStackView)
         containerView.addSubview(galleryContainerView)
+        containerView.addSubview(commentStackView)
         
         imageView.pin(to: containerView)
         gradientView.pin(to: containerView)
@@ -109,7 +140,10 @@ class FeaturedArticleCollectionViewCell: UICollectionViewCell {
             contentStackView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10),
             
             galleryContainerView.topAnchor.constraint(equalTo: containerView.topAnchor),
-            galleryContainerView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor)
+            galleryContainerView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            
+            commentStackView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10),
+            commentStackView.centerYAnchor.constraint(equalTo: dateLabel.centerYAnchor)
         ])
     }
     
@@ -139,6 +173,8 @@ class FeaturedArticleCollectionViewCell: UICollectionViewCell {
         dateLabel.text = Date.format(apiDate: article.publishedAt)
         galleryContainerView.isHidden = !article.isGallery
         galleryContainerView.backgroundColor = UIColor(hex: article.section.color_hex)
+        commentStackView.isHidden = article.commentsCount == 0
+        commentCountLabel.text = String(article.commentsCount)
     }
 }
 

@@ -30,6 +30,7 @@ struct ListArticle: Codable {
     var image: ListArticleImage
     var section: ListArticleSection
     var apiURL: String
+    var commentsCount: Int
     
     private enum CodingKeys: String, CodingKey {
         case id
@@ -43,6 +44,7 @@ struct ListArticle: Codable {
         case image
         case section
         case apiURL = "api_url"
+        case commentsCount = "comments_count"
     }
 }
 
