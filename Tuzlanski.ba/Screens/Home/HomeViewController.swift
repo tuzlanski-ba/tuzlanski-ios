@@ -176,3 +176,12 @@ extension HomeViewController: CategoryHeaderViewDelegate {
     }
 }
 
+// MARK: - ScrollableViewController
+
+extension HomeViewController: ScrollableViewController {
+    
+    func scrollToTop() {
+        collectionView.setContentOffset(.init(x: 0, y: -collectionView.adjustedContentInset.top), animated: true)
+    }
+}
+

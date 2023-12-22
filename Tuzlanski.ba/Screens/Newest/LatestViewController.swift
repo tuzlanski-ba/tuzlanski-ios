@@ -160,3 +160,13 @@ extension LatestViewController: UICollectionViewDataSource, UICollectionViewDele
         navigationController?.pushViewController(articleViewController, animated: true)
     }
 }
+
+// MARK: - ScrollableViewController
+
+extension LatestViewController: ScrollableViewController {
+    
+    func scrollToTop() {
+        guard !articles.isEmpty else { return }
+        collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
+    }
+}

@@ -7,13 +7,21 @@
 
 import UIKit
 
+protocol ScrollableViewController {
+    func scrollToTop()
+}
+
 class MainTabBarController: UITabBarController {
+    
+    // MARK: - Properties
+    
+    private var previousViewController: UIViewController?
 
     // MARK: - Lifecycle
     
     init() {
         super.init(nibName: nil, bundle: nil)
-        
+        self.delegate = self
         self.tabBar.tintColor = .tintColor
         
         let tabBarAppearance = UITabBarAppearance()
@@ -62,6 +70,8 @@ class MainTabBarController: UITabBarController {
             SideNavigationController(rootViewController: popularViewController),
             SideNavigationController(rootViewController: profileViewController)
         ]
+        
+        previousViewController = self.viewControllers?.first
     }
     
     private func setupNotificationHandlers() {
@@ -72,5 +82,26 @@ class MainTabBarController: UITabBarController {
             let newestViewController = LatestViewController(fetchDataSource: CategoryFetchDataSource(category: category))
             navigationController.pushViewController(newestViewController, animated: true)
         }
+    }
+}
+
+// MARK: - UITabBarControllerDelegate
+
+extension MainTabBarController: UITabBarControllerDelegate {
+    
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        if previousViewController == viewController {
+            if let scrollableVC = viewController as? ScrollableViewController {
+                scrollableVC.scrollToTop()
+            } else if let navigationController = viewController as? UINavigationController, navigationController.viewControllers.count == 1 {
+                if let scrollableVC = navigationController.viewControllers.first as? ScrollableViewController {
+                    scrollableVC.scrollToTop()
+                }
+            }
+        }
+        
+        previousViewController = viewController
+        
+        return true
     }
 }
