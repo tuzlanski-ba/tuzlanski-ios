@@ -78,11 +78,12 @@ struct CategoriesView: View {
                         Divider()
                         genericLinkRow(title: "Uslovi korištenja")
                         Spacer()
-                        HStack(alignment: .center, spacing: 22, content: {
+                        HStack(alignment: .center, spacing: 18, content: {
                             SocialMenuButton(socialNetwork: .facebook)
                             SocialMenuButton(socialNetwork: .instagram)
                             SocialMenuButton(socialNetwork: .youtube)
                             SocialMenuButton(socialNetwork: .x)
+                            SocialMenuButton(socialNetwork: .linkedin)
                             Spacer()
                         })
                         .padding(.horizontal, 16)

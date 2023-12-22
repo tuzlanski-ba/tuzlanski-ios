@@ -12,6 +12,7 @@ enum SocialNetwork {
     case instagram
     case youtube
     case x
+    case linkedin
     
     var image: String {
         switch self {
@@ -23,6 +24,8 @@ enum SocialNetwork {
             return "youtube"
         case .x:
             return "x"
+        case .linkedin:
+            return "linkedin"
         }
     }
     
@@ -36,6 +39,8 @@ enum SocialNetwork {
             return URL(string: "https://www.youtube.com/@TuzlaGradTuzlanski")!
         case .x:
             return URL(string: "https://x.com/tuzlanski")!
+        case .linkedin:
+            return URL(string: "https://www.linkedin.com/company/tuzlanski-ba")!
         }
     }
 }
