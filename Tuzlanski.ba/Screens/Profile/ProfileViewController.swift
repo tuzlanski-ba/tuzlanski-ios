@@ -122,6 +122,11 @@ class ProfileViewController: UIViewController {
             navigationController?.pushViewController(UserCommentsViewController(), animated: true)
         }
         
+        profileView.onPasswordChangePress = { [unowned self] in
+            let passwordChangeViewController = PasswordChangeViewController().embeddedInNavigation()
+            present(passwordChangeViewController , animated: true)
+        }
+        
         addSwiftUIView(profileView)
     }
 }
@@ -146,6 +151,7 @@ struct ProfileView: View {
     var onRegister: (() -> ())?
     var onEmailResend: (() -> ())?
     var onMyCommentsPress: (() -> ())?
+    var onPasswordChangePress: (() -> ())?
     
     var body: some View {
         GeometryReader { geo in
@@ -199,7 +205,9 @@ struct ProfileView: View {
                             onMyCommentsPress?()
                         }
                         Divider()
-                        SettingsItem(text: "Promijeni šifru", imageName: "key")
+                        SettingsItem(text: "Promijeni šifru", imageName: "key") {
+                            onPasswordChangePress?()
+                        }
                         Divider()
                         SettingsItem(text: "Sačuvane vijesti", imageName: "bookmark")
                         Divider()

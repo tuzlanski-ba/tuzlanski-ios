@@ -5,8 +5,6 @@
 //  Created by Tarik Dahic on 14. 12. 2023..
 //
 
-import Foundation
-
 import UIKit
 import SwiftUI
 import KeychainSwift
@@ -192,5 +190,4 @@ struct RegisterView: View {
             .padding(.top, 12)
             .padding(.bottom, 6)
     }
-    
 }

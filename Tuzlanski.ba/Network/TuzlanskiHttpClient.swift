@@ -267,6 +267,31 @@ class TuzlanskiHttpClient {
         return response.comments
     }
     
+    func changePassword(password: String, passwordConfirmation: String) async throws -> Result<PasswordChangeResponse, InputErrorResponse> {
+        guard let url = URL(string: host + "account/password") else { throw TuzlanskiHttpClientError.invalidURL }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        request.setValue(getAuthHeader(), forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpBody = ["password": password, "password_confirmation": passwordConfirmation].percentEncoded()
+        
+        var data = Data()
+        do {
+            let response = try await URLSession.shared.data(for: request)
+            data = try mapResponse(response: response, allowAllStatusCodes: true)
+            
+            Log.api.info("Fetched data: \(String(data: data, encoding: .utf8) ?? "null")")
+            
+            let passwordChangeResponse = try JSONDecoder().decode(PasswordChangeResponse.self, from: data)
+            return .success(passwordChangeResponse)
+        } catch {
+            guard let errorResponse = try? JSONDecoder().decode(InputErrorResponse.self, from: data) else { throw error }
+            return .failure(errorResponse)
+        }
+    }
+    
     // MARK: - Private methods
     
     private func execute<T: Codable>(request: URLRequest) async throws -> T {

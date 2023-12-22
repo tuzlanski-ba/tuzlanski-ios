@@ -79,3 +79,8 @@ struct UserCommentsResponse: Codable {
     
     var comments: [UserComment]
 }
+
+struct PasswordChangeResponse: Codable {
+    var message: String
+    var user: User
+}

@@ -96,6 +96,7 @@
 		F3EDC1562B0109A20050915B /* FeaturedArticleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDC1552B0109A20050915B /* FeaturedArticleCollectionViewCell.swift */; };
 		F3FA57C52B3611F900382A2E /* UserCommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FA57C42B3611F900382A2E /* UserCommentsViewController.swift */; };
 		F3FA57C72B36144D00382A2E /* UserCommentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FA57C62B36144D00382A2E /* UserCommentCollectionViewCell.swift */; };
+		F3FA57C92B361F6200382A2E /* PasswordChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FA57C82B361F6200382A2E /* PasswordChangeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -182,6 +183,7 @@
 		F3EDC1552B0109A20050915B /* FeaturedArticleCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedArticleCollectionViewCell.swift; sourceTree = "<group>"; };
 		F3FA57C42B3611F900382A2E /* UserCommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCommentsViewController.swift; sourceTree = "<group>"; };
 		F3FA57C62B36144D00382A2E /* UserCommentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCommentCollectionViewCell.swift; sourceTree = "<group>"; };
+		F3FA57C82B361F6200382A2E /* PasswordChangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordChangeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -316,6 +318,7 @@
 				F3829E662B2BA2C00060BA9B /* RegisterViewController.swift */,
 				F3FA57C42B3611F900382A2E /* UserCommentsViewController.swift */,
 				F3FA57C62B36144D00382A2E /* UserCommentCollectionViewCell.swift */,
+				F3FA57C82B361F6200382A2E /* PasswordChangeViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -584,6 +587,7 @@
 				F34046F62B28E84E00E16723 /* UIViewController+Extension.swift in Sources */,
 				F3881CDA2B0905FB00AAAAC6 /* String+HTML.swift in Sources */,
 				F3881CE42B09289100AAAAC6 /* ContentManager.swift in Sources */,
+				F3FA57C92B361F6200382A2E /* PasswordChangeViewController.swift in Sources */,
 				F319F1792B2E48B800C81793 /* Comment.swift in Sources */,
 				F319F1702B2CC82E00C81793 /* SpinnerView.swift in Sources */,
 				F3932B092B34C56F00712046 /* RadioButton.swift in Sources */,
