@@ -94,6 +94,8 @@
 		F3EDC1522B00EC970050915B /* UIKit+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDC1512B00EC970050915B /* UIKit+Extension.swift */; };
 		F3EDC1542B00F7600050915B /* UIDate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDC1532B00F7600050915B /* UIDate+Extension.swift */; };
 		F3EDC1562B0109A20050915B /* FeaturedArticleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDC1552B0109A20050915B /* FeaturedArticleCollectionViewCell.swift */; };
+		F3FA57C52B3611F900382A2E /* UserCommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FA57C42B3611F900382A2E /* UserCommentsViewController.swift */; };
+		F3FA57C72B36144D00382A2E /* UserCommentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FA57C62B36144D00382A2E /* UserCommentCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -178,6 +180,8 @@
 		F3EDC1512B00EC970050915B /* UIKit+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIKit+Extension.swift"; sourceTree = "<group>"; };
 		F3EDC1532B00F7600050915B /* UIDate+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDate+Extension.swift"; sourceTree = "<group>"; };
 		F3EDC1552B0109A20050915B /* FeaturedArticleCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedArticleCollectionViewCell.swift; sourceTree = "<group>"; };
+		F3FA57C42B3611F900382A2E /* UserCommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCommentsViewController.swift; sourceTree = "<group>"; };
+		F3FA57C62B36144D00382A2E /* UserCommentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCommentCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -310,6 +314,8 @@
 				F31C30C22AFFA68F005454FE /* ProfileViewController.swift */,
 				F3829E5D2B2B48D80060BA9B /* PasswordForgotViewController.swift */,
 				F3829E662B2BA2C00060BA9B /* RegisterViewController.swift */,
+				F3FA57C42B3611F900382A2E /* UserCommentsViewController.swift */,
+				F3FA57C62B36144D00382A2E /* UserCommentCollectionViewCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -555,8 +561,10 @@
 				F3EDC1502B00EC090050915B /* ArticleCollectionViewCell.swift in Sources */,
 				F31C30CE2AFFC7AE005454FE /* Theme.swift in Sources */,
 				F3881CD82B08AC1400AAAAC6 /* Article.swift in Sources */,
+				F3FA57C52B3611F900382A2E /* UserCommentsViewController.swift in Sources */,
 				F31C30C32AFFA68F005454FE /* ProfileViewController.swift in Sources */,
 				F31C30A52AFF9729005454FE /* HomeViewController.swift in Sources */,
+				F3FA57C72B36144D00382A2E /* UserCommentCollectionViewCell.swift in Sources */,
 				F3881CDC2B09063400AAAAC6 /* AttributedText.swift in Sources */,
 				F3881CEC2B0A88C100AAAAC6 /* WebView.swift in Sources */,
 				F3EDC11E2B001C980050915B /* UIView+Extension.swift in Sources */,

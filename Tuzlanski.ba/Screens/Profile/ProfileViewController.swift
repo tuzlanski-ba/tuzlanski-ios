@@ -118,6 +118,10 @@ class ProfileViewController: UIViewController {
             }
         }
         
+        profileView.onMyCommentsPress = { [unowned self] in
+            navigationController?.pushViewController(UserCommentsViewController(), animated: true)
+        }
+        
         addSwiftUIView(profileView)
     }
 }
@@ -141,6 +145,7 @@ struct ProfileView: View {
     var onPasswordForget: (() -> ())?
     var onRegister: (() -> ())?
     var onEmailResend: (() -> ())?
+    var onMyCommentsPress: (() -> ())?
     
     var body: some View {
         GeometryReader { geo in
@@ -191,7 +196,7 @@ struct ProfileView: View {
                        
                         
                         SettingsItem(text: "Moji komentari", imageName: "comments") {
-                            print("Opening my comments...")
+                            onMyCommentsPress?()
                         }
                         Divider()
                         SettingsItem(text: "Promijeni šifru", imageName: "key")

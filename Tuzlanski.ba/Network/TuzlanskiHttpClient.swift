@@ -255,6 +255,18 @@ class TuzlanskiHttpClient {
         return comment
     }
     
+    func getUserComments() async throws -> [UserCommentsResponse.UserComment] {
+        guard let url = URL(string: host + "account/comments") else { throw TuzlanskiHttpClientError.invalidURL }
+        
+        var request = URLRequest(url: url)
+        request.setValue(getAuthHeader(), forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        
+        let response: UserCommentsResponse = try await execute(request: request)
+        
+        return response.comments
+    }
+    
     // MARK: - Private methods
     
     private func execute<T: Codable>(request: URLRequest) async throws -> T {

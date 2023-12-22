@@ -64,3 +64,18 @@ struct CommentReportResponse: Codable {
     var uid: String
     var id: Int64
 }
+
+struct UserCommentsResponse: Codable {
+    
+    struct UserComment: Codable {
+        var id: Int64
+        var name: String
+        var content: String
+        var upvotes: Int
+        var downvotes: Int
+        var created_at: String
+        var article_id: Int64
+    }
+    
+    var comments: [UserComment]
+}
