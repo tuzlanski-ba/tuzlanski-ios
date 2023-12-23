@@ -25,14 +25,42 @@ extension String {
                     @font-face { font-family: 'Montserrat'; src: url('Montserrat-SemiBold.ttf') format('truetype'); font-weight: 600; }
                     @font-face { font-family: 'Montserrat'; src: url('Montserrat-Bold.ttf') format('truetype'); font-weight: 700; }
             
+                    :root {
+                        font-size:\(AppStorage.articleFontSize)px;
+                    }
+            
                     body {
                         background: \(UIColor.systemBackground.hex);
                         font-family: 'Montserrat';
                         color: \(UIColor.label.hex);
                         -webkit-text-size-adjust: none;
-                        font-size: 15px;
                         margin: 0;
                         padding: 0;
+                        font-size: 1rem;
+                    }
+            
+                    h1 {
+                      font-size: 2rem;
+                    }
+
+                    h2 {
+                      font-size: 1.5rem;
+                    }
+
+                    h3 {
+                      font-size: 1.25rem;
+                    }
+
+                    h4 {
+                      font-size: 1.125rem;
+                    }
+
+                    h5 {
+                      font-size: 1rem;
+                    }
+
+                    h6 {
+                      font-size: 0.875rem;
                     }
             
                     h1, h2, h3, h4, h5, h6 {
@@ -65,6 +93,13 @@ extension String {
                         width: 100% !important;
                     }
                 </style>
+            
+                <script>
+                    function fontSizeChanged(size) {
+                        var pixelSize = size + "px";
+                        document.documentElement.style.setProperty("font-size", pixelSize);
+                    }
+                </script>
             </head>
             <body>
                 \(processedText)

@@ -20,6 +20,22 @@ struct WebView : UIViewRepresentable {
 
         init(_ parent: WebView) {
             self.parent = parent
+            super.init()
+            NotificationCenter.observe(notification: .articleFontSizeChanged) { [weak self] _ in
+                let javascriptFunction = "fontSizeChanged(\(AppStorage.articleFontSize))"
+                self?.parent.webview.evaluateJavaScript(javascriptFunction, completionHandler: { _, error in
+                    DispatchQueue.main.async {
+                        self?.parent.webview.setNeedsLayout()
+                        self?.parent.webview.layoutIfNeeded()
+                        self?.parent.webview.evaluateJavaScript("document.body.scrollHeight", completionHandler: { (height, error) in
+                            DispatchQueue.main.async {
+                                self?.parent.dynamicHeight = height as! CGFloat
+                                self?.parent.isLoaded = true
+                            }
+                        })
+                    }
+                })
+            }
         }
 
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {

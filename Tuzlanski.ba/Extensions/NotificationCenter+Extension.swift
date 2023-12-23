@@ -9,11 +9,12 @@ import Foundation
 
 extension Notification.Name {
     static let menuCategoryPressed = Notification.Name("menuCategoryPressed")
+    static let articleFontSizeChanged = Notification.Name("articleFontSizeChanged")
 }
 
 extension NotificationCenter {
     
-    static func dispatch(notification: Notification.Name, payload: [AnyHashable : Any]?) {
+    static func dispatch(notification: Notification.Name, payload: [AnyHashable : Any]? = nil) {
         self.default.post(name: notification, object: nil, userInfo: payload)
     }
     

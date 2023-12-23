@@ -11,4 +11,7 @@ struct AppStorage {
     
     @Storage(key: "user", defaultValue: nil)
     static var user: User?
+    
+    @Storage(key: "article_font_size", defaultValue: 15)
+    static var articleFontSize: Int
 }

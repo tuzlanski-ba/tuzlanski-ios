@@ -21,6 +21,14 @@ class ObservableArticle: ObservableObject {
 
 class ArticleViewController: UIViewController {
     
+    // MARK: - UI Components
+    
+    private lazy var textSizeBarButtonItem: UIBarButtonItem = {
+        let textSizeBarButtonItem = UIBarButtonItem(image: UIImage(named: "text-size")?.resized(to: CGSize(width: 24, height: 24)).withRenderingMode(.alwaysTemplate), menu: generateTextSizeMenu())
+        
+        return textSizeBarButtonItem
+    }()
+    
     // MARK: - Properties
     
     private var observableArticle: ObservableArticle
@@ -51,6 +59,13 @@ class ArticleViewController: UIViewController {
         
         (navigationController as? SideNavigationController)?.addLogoToCurrentViewController()
         
+        self.navigationItem.rightBarButtonItem = textSizeBarButtonItem
+    }
+    
+    override func loadView() {
+        view = UIView(frame: UIScreen.main.bounds)
+        view.backgroundColor = .primaryBackground
+        
         var articleView = ArticleView(observableArticle: observableArticle)
         articleView.onCategoryPress = { [unowned self] in
             let category = Category(id: observableArticle.listArticle.sectionID, slug: observableArticle.listArticle.section.slug_short, name: observableArticle.listArticle.section.name)
@@ -70,9 +85,29 @@ class ArticleViewController: UIViewController {
         addSwiftUIView(articleView)
     }
     
-    override func loadView() {
-        view = UIView(frame: UIScreen.main.bounds)
-        view.backgroundColor = .primaryBackground
+    // MARK: - Private methods
+    
+    func generateTextSizeMenu() -> UIMenu {
+        let decreaseAction = UIAction(title: "Smanji", image: UIImage(named: "decrease-text"), identifier: nil, discoverabilityTitle: nil, attributes: [], state: .off) { [weak self] _ in
+            AppStorage.articleFontSize = max(AppStorage.articleFontSize - 1, 13)
+            NotificationCenter.dispatch(notification: .articleFontSizeChanged)
+            self?.textSizeBarButtonItem.menu = self?.generateTextSizeMenu()
+        }
+        
+        let increaseAction = UIAction(title: "Povećaj", image: UIImage(named: "increase-text"), identifier: nil, discoverabilityTitle: nil, attributes: [], state: .off) { [weak self] _ in
+            AppStorage.articleFontSize = min(AppStorage.articleFontSize + 1, 20)
+            NotificationCenter.dispatch(notification: .articleFontSizeChanged)
+            self?.textSizeBarButtonItem.menu = self?.generateTextSizeMenu()
+        }
+        
+        let statusAction = UIAction(title: String(AppStorage.articleFontSize), image: nil, identifier: nil, discoverabilityTitle: nil, attributes: [.disabled], state: .off) { _ in }
+        
+        let menu = UIMenu(title: "Povećajte ili smanjite veličinu teksta u člancima",  children: [decreaseAction, statusAction, increaseAction])
+        if #available(iOS 16.0, *) {
+            menu.preferredElementSize = .medium
+        }
+        
+        return menu
     }
 }
 
