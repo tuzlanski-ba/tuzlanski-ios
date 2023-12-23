@@ -56,7 +56,7 @@ class MainTabBarController: UITabBarController {
         newestViewController.tabBarItem.title = "Najnovije"
         newestViewController.tabBarItem.image = UIImage(systemName: "calendar")
         
-        let popularViewController = PopularViewController()
+        let popularViewController = LatestViewController(fetchDataSource: MostReadsFetchDataSource())
         popularViewController.tabBarItem.title = "Najčitanije"
         popularViewController.tabBarItem.image = UIImage(systemName: "chart.line.uptrend.xyaxis")
         

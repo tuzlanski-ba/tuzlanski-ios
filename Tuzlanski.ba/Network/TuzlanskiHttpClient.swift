@@ -87,6 +87,19 @@ class TuzlanskiHttpClient {
         return latestArticlesResponse.articles.data
     }
     
+    func getMostReadsArticles(page: Int = 1) async throws -> [ListArticle] {
+        guard var url = URL(string: host + "articles/most-reads") else { throw TuzlanskiHttpClientError.invalidURL }
+        url.appendQueryItem(name: "limit", value: "\(Self.pageLimit)")
+        url.appendQueryItem(name: "page", value: String(page))
+        
+        var request = URLRequest(url: url)
+        request.setValue(auth, forHTTPHeaderField: "Authorization")
+        
+        let latestArticlesResponse: LatestArticleResponse = try await execute(request: request)
+        
+        return latestArticlesResponse.articles.data
+    }
+    
     func getArticle(listArticle: ListArticle) async throws -> Article {
         guard let url = URL(string: listArticle.apiURL) else { throw TuzlanskiHttpClientError.invalidURL }
         

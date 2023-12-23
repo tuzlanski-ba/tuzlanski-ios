@@ -25,7 +25,6 @@
 		F31C30AD2AFF972B005454FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F31C30AB2AFF972B005454FE /* LaunchScreen.storyboard */; };
 		F31C30B82AFF9B10005454FE /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C30B72AFF9B10005454FE /* MainTabBarController.swift */; };
 		F31C30BF2AFFA660005454FE /* LatestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C30BE2AFFA660005454FE /* LatestViewController.swift */; };
-		F31C30C12AFFA682005454FE /* PopularViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C30C02AFFA682005454FE /* PopularViewController.swift */; };
 		F31C30C32AFFA68F005454FE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C30C22AFFA68F005454FE /* ProfileViewController.swift */; };
 		F31C30C52AFFA791005454FE /* SideNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C30C42AFFA791005454FE /* SideNavigationController.swift */; };
 		F31C30CC2AFFC6D3005454FE /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C30CB2AFFC6D3005454FE /* UIColor+Extension.swift */; };
@@ -119,7 +118,6 @@
 		F31C30AE2AFF972B005454FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F31C30B72AFF9B10005454FE /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		F31C30BE2AFFA660005454FE /* LatestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestViewController.swift; sourceTree = "<group>"; };
-		F31C30C02AFFA682005454FE /* PopularViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularViewController.swift; sourceTree = "<group>"; };
 		F31C30C22AFFA68F005454FE /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F31C30C42AFFA791005454FE /* SideNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideNavigationController.swift; sourceTree = "<group>"; };
 		F31C30CB2AFFC6D3005454FE /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
@@ -305,7 +303,6 @@
 		F31C30BC2AFFA642005454FE /* Popular */ = {
 			isa = PBXGroup;
 			children = (
-				F31C30C02AFFA682005454FE /* PopularViewController.swift */,
 			);
 			path = Popular;
 			sourceTree = "<group>";
@@ -574,7 +571,6 @@
 				F3EDC1142AFFCD6D0050915B /* Logging.swift in Sources */,
 				F3932B072B34C42100712046 /* CommentReportViewController.swift in Sources */,
 				F3EDC1172AFFD0B40050915B /* TuzlanskiHttpClient.swift in Sources */,
-				F31C30C12AFFA682005454FE /* PopularViewController.swift in Sources */,
 				F31C30C52AFFA791005454FE /* SideNavigationController.swift in Sources */,
 				F389F8DF2B06907000DFEDB5 /* CategoryHeaderView.swift in Sources */,
 				F3881CE32B09289100AAAAC6 /* InternalWrappingHStack.swift in Sources */,

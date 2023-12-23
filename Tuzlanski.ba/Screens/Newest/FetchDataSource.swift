@@ -53,3 +53,14 @@ struct TagFetchDataSource: FetchDataSource {
         return try await httpClient.getLatestArticles(page: page, tagSlug: tag.slug)
     }
 }
+
+struct MostReadsFetchDataSource: FetchDataSource {
+    
+    private let httpClient = TuzlanskiHttpClient()
+    
+    var name: String? = nil
+    
+    func fetch(page: Int) async throws -> [ListArticle] {
+        return try await httpClient.getMostReadsArticles(page: page)
+    }
+}
