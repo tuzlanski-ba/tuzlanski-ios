@@ -29,6 +29,12 @@ class ArticleViewController: UIViewController {
         return textSizeBarButtonItem
     }()
     
+    private lazy var shareBarButtonItem: UIBarButtonItem = {
+        let shareBarButtonItem = UIBarButtonItem(image: UIImage(named: "share")?.resized(to: CGSize(width: 24, height: 24)).withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(shareButtonPressed))
+        
+        return shareBarButtonItem
+    }()
+    
     // MARK: - Properties
     
     private var observableArticle: ObservableArticle
@@ -59,7 +65,7 @@ class ArticleViewController: UIViewController {
         
         (navigationController as? SideNavigationController)?.addLogoToCurrentViewController()
         
-        self.navigationItem.rightBarButtonItem = textSizeBarButtonItem
+        self.navigationItem.rightBarButtonItems = [shareBarButtonItem, textSizeBarButtonItem]
     }
     
     override func loadView() {
@@ -108,6 +114,12 @@ class ArticleViewController: UIViewController {
         }
         
         return menu
+    }
+    
+    @objc private func shareButtonPressed() {
+        let items = [URL(string: observableArticle.listArticle.url)!]
+        let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        present(ac, animated: true)
     }
 }
 
