@@ -14,4 +14,7 @@ struct AppStorage {
     
     @Storage(key: "article_font_size", defaultValue: 15)
     static var articleFontSize: Int
+    
+    @Storage(key: "categories", defaultValue: [])
+    static var categories: [Category]
 }

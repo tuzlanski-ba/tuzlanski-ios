@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Category: Identifiable {
+struct Category: Identifiable, Codable {
     var id: Int64
     var slug: String
     var name: String

@@ -9,7 +9,7 @@ import UIKit
 import SwiftUI
 
 class MenuWithCategories: ObservableObject {
-    @Published var categories: [Category] = []
+    @Published var categories: [Category] = AppStorage.categories
 }
 
 class CategoriesMenuViewController: UIViewController {
@@ -27,9 +27,10 @@ class CategoriesMenuViewController: UIViewController {
         Task {
             do {
                 let categories = try await httpClient.fetchCategories()
+                AppStorage.categories = categories
                 menu.categories = categories
             } catch {
-                print(error)
+                print("Error while fetching categories:", error)
             }
         }
     }
