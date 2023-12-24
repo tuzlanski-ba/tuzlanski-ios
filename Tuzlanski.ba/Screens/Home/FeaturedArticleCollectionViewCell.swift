@@ -171,7 +171,7 @@ class FeaturedArticleCollectionViewCell: UICollectionViewCell {
         subtitleLabel.textColor = UIColor(hex: article.section.color_hex)
         imageView.url = URL(string: article.image.original)
         dateLabel.text = Date.format(apiDate: article.publishedAt)
-        galleryContainerView.isHidden = !article.isGallery
+        galleryContainerView.isHidden = !article.isGallery.bool
         galleryContainerView.backgroundColor = UIColor(hex: article.section.color_hex)
         commentStackView.isHidden = article.commentsCount == 0
         commentCountLabel.text = String(article.commentsCount)

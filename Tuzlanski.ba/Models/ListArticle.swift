@@ -23,8 +23,8 @@ struct ListArticle: Codable {
     var title: String
     var preTitle: String?
     var publishedAt: String
-    @BoolFromInt var isGallery: Bool
-    @BoolFromInt var hasVideos: Bool
+    var isGallery: Int
+    var hasVideos: Int
     var sectionID: Int64
     var hasComments: Int?
     var image: ListArticleImage
@@ -50,17 +50,11 @@ struct ListArticle: Codable {
     }
 }
 
-@propertyWrapper
-struct BoolFromInt: Codable {
-    var wrappedValue: Bool
+// MARK: - API helper extensions
+
+extension Int {
     
-    init(from decoder: Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        let intValue = try container.decode(Int.self)
-        switch intValue {
-        case 0: wrappedValue = false
-        case 1: wrappedValue = true
-        default: throw DecodingError.dataCorruptedError(in: container, debugDescription: "Expected `0` or `1` but received `\(intValue)`")
-        }
+    var bool: Bool {
+        return self == 1
     }
 }

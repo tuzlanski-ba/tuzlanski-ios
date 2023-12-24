@@ -127,6 +127,10 @@ class ProfileViewController: UIViewController {
             present(passwordChangeViewController , animated: true)
         }
         
+        profileView.onBookmarksPress = { [unowned self] in
+            navigationController?.pushViewController(BookmarksViewController(), animated: true)
+        }
+        
         addSwiftUIView(profileView)
     }
 }
@@ -152,6 +156,7 @@ struct ProfileView: View {
     var onEmailResend: (() -> ())?
     var onMyCommentsPress: (() -> ())?
     var onPasswordChangePress: (() -> ())?
+    var onBookmarksPress: (() -> ())?
     
     var body: some View {
         GeometryReader { geo in
@@ -209,7 +214,9 @@ struct ProfileView: View {
                             onPasswordChangePress?()
                         }
                         Divider()
-                        SettingsItem(text: "Sačuvane vijesti", imageName: "bookmark")
+                        SettingsItem(text: "Sačuvane vijesti", imageName: "bookmark") {
+                            onBookmarksPress?()
+                        }
                         Divider()
                         SettingsItem(text: "Odjavi se", imageName: "logout", destructive: true) {
                             onLogout?()
@@ -245,7 +252,9 @@ struct ProfileView: View {
     private func guestView(geo: GeometryProxy) -> some View {
         VStack(spacing: 0) {
             
-            SettingsItem(text: "Sačuvane vijesti", imageName: "bookmark")
+            SettingsItem(text: "Sačuvane vijesti", imageName: "bookmark") {
+                onBookmarksPress?()
+            }
             
             Divider()
                 .padding(.top, 16)

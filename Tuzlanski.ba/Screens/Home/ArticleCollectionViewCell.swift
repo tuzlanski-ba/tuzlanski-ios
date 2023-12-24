@@ -210,9 +210,15 @@ class ArticleCollectionViewCell: UICollectionViewCell {
         timeLabel.text = Date.formatToTime(apiDate: article.publishedAt)
         timeContainerView.isHidden = displayTimeOnImage == false
         timeContainerView.backgroundColor = UIColor(hex: article.section.color_hex)
-        galleryContainerView.isHidden = !article.isGallery
+        galleryContainerView.isHidden = !article.isGallery.bool
         galleryContainerView.backgroundColor = UIColor(hex: article.section.color_hex)
         commentStackView.isHidden = article.commentsCount == 0
         commentCountLabel.text = String(article.commentsCount)
+    }
+    
+    var isCommentCountVisible: Bool = true {
+        didSet {
+            commentStackView.isHidden = !isCommentCountVisible
+        }
     }
 }

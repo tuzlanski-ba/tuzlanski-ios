@@ -96,6 +96,11 @@
 		F3FA57C52B3611F900382A2E /* UserCommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FA57C42B3611F900382A2E /* UserCommentsViewController.swift */; };
 		F3FA57C72B36144D00382A2E /* UserCommentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FA57C62B36144D00382A2E /* UserCommentCollectionViewCell.swift */; };
 		F3FA57C92B361F6200382A2E /* PasswordChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FA57C82B361F6200382A2E /* PasswordChangeViewController.swift */; };
+		F3FA57CC2B382A0D00382A2E /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = F3FA57CB2B382A0D00382A2E /* GRDB */; };
+		F3FA57CF2B382C5600382A2E /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FA57CE2B382C5600382A2E /* DatabaseManager.swift */; };
+		F3FA57D12B386D4F00382A2E /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FA57D02B386D4F00382A2E /* Bookmark.swift */; };
+		F3FA57D32B386F0200382A2E /* BookmarkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FA57D22B386F0200382A2E /* BookmarkRepository.swift */; };
+		F3FA57D62B3870FC00382A2E /* BookmarksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FA57D52B3870FC00382A2E /* BookmarksViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -182,6 +187,10 @@
 		F3FA57C42B3611F900382A2E /* UserCommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCommentsViewController.swift; sourceTree = "<group>"; };
 		F3FA57C62B36144D00382A2E /* UserCommentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCommentCollectionViewCell.swift; sourceTree = "<group>"; };
 		F3FA57C82B361F6200382A2E /* PasswordChangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordChangeViewController.swift; sourceTree = "<group>"; };
+		F3FA57CE2B382C5600382A2E /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		F3FA57D02B386D4F00382A2E /* Bookmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bookmark.swift; sourceTree = "<group>"; };
+		F3FA57D22B386F0200382A2E /* BookmarkRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkRepository.swift; sourceTree = "<group>"; };
+		F3FA57D52B3870FC00382A2E /* BookmarksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +198,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3FA57CC2B382A0D00382A2E /* GRDB in Frameworks */,
 				F31C30D12AFFC95C005454FE /* SideMenu in Frameworks */,
 				F3EDC1482B00EBAE0050915B /* Nuke in Frameworks */,
 				F3EDC14E2B00EBAE0050915B /* NukeVideo in Frameworks */,
@@ -226,6 +236,7 @@
 				F31C30B52AFF9A7F005454FE /* Screens */,
 				F31C30C92AFFC5BF005454FE /* Components */,
 				F31C30C62AFFC4F7005454FE /* Models */,
+				F3FA57CD2B382C3F00382A2E /* Database */,
 				F31C30C72AFFC501005454FE /* Network */,
 				F31C30CA2AFFC5C9005454FE /* Helpers */,
 				F31C30C82AFFC595005454FE /* Extensions */,
@@ -310,6 +321,7 @@
 		F31C30BD2AFFA64B005454FE /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				F3FA57D42B3870EC00382A2E /* Bookmark */,
 				F31C30C22AFFA68F005454FE /* ProfileViewController.swift */,
 				F3829E5D2B2B48D80060BA9B /* PasswordForgotViewController.swift */,
 				F3829E662B2BA2C00060BA9B /* RegisterViewController.swift */,
@@ -329,6 +341,7 @@
 				F3881CD72B08AC1400AAAAC6 /* Article.swift */,
 				F3BD66482B1FA9E800D4AB3F /* User.swift */,
 				F319F1782B2E48B800C81793 /* Comment.swift */,
+				F3FA57D02B386D4F00382A2E /* Bookmark.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -398,6 +411,7 @@
 		F34046F02B28E74700E16723 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				F3FA57D22B386F0200382A2E /* BookmarkRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -452,6 +466,22 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		F3FA57CD2B382C3F00382A2E /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				F3FA57CE2B382C5600382A2E /* DatabaseManager.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		F3FA57D42B3870EC00382A2E /* Bookmark */ = {
+			isa = PBXGroup;
+			children = (
+				F3FA57D52B3870FC00382A2E /* BookmarksViewController.swift */,
+			);
+			path = Bookmark;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -477,6 +507,7 @@
 				F3B1B5E22B121DA300B70B70 /* Connectivity */,
 				F34046EE2B28E43F00E16723 /* KeychainSwift */,
 				F319F1742B2DEDE400C81793 /* AlertKit */,
+				F3FA57CB2B382A0D00382A2E /* GRDB */,
 			);
 			productName = Tuzlanski.ba;
 			productReference = F31C309D2AFF9729005454FE /* Tuzlanski.ba.app */;
@@ -512,6 +543,7 @@
 				F3B1B5E12B121DA300B70B70 /* XCRemoteSwiftPackageReference "connectivity" */,
 				F34046ED2B28E43F00E16723 /* XCRemoteSwiftPackageReference "keychain-swift" */,
 				F319F1732B2DEDE400C81793 /* XCRemoteSwiftPackageReference "AlertKit" */,
+				F3FA57CA2B382A0D00382A2E /* XCRemoteSwiftPackageReference "GRDB" */,
 			);
 			productRefGroup = F31C309E2AFF9729005454FE /* Products */;
 			projectDirPath = "";
@@ -566,6 +598,7 @@
 				F31C30A52AFF9729005454FE /* HomeViewController.swift in Sources */,
 				F3FA57C72B36144D00382A2E /* UserCommentCollectionViewCell.swift in Sources */,
 				F3881CDC2B09063400AAAAC6 /* AttributedText.swift in Sources */,
+				F3FA57D62B3870FC00382A2E /* BookmarksViewController.swift in Sources */,
 				F3881CEC2B0A88C100AAAAC6 /* WebView.swift in Sources */,
 				F3EDC11E2B001C980050915B /* UIView+Extension.swift in Sources */,
 				F3EDC1142AFFCD6D0050915B /* Logging.swift in Sources */,
@@ -583,6 +616,7 @@
 				F34046F62B28E84E00E16723 /* UIViewController+Extension.swift in Sources */,
 				F3881CDA2B0905FB00AAAAC6 /* String+HTML.swift in Sources */,
 				F3881CE42B09289100AAAAC6 /* ContentManager.swift in Sources */,
+				F3FA57D12B386D4F00382A2E /* Bookmark.swift in Sources */,
 				F3FA57C92B361F6200382A2E /* PasswordChangeViewController.swift in Sources */,
 				F319F1792B2E48B800C81793 /* Comment.swift in Sources */,
 				F319F1702B2CC82E00C81793 /* SpinnerView.swift in Sources */,
@@ -597,6 +631,7 @@
 				F31C30CC2AFFC6D3005454FE /* UIColor+Extension.swift in Sources */,
 				F3BD66492B1FA9E800D4AB3F /* User.swift in Sources */,
 				F319F17D2B2E60F900C81793 /* UIImage+Extension.swift in Sources */,
+				F3FA57D32B386F0200382A2E /* BookmarkRepository.swift in Sources */,
 				F319F17F2B2E649A00C81793 /* UserAvatarView.swift in Sources */,
 				F3C06EFA2B0817C300065735 /* NotificationCenter+Extension.swift in Sources */,
 				F3C06EF82B07D31E00065735 /* URL+Extension.swift in Sources */,
@@ -615,6 +650,7 @@
 				F3139AC02B11DFA70084AD31 /* SocialMenuButton.swift in Sources */,
 				F31C30D42AFFCA1D005454FE /* CategoriesMenuViewController.swift in Sources */,
 				F3829E5E2B2B48D80060BA9B /* PasswordForgotViewController.swift in Sources */,
+				F3FA57CF2B382C5600382A2E /* DatabaseManager.swift in Sources */,
 				F311F0E52B30DB0B007B73B4 /* CommentArticleHeaderView.swift in Sources */,
 				F319F1772B2E46B900C81793 /* CommentsViewController.swift in Sources */,
 				F378151F2B040A4B005E9FEE /* Category.swift in Sources */,
@@ -874,6 +910,14 @@
 				minimumVersion = 12.1.6;
 			};
 		};
+		F3FA57CA2B382A0D00382A2E /* XCRemoteSwiftPackageReference "GRDB" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/groue/GRDB.swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -916,6 +960,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F3EDC1462B00EBAE0050915B /* XCRemoteSwiftPackageReference "Nuke" */;
 			productName = NukeVideo;
+		};
+		F3FA57CB2B382A0D00382A2E /* GRDB */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F3FA57CA2B382A0D00382A2E /* XCRemoteSwiftPackageReference "GRDB" */;
+			productName = GRDB;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

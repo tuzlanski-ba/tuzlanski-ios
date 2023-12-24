@@ -18,8 +18,8 @@ struct Article: Codable {
     var title: String
     var preTitle: String?
     var publishedAt: String
-    @BoolFromInt var isGallery: Bool
-    @BoolFromInt var hasVideos: Bool
+    var isGallery: Int
+    var hasVideos: Int
     var sectionID: Int64
     var hasComments: Int?
     var image: ListArticleImage
@@ -27,7 +27,7 @@ struct Article: Codable {
     var apiURL: String
     var shortText: String?
     var longText: String
-    @BoolFromInt var isAdFree: Bool
+    var isAdFree: Int
     var tags: [Tag]
     var commentsCount: Int
     

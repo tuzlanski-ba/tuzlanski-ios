@@ -24,21 +24,22 @@ class ArticleViewController: UIViewController {
     // MARK: - UI Components
     
     private lazy var textSizeBarButtonItem: UIBarButtonItem = {
-        let textSizeBarButtonItem = UIBarButtonItem(image: UIImage(named: "text-size")?.resized(to: CGSize(width: 24, height: 24)).withRenderingMode(.alwaysTemplate), menu: generateTextSizeMenu())
+        let textSizeBarButtonItem = UIBarButtonItem(image: UIImage(named: "text-size")?.resized(to: CGSize(width: 25, height: 25)).withRenderingMode(.alwaysTemplate), menu: generateTextSizeMenu())
         
         return textSizeBarButtonItem
     }()
     
-    private lazy var shareBarButtonItem: UIBarButtonItem = {
-        let shareBarButtonItem = UIBarButtonItem(image: UIImage(named: "share")?.resized(to: CGSize(width: 24, height: 24)).withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(shareButtonPressed))
+    private lazy var optionsBarButtonItem: UIBarButtonItem = {
+        let optionsBarButtonItem = UIBarButtonItem(image: UIImage(named: "options")?.resized(to: CGSize(width: 20, height: 20)).withRenderingMode(.alwaysTemplate), menu: generateOptionsMenu())
         
-        return shareBarButtonItem
+        return optionsBarButtonItem
     }()
     
     // MARK: - Properties
     
     private var observableArticle: ObservableArticle
     private let httpClient = TuzlanskiHttpClient()
+    private let bookmarkRepository = BookmarkRepository()
     
     // MARK: - Lifecycle
     
@@ -65,7 +66,7 @@ class ArticleViewController: UIViewController {
         
         (navigationController as? SideNavigationController)?.addLogoToCurrentViewController()
         
-        self.navigationItem.rightBarButtonItems = [shareBarButtonItem, textSizeBarButtonItem]
+        self.navigationItem.rightBarButtonItems = [optionsBarButtonItem, textSizeBarButtonItem]
     }
     
     override func loadView() {
@@ -93,7 +94,7 @@ class ArticleViewController: UIViewController {
     
     // MARK: - Private methods
     
-    func generateTextSizeMenu() -> UIMenu {
+    private func generateTextSizeMenu() -> UIMenu {
         let decreaseAction = UIAction(title: "Smanji", image: UIImage(named: "decrease-text"), identifier: nil, discoverabilityTitle: nil, attributes: [], state: .off) { [weak self] _ in
             AppStorage.articleFontSize = max(AppStorage.articleFontSize - 1, 13)
             NotificationCenter.dispatch(notification: .articleFontSizeChanged)
@@ -112,6 +113,31 @@ class ArticleViewController: UIViewController {
         if #available(iOS 16.0, *) {
             menu.preferredElementSize = .medium
         }
+        
+        return menu
+    }
+    
+    private func generateOptionsMenu() -> UIMenu {
+        let bookmark = bookmarkRepository.bookmark(articleID: observableArticle.listArticle.id)
+        
+        let bookmarkAction = UIAction(title: "Spremi", image: UIImage(named: "bookmark")) { [weak self] _ in
+            guard let self else { return }
+            try? bookmarkRepository.save(bookmark: Bookmark(with: observableArticle.listArticle))
+            optionsBarButtonItem.menu = generateOptionsMenu()
+        }
+        
+        let unbookmarkAction = UIAction(title: "Ukloni iz spremljenih vijesti", image: UIImage(named: "bookmark")) { [weak self] _ in
+            guard let self else { return }
+            guard let bookmark else { return }
+            bookmarkRepository.remove(bookmark: bookmark)
+            optionsBarButtonItem.menu = generateOptionsMenu()
+        }
+        
+        let shareAction = UIAction(title: "Podijeli", image: UIImage(named: "share")) { [weak self] _ in
+            self?.shareButtonPressed()
+        }
+        
+        let menu = UIMenu(title: "",  children: [bookmark == nil ? bookmarkAction : unbookmarkAction , shareAction])
         
         return menu
     }
