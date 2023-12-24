@@ -7,6 +7,31 @@
 
 import UIKit
 import SwiftUI
+import SafariServices
+
+enum GenericLink: String {
+    case about = "https://dev.tuzlanski.ba/stranica/o-nama/3"
+    case impressum = "https://dev.tuzlanski.ba/stranica/impressum/2"
+    case marketing = "https://dev.tuzlanski.ba/stranica/marketing/4"
+    case terms = "https://dev.tuzlanski.ba/stranica/uslovi-koristenja/1"
+    
+    var title: String {
+        switch self {
+        case .about:
+            return "O nama"
+        case .impressum:
+            return "Impressum"
+        case .marketing:
+            return "Marketing"
+        case .terms:
+            return "Uslovi korištenja"
+        }
+    }
+    
+    var url: URL {
+        return URL(string: self.rawValue)!
+    }
+}
 
 class MenuWithCategories: ObservableObject {
     @Published var categories: [Category] = AppStorage.categories
@@ -41,9 +66,15 @@ class CategoriesMenuViewController: UIViewController {
         
         overrideUserInterfaceStyle = .dark
         
-        addSwiftUIView(CategoriesView(menu: menu, onCategoryPressed: { category in
+        let categoriesView = CategoriesView(menu: menu,
+                                            onCategoryPressed: { category in
             NotificationCenter.dispatch(notification: .menuCategoryPressed, payload: ["category": category])
-        }))
+        },
+                                            onGenericLinkPressed: { [unowned self] genericLink in
+            present(SFSafariViewController(url: genericLink.url), animated: true)
+        })
+        
+        addSwiftUIView(categoriesView)
     }
 }
 
@@ -52,6 +83,7 @@ struct CategoriesView: View {
     @ObservedObject var menu: MenuWithCategories
     
     var onCategoryPressed: (Category) -> Void
+    var onGenericLinkPressed: (GenericLink) -> Void
     
     var body: some View {
         ZStack {
@@ -71,13 +103,13 @@ struct CategoriesView: View {
                         ForEach(menu.categories) { category in
                             CategoryRowView(category: category, onCategoryPressed: onCategoryPressed)
                         }
-                        genericLinkRow(title: "O nama")
+                        genericLinkRow(.about)
                         Divider()
-                        genericLinkRow(title: "Impressum")
+                        genericLinkRow(.impressum)
                         Divider()
-                        genericLinkRow(title: "Marketing")
+                        genericLinkRow(.marketing)
                         Divider()
-                        genericLinkRow(title: "Uslovi korištenja")
+                        genericLinkRow(.terms)
                         Spacer()
                         HStack(alignment: .center, spacing: 18, content: {
                             SocialMenuButton(socialNetwork: .facebook)
@@ -99,10 +131,12 @@ struct CategoriesView: View {
         }
     }
     
-    private func genericLinkRow(title: String) -> some View {
-        Button(action: {}, label: {
+    private func genericLinkRow(_ genericLink: GenericLink) -> some View {
+        Button(action: {
+            onGenericLinkPressed(genericLink)
+        }, label: {
             HStack {
-                Text(title)
+                Text(genericLink.title)
                     .font(Font(UIFont.Montserrat(.bold, size: 15)))
                     .foregroundStyle(Color.white)
                 Spacer()
