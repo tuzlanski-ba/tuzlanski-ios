@@ -57,6 +57,7 @@
 		F3932B092B34C56F00712046 /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3932B082B34C56F00712046 /* RadioButton.swift */; };
 		F3B1B5E32B121DA300B70B70 /* Connectivity in Frameworks */ = {isa = PBXBuildFile; productRef = F3B1B5E22B121DA300B70B70 /* Connectivity */; };
 		F3B1B5E52B1226D500B70B70 /* ConnectivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B1B5E42B1226D500B70B70 /* ConnectivityService.swift */; };
+		F3B2B4172B398413009003DC /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B2B4162B398413009003DC /* SearchViewController.swift */; };
 		F3BD66492B1FA9E800D4AB3F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BD66482B1FA9E800D4AB3F /* User.swift */; };
 		F3C06EF82B07D31E00065735 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C06EF72B07D31E00065735 /* URL+Extension.swift */; };
 		F3C06EFA2B0817C300065735 /* NotificationCenter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C06EF92B0817C300065735 /* NotificationCenter+Extension.swift */; };
@@ -152,6 +153,7 @@
 		F3932B062B34C42100712046 /* CommentReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentReportViewController.swift; sourceTree = "<group>"; };
 		F3932B082B34C56F00712046 /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		F3B1B5E42B1226D500B70B70 /* ConnectivityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityService.swift; sourceTree = "<group>"; };
+		F3B2B4162B398413009003DC /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		F3BD66482B1FA9E800D4AB3F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F3C06EF72B07D31E00065735 /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
 		F3C06EF92B0817C300065735 /* NotificationCenter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationCenter+Extension.swift"; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 				F31C30BA2AFFA62D005454FE /* Home */,
 				F31C30BB2AFFA639005454FE /* Newest */,
 				F31C30BC2AFFA642005454FE /* Popular */,
+				F3B2B4152B3983FB009003DC /* Search */,
 				F31C30BD2AFFA64B005454FE /* Profile */,
 				F3881CD42B08A70F00AAAAC6 /* Article */,
 			);
@@ -441,6 +444,14 @@
 			path = WrappingHStack;
 			sourceTree = "<group>";
 		};
+		F3B2B4152B3983FB009003DC /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				F3B2B4162B398413009003DC /* SearchViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		F3EDC11F2B00CF0B0050915B /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -601,6 +612,7 @@
 				F3FA57D62B3870FC00382A2E /* BookmarksViewController.swift in Sources */,
 				F3881CEC2B0A88C100AAAAC6 /* WebView.swift in Sources */,
 				F3EDC11E2B001C980050915B /* UIView+Extension.swift in Sources */,
+				F3B2B4172B398413009003DC /* SearchViewController.swift in Sources */,
 				F3EDC1142AFFCD6D0050915B /* Logging.swift in Sources */,
 				F3932B072B34C42100712046 /* CommentReportViewController.swift in Sources */,
 				F3EDC1172AFFD0B40050915B /* TuzlanskiHttpClient.swift in Sources */,

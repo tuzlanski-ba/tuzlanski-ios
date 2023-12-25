@@ -60,6 +60,10 @@ class MainTabBarController: UITabBarController {
         popularViewController.tabBarItem.title = "Najčitanije"
         popularViewController.tabBarItem.image = UIImage(systemName: "chart.line.uptrend.xyaxis")
         
+        let searchViewController = SearchViewController()
+        searchViewController.tabBarItem.title = "Pretraga"
+        searchViewController.tabBarItem.image = UIImage(systemName: "magnifyingglass")
+        
         let profileViewController = ProfileViewController()
         profileViewController.tabBarItem.title = "Profil"
         profileViewController.tabBarItem.image = UIImage(systemName: "person.crop.circle")
@@ -68,6 +72,7 @@ class MainTabBarController: UITabBarController {
             SideNavigationController(rootViewController: homeViewController),
             SideNavigationController(rootViewController: newestViewController),
             SideNavigationController(rootViewController: popularViewController),
+            SideNavigationController(rootViewController: searchViewController),
             SideNavigationController(rootViewController: profileViewController)
         ]
         

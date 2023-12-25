@@ -46,6 +46,10 @@ class SideNavigationController: UINavigationController {
         viewController.navigationItem.titleView = logoImageView
     }
     
+    func addSideMenuBarButton(viewController: UIViewController) {
+        viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "line.3.horizontal"), style: .plain, target: self, action: #selector(openSideMenu))
+    }
+    
     // MARK: - Private methods
     
     @objc private func openSideMenu() {
@@ -66,7 +70,7 @@ extension SideNavigationController: UINavigationControllerDelegate {
         
         if viewControllers.first == viewController && viewController.navigationItem.title?.isEmpty ?? true {
             viewController.navigationItem.titleView = logoImageView
-            viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "line.3.horizontal"), style: .plain, target: self, action: #selector(openSideMenu))
+            addSideMenuBarButton(viewController: viewController)
         }
     }
 }
