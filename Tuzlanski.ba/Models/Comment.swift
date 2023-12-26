@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum CommentReportType: Int, CaseIterable, Identifiable {
+enum CommentReportType: Int, Codable, CaseIterable, Identifiable {
     case insult = 1
     case ad = 2
     case spam = 3

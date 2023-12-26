@@ -53,6 +53,16 @@ class DatabaseManager {
             }
         }
         
+        migrator.registerMigration("CommentReport") { db in
+            try db.create(table: "comment_report") { t in
+                t.autoIncrementedPrimaryKey("id")
+                t.column("article_id", .integer).notNull()
+                t.column("comment_id", .integer).notNull()
+                t.column("type", .integer).notNull()
+                t.uniqueKey(["article_id", "comment_id"])
+            }
+        }
+        
         do {
             try migrator.migrate(dbQueue)
         } catch {

@@ -46,6 +46,7 @@ class CommentsViewController: UIViewController {
     private var isFetching = false
     private var canFetchMore = true
     private let commentVoteRepository = CommentVoteRepository()
+    private let commentReportRepository = CommentReportRepository()
     
     // MARK: - Lifecycle
     
@@ -270,7 +271,13 @@ extension CommentsViewController: CommentCollectionViewCellDelegate {
     }
     
     func report(comment: Comment) {
-        let commentReportViewController = CommentReportViewController(comment: comment)
+        
+        guard commentReportRepository.commentReport(articleID: article.id, commentID: comment.id) == nil else {
+            present(UIAlertController.make(title: nil, message: "Već ste prijavili ovaj komentar."), animated: true)
+            return
+        }
+        
+        let commentReportViewController = CommentReportViewController(article: article, comment: comment)
         present(commentReportViewController.embeddedInNavigation(), animated: true)
     }
 }

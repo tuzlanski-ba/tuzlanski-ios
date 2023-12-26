@@ -52,6 +52,8 @@
 		F3881CEC2B0A88C100AAAAC6 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3881CEB2B0A88C100AAAAC6 /* WebView.swift */; };
 		F389F8DF2B06907000DFEDB5 /* CategoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F389F8DE2B06907000DFEDB5 /* CategoryHeaderView.swift */; };
 		F389F8E12B06980200DFEDB5 /* PillBorderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F389F8E02B06980200DFEDB5 /* PillBorderButton.swift */; };
+		F38FEF3D2B3B0AF300757733 /* CommentReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38FEF3C2B3B0AF300757733 /* CommentReport.swift */; };
+		F38FEF3F2B3B0B4F00757733 /* CommentReportRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38FEF3E2B3B0B4F00757733 /* CommentReportRepository.swift */; };
 		F3932B052B34C35700712046 /* EmbeddedCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3932B042B34C35700712046 /* EmbeddedCommentView.swift */; };
 		F3932B072B34C42100712046 /* CommentReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3932B062B34C42100712046 /* CommentReportViewController.swift */; };
 		F3932B092B34C56F00712046 /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3932B082B34C56F00712046 /* RadioButton.swift */; };
@@ -151,6 +153,8 @@
 		F3881CEB2B0A88C100AAAAC6 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		F389F8DE2B06907000DFEDB5 /* CategoryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryHeaderView.swift; sourceTree = "<group>"; };
 		F389F8E02B06980200DFEDB5 /* PillBorderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PillBorderButton.swift; sourceTree = "<group>"; };
+		F38FEF3C2B3B0AF300757733 /* CommentReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentReport.swift; sourceTree = "<group>"; };
+		F38FEF3E2B3B0B4F00757733 /* CommentReportRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentReportRepository.swift; sourceTree = "<group>"; };
 		F3932B042B34C35700712046 /* EmbeddedCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedCommentView.swift; sourceTree = "<group>"; };
 		F3932B062B34C42100712046 /* CommentReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentReportViewController.swift; sourceTree = "<group>"; };
 		F3932B082B34C56F00712046 /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
@@ -350,6 +354,7 @@
 				F319F1782B2E48B800C81793 /* Comment.swift */,
 				F3FA57D02B386D4F00382A2E /* Bookmark.swift */,
 				F3B2B4182B398D49009003DC /* CommentVote.swift */,
+				F38FEF3C2B3B0AF300757733 /* CommentReport.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -421,6 +426,7 @@
 			children = (
 				F3FA57D22B386F0200382A2E /* BookmarkRepository.swift */,
 				F3B2B41A2B398EA5009003DC /* CommentVoteRepository.swift */,
+				F38FEF3E2B3B0B4F00757733 /* CommentReportRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -645,8 +651,10 @@
 				F31C30B82AFF9B10005454FE /* MainTabBarController.swift in Sources */,
 				F3EDC1192B00142E0050915B /* ListArticle.swift in Sources */,
 				F3EB1E912B337BB0008818D7 /* NewCommentViewController.swift in Sources */,
+				F38FEF3F2B3B0B4F00757733 /* CommentReportRepository.swift in Sources */,
 				F3EDC11C2B0016500050915B /* Responses.swift in Sources */,
 				F3881CE52B09289100AAAAC6 /* WrappingHStack.swift in Sources */,
+				F38FEF3D2B3B0AF300757733 /* CommentReport.swift in Sources */,
 				F31C30CC2AFFC6D3005454FE /* UIColor+Extension.swift in Sources */,
 				F3BD66492B1FA9E800D4AB3F /* User.swift in Sources */,
 				F319F17D2B2E60F900C81793 /* UIImage+Extension.swift in Sources */,

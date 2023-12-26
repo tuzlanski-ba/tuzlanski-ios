@@ -14,11 +14,14 @@ class CommentReportViewController: UIViewController {
     // MARK: - Properties
     
     private let httpClient = TuzlanskiHttpClient()
+    private let article: Article
     private let comment: Comment
+    private let commentReportRepository = CommentReportRepository()
     
     // MARK: - Lifecycle
     
-    init(comment: Comment) {
+    init(article: Article, comment: Comment) {
+        self.article = article
         self.comment = comment
         super.init(nibName: nil, bundle: nil)
     }
@@ -43,6 +46,10 @@ class CommentReportViewController: UIViewController {
             Task {
                 do {
                     _ = try await httpClient.report(comment: comment, reason: reportType)
+                    
+                    let commentReport = CommentReport(article_id: article.id, comment_id: comment.id, type: reportType)
+                    try? commentReportRepository.save(commentReport: commentReport)
+                    
                     await MainActor.run {
                         dismiss(animated: true) {
                             AlertKitAPI.present(
