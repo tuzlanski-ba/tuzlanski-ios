@@ -45,6 +45,7 @@ class CommentsViewController: UIViewController {
     private var page = 0
     private var isFetching = false
     private var canFetchMore = true
+    private let commentVoteRepository = CommentVoteRepository()
     
     // MARK: - Lifecycle
     
@@ -205,14 +206,18 @@ extension CommentsViewController: CommentCollectionViewCellDelegate {
     
     func upvoted(comment: Comment) {
         
-        guard canPerformActions() else {
-            present(UIAlertController.make(title: nil, message: "Da biste mogli glasati na komentar morate biti prijavljeni."), animated: true)
+        guard commentVoteRepository.commentVote(articleID: article.id, commentID: comment.id) == nil else {
+            present(UIAlertController.make(title: nil, message: "Već ste glasali za ovaj komentar."), animated: true)
             return
         }
         
         Task {
             do {
                 let comment = try await httpClient.upvote(comment: comment)
+                
+                let commentVote = CommentVote(article_id: article.id, comment_id: comment.id, type: .upvote)
+                try? commentVoteRepository.save(commentVote: commentVote)
+                
                 await MainActor.run {
                     guard let index = comments.firstIndex(where: { $0.id == comment.id }) else { return }
                     var comments = self.comments
@@ -229,14 +234,18 @@ extension CommentsViewController: CommentCollectionViewCellDelegate {
     
     func downvoted(comment: Comment) {
         
-        guard canPerformActions() else {
-            present(UIAlertController.make(title: nil, message: "Da biste mogli glasati na komentar morate biti prijavljeni."), animated: true)
+        guard commentVoteRepository.commentVote(articleID: article.id, commentID: comment.id) == nil else {
+            present(UIAlertController.make(title: nil, message: "Već ste glasali za ovaj komentar."), animated: true)
             return
         }
         
         Task {
             do {
                 let comment = try await httpClient.downvote(comment: comment)
+                
+                let commentVote = CommentVote(article_id: article.id, comment_id: comment.id, type: .downvote)
+                try? commentVoteRepository.save(commentVote: commentVote)
+                
                 await MainActor.run {
                     guard let index = comments.firstIndex(where: { $0.id == comment.id }) else { return }
                     var comments = self.comments

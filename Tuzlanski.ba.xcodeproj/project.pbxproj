@@ -58,6 +58,8 @@
 		F3B1B5E32B121DA300B70B70 /* Connectivity in Frameworks */ = {isa = PBXBuildFile; productRef = F3B1B5E22B121DA300B70B70 /* Connectivity */; };
 		F3B1B5E52B1226D500B70B70 /* ConnectivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B1B5E42B1226D500B70B70 /* ConnectivityService.swift */; };
 		F3B2B4172B398413009003DC /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B2B4162B398413009003DC /* SearchViewController.swift */; };
+		F3B2B4192B398D49009003DC /* CommentVote.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B2B4182B398D49009003DC /* CommentVote.swift */; };
+		F3B2B41B2B398EA5009003DC /* CommentVoteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B2B41A2B398EA5009003DC /* CommentVoteRepository.swift */; };
 		F3BD66492B1FA9E800D4AB3F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BD66482B1FA9E800D4AB3F /* User.swift */; };
 		F3C06EF82B07D31E00065735 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C06EF72B07D31E00065735 /* URL+Extension.swift */; };
 		F3C06EFA2B0817C300065735 /* NotificationCenter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C06EF92B0817C300065735 /* NotificationCenter+Extension.swift */; };
@@ -154,6 +156,8 @@
 		F3932B082B34C56F00712046 /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		F3B1B5E42B1226D500B70B70 /* ConnectivityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityService.swift; sourceTree = "<group>"; };
 		F3B2B4162B398413009003DC /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		F3B2B4182B398D49009003DC /* CommentVote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentVote.swift; sourceTree = "<group>"; };
+		F3B2B41A2B398EA5009003DC /* CommentVoteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentVoteRepository.swift; sourceTree = "<group>"; };
 		F3BD66482B1FA9E800D4AB3F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F3C06EF72B07D31E00065735 /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
 		F3C06EF92B0817C300065735 /* NotificationCenter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationCenter+Extension.swift"; sourceTree = "<group>"; };
@@ -345,6 +349,7 @@
 				F3BD66482B1FA9E800D4AB3F /* User.swift */,
 				F319F1782B2E48B800C81793 /* Comment.swift */,
 				F3FA57D02B386D4F00382A2E /* Bookmark.swift */,
+				F3B2B4182B398D49009003DC /* CommentVote.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -415,6 +420,7 @@
 			isa = PBXGroup;
 			children = (
 				F3FA57D22B386F0200382A2E /* BookmarkRepository.swift */,
+				F3B2B41A2B398EA5009003DC /* CommentVoteRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -613,6 +619,7 @@
 				F3881CEC2B0A88C100AAAAC6 /* WebView.swift in Sources */,
 				F3EDC11E2B001C980050915B /* UIView+Extension.swift in Sources */,
 				F3B2B4172B398413009003DC /* SearchViewController.swift in Sources */,
+				F3B2B4192B398D49009003DC /* CommentVote.swift in Sources */,
 				F3EDC1142AFFCD6D0050915B /* Logging.swift in Sources */,
 				F3932B072B34C42100712046 /* CommentReportViewController.swift in Sources */,
 				F3EDC1172AFFD0B40050915B /* TuzlanskiHttpClient.swift in Sources */,
@@ -650,6 +657,7 @@
 				F34046F22B28E79E00E16723 /* Storage.swift in Sources */,
 				F389F8E12B06980200DFEDB5 /* PillBorderButton.swift in Sources */,
 				F3EDC1452B00D3C20050915B /* UIFont+Extension.swift in Sources */,
+				F3B2B41B2B398EA5009003DC /* CommentVoteRepository.swift in Sources */,
 				F3139AC22B1203F00084AD31 /* FetchDataSource.swift in Sources */,
 				F3829E652B2B5A330060BA9B /* UIAlertController+Extension.swift in Sources */,
 				F3829E672B2BA2C00060BA9B /* RegisterViewController.swift in Sources */,
