@@ -143,7 +143,7 @@ class UserCommentCollectionViewCell: UICollectionViewCell {
         containerView.addSubview(contentStackView)
         contentView.addSubview(openButton)
         
-        contentStackView.pin(to: containerView, padding: UIEdgeInsets(top: 10, left: 10, bottom: -10, right: -10))
+        contentStackView.pin(to: containerView, padding: UIEdgeInsets(top: 10, left: 10, bottom: -10, right: -36))
         
         NSLayoutConstraint.activate([
             containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 6),
@@ -184,7 +184,7 @@ class UserCommentCollectionViewCell: UICollectionViewCell {
     func configure(comment: UserCommentsResponse.UserComment) {
         self.comment = comment
         userAvatarView.name = comment.name
-        nameLabel.text = String(comment.article_id)
+        nameLabel.text = comment.article.title
         contentLabel.text = comment.content
         dateLabel.text = ""
         if let date = Date.date(apiDate: comment.created_at) {

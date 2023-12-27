@@ -30,6 +30,11 @@ struct MenuItem: Codable {
     var childs: [MenuItem]?
 }
 
+struct MenuItemWithParent: Codable {
+    var menuItem: MenuItem
+    var parent: MenuItem?
+}
+
 struct LatestArticleResponse: Codable {
     
     struct ArticlesResponse: Codable {
@@ -67,6 +72,24 @@ struct CommentReportResponse: Codable {
 
 struct UserCommentsResponse: Codable {
     
+    struct Article: Codable {
+        var id: Int64
+        var title: String
+        var pre_title: String?
+        var published_at: String
+        var url: String
+        var api_url: String
+        var has_videos: Int
+        var is_gallery: Int
+        var section_id: Int64
+        var image: ListArticleImage
+        var comments_count: Int
+        
+        func toListArticle(section: ListArticleSection) -> ListArticle {
+            return ListArticle(id: id, title: title, preTitle: pre_title, publishedAt: published_at, isGallery: is_gallery, hasVideos: has_videos, sectionID: section_id, hasComments: 1, image: image, section: section, apiURL: api_url, commentsCount: comments_count, url: url)
+        }
+    }
+    
     struct UserComment: Codable {
         var id: Int64
         var name: String
@@ -75,6 +98,7 @@ struct UserCommentsResponse: Codable {
         var downvotes: Int
         var created_at: String
         var article_id: Int64
+        var article: Article
     }
     
     var comments: [UserComment]

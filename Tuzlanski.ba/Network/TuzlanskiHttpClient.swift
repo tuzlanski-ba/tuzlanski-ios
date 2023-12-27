@@ -31,12 +31,7 @@ class TuzlanskiHttpClient {
     // MARK: - API
     
     func fetchCategories() async throws -> [Category] {
-        guard let url = URL(string: host + "menu") else { throw TuzlanskiHttpClientError.invalidURL }
-        
-        var request = URLRequest(url: url)
-        request.setValue(auth, forHTTPHeaderField: "Authorization")
-        
-        let response: [String: MenuItem] = try await execute(request: request)
+        let response: [String: MenuItem] = try await fetchRawCategories()
         
         let categories = response.values.map { menuItem in
             return Category(id: menuItem.id, slug: menuItem.slug_short, name: menuItem.name, color: menuItem.color ?? "", subcategories: menuItem.childs?.map({ childMenuItem in
@@ -45,6 +40,16 @@ class TuzlanskiHttpClient {
         }.sorted { $0.id < $1.id }
         
         return categories
+    }
+    
+    func fetchRawCategories() async throws -> [String: MenuItem] {
+        guard let url = URL(string: host + "menu") else { throw TuzlanskiHttpClientError.invalidURL }
+        
+        var request = URLRequest(url: url)
+        request.setValue(auth, forHTTPHeaderField: "Authorization")
+        let response: [String: MenuItem] = try await execute(request: request)
+        
+        return response
     }
     
     func getHomeArticles() async throws -> IndexResponse {

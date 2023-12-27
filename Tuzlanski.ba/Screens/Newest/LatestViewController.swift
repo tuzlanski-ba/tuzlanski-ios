@@ -93,8 +93,12 @@ class LatestViewController: UIViewController {
                 
                 await MainActor.run {
                     self.articles.append(contentsOf: articles)
-                    collectionView.reloadData()
-                    collectionView.refreshControl?.endRefreshing()
+                    if page == 1 {
+                        collectionView.internal_reload()
+                    } else {
+                        collectionView.reloadData()
+                        collectionView.refreshControl?.endRefreshing()
+                    }
                     isFetching = false
                 }
             } catch {

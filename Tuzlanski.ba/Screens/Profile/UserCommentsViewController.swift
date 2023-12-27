@@ -39,6 +39,7 @@ class UserCommentsViewController: UIViewController {
     
     private let httpClient = TuzlanskiHttpClient()
     private var comments: [UserCommentsResponse.UserComment] = []
+    private var categories: [Int64: MenuItemWithParent] = [:]
     
     // MARK: - Lifecycle
     
@@ -67,12 +68,19 @@ class UserCommentsViewController: UIViewController {
     @objc private func loadData() {
         Task {
             do {
+                let rawCategories =  try await httpClient.fetchRawCategories()
+                for rawCategory in rawCategories.values {
+                    categories[rawCategory.id] = MenuItemWithParent(menuItem: rawCategory)
+                    for childRawCategory in rawCategory.childs ?? [] {
+                        categories[childRawCategory.id] = MenuItemWithParent(menuItem: childRawCategory, parent: rawCategory)
+                    }
+                }
+                
                 let comments = try await httpClient.getUserComments()
                 
                 await MainActor.run {
                     self.comments = comments
-                    collectionView.reloadData()
-                    collectionView.refreshControl?.endRefreshing()
+                    collectionView.internal_reload()
                 }
             } catch {
                 print(error)
@@ -101,6 +109,10 @@ extension UserCommentsViewController: UICollectionViewDataSource, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // TODO: Open article for comment... (API dependency)
+        let comment = comments[indexPath.row]
+        guard let category = categories[comment.article.section_id] else { return }
+        let section = ListArticleSection(name: category.menuItem.name, path: category.menuItem.name, slug_short: category.menuItem.slug_short, color_hex: category.menuItem.color_hex ?? category.parent?.color_hex ?? "")
+        let articleViewController = ArticleViewController(listArticle: comment.article.toListArticle(section: section))
+        navigationController?.pushViewController(articleViewController, animated: true)
     }
 }
