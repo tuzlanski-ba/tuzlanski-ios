@@ -7,6 +7,7 @@
 
 import UIKit
 import SideMenu
+import OneSignalFramework
 
 public protocol ApplicationService: UIApplicationDelegate {}
 
@@ -35,6 +36,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         for service in services {
             _ = service.application?(application, didFinishLaunchingWithOptions: launchOptions)
         }
+        
+        OneSignal.Debug.setLogLevel(.LL_VERBOSE)
+        OneSignal.initialize("03d993d5-fe52-404e-b32e-c0028343c658", withLaunchOptions: launchOptions)
+        OneSignal.Notifications.requestPermission({ accepted in
+            print("User accepted notifications: \(accepted)")
+        }, fallbackToSettings: true)
         
         return true
     }
