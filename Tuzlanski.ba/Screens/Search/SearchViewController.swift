@@ -42,13 +42,13 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Pretraga"
-        (navigationController as? SideNavigationController)?.addSideMenuBarButton(viewController: self)
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Pretraži članke"
         searchController.searchBar.setValue("Zatvori", forKey: "cancelButtonText")
         self.navigationItem.searchController = searchController
+        self.navigationItem.hidesSearchBarWhenScrolling = false
         self.definesPresentationContext = true
     }
     

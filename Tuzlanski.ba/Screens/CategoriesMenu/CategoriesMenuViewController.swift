@@ -67,7 +67,8 @@ class CategoriesMenuViewController: UIViewController {
         overrideUserInterfaceStyle = .dark
         
         let categoriesView = CategoriesView(menu: menu,
-                                            onCategoryPressed: { category in
+                                            onCategoryPressed: { [unowned self] category in
+            self.dismiss(animated: true)
             NotificationCenter.dispatch(notification: .menuCategoryPressed, payload: ["category": category])
         },
                                             onGenericLinkPressed: { [unowned self] genericLink in

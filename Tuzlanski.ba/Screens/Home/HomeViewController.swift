@@ -65,6 +65,12 @@ class HomeViewController: UIViewController {
         return collectionView
     }()
     
+    private lazy var searchBarButtonItem: UIBarButtonItem = {
+        let searchBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(searchBarButtonPressed))
+        
+        return searchBarButtonItem
+    }()
+    
     // MARK: - Properties
     
     private let httpClient = TuzlanskiHttpClient()
@@ -74,6 +80,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.rightBarButtonItem = searchBarButtonItem
     }
     
     override func viewIsAppearing(_ animated: Bool) {
@@ -122,6 +129,10 @@ class HomeViewController: UIViewController {
                 print(error)
             }
         }
+    }
+    
+    @objc private func searchBarButtonPressed() {
+        navigationController?.pushViewController(SearchViewController(), animated: true)
     }
 }
 
@@ -181,6 +192,12 @@ extension HomeViewController: CategoryHeaderViewDelegate {
 extension HomeViewController: ScrollableViewController {
     
     func scrollToTop() {
+        if collectionView.isAtTop {
+            collectionView.refreshControl?.beginRefreshing()
+            collectionView.setContentOffset(CGPoint(x: 0, y: collectionView.contentOffset.y - (collectionView.refreshControl?.frame.size.height ?? 0)), animated: true)
+            reloadData()
+            return
+        }
         collectionView.setContentOffset(.init(x: 0, y: -collectionView.adjustedContentInset.top), animated: true)
     }
 }

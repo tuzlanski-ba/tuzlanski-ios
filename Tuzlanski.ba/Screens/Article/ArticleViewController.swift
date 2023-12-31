@@ -10,8 +10,13 @@ import SwiftUI
 import NukeUI
 
 class ObservableArticle: ObservableObject {
-    @Published var listArticle: ListArticle
+    @Published var url: String?
+    @Published var listArticle: ListArticle?
     @Published var article: Article?
+    
+    internal init (url: String) {
+        self.url = url
+    }
     
     internal init(listArticle: ListArticle, article: Article? = nil) {
         self.listArticle = listArticle
@@ -43,6 +48,11 @@ class ArticleViewController: UIViewController {
     
     // MARK: - Lifecycle
     
+    init(url: String) {
+        self.observableArticle = ObservableArticle(url: url)
+        super.init(nibName: nil, bundle: nil)
+    }
+    
     init(listArticle: ListArticle) {
         self.observableArticle = ObservableArticle(listArticle: listArticle, article: nil)
         super.init(nibName: nil, bundle: nil)
@@ -55,9 +65,14 @@ class ArticleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let url = observableArticle.url ?? observableArticle.listArticle?.apiURL ?? ""
         Task {
             do {
-                let article = try await httpClient.getArticle(listArticle: observableArticle.listArticle)
+                let article = try await httpClient.getArticle(apiURL: url)
+                if observableArticle.listArticle == nil {
+                    observableArticle.listArticle = article.toListArticle()
+                    optionsBarButtonItem.menu = generateOptionsMenu()
+                }
                 observableArticle.article = article
             } catch {
                 print(error)
@@ -75,14 +90,16 @@ class ArticleViewController: UIViewController {
         
         var articleView = ArticleView(observableArticle: observableArticle)
         articleView.onCategoryPress = { [unowned self] in
-            let category = Category(id: observableArticle.listArticle.sectionID, slug: observableArticle.listArticle.section.slug_short, name: observableArticle.listArticle.section.name)
+            guard let listArticle = observableArticle.listArticle else { return }
+            let category = Category(id: listArticle.sectionID, slug: listArticle.section.slug_short, name: listArticle.section.name)
             self.navigationController?.pushViewController(LatestViewController(fetchDataSource: CategoryFetchDataSource(category: category)), animated: true)
         }
         articleView.onTagPress = { [unowned self] tag in
             self.navigationController?.pushViewController(LatestViewController(fetchDataSource: TagFetchDataSource(tag: tag)), animated: true)
         }
         articleView.fetchArticle = { [unowned self] in
-            return try await httpClient.getArticle(listArticle: observableArticle.listArticle)
+            let url = observableArticle.url ?? observableArticle.listArticle?.apiURL ?? ""
+            return try await httpClient.getArticle(apiURL: url)
         }
         articleView.onCommentPress = { [unowned self] in
             guard let article = observableArticle.article else { return }
@@ -118,11 +135,13 @@ class ArticleViewController: UIViewController {
     }
     
     private func generateOptionsMenu() -> UIMenu {
-        let bookmark = bookmarkRepository.bookmark(articleID: observableArticle.listArticle.id)
+        guard let listArticle = observableArticle.listArticle else { return UIMenu() }
+        
+        let bookmark = bookmarkRepository.bookmark(articleID: listArticle.id)
         
         let bookmarkAction = UIAction(title: "Spremi", image: UIImage(named: "bookmark")) { [weak self] _ in
             guard let self else { return }
-            try? bookmarkRepository.save(bookmark: Bookmark(with: observableArticle.listArticle))
+            try? bookmarkRepository.save(bookmark: Bookmark(with: listArticle))
             optionsBarButtonItem.menu = generateOptionsMenu()
         }
         
@@ -143,7 +162,8 @@ class ArticleViewController: UIViewController {
     }
     
     @objc private func shareButtonPressed() {
-        let items = [URL(string: observableArticle.listArticle.url)!]
+        guard let listArticle = observableArticle.listArticle else { return }
+        let items = [URL(string: listArticle.url)!]
         let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
         present(ac, animated: true)
     }
@@ -167,33 +187,41 @@ struct ArticleView: View {
             Spacer()
                 .frame(height: 10)
             VStack(spacing: 4) {
-                Button {
-                    onCategoryPress?()
-                } label: {
-                    Text((observableArticle.listArticle.preTitle ?? observableArticle.listArticle.section.path.replacingOccurrences(of: ">", with: "/")).uppercased())
-                        .font(Font(UIFont.Montserrat(.bold, size: 13)))
-                        .foregroundStyle(Color(UIColor(hex: observableArticle.listArticle.section.color_hex)))
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                }
-                Text(observableArticle.listArticle.title)
-                    .font(Font(UIFont.Montserrat(.bold, size: 18)))
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                Text(Date.formatToFullDate(apiDate: observableArticle.listArticle.publishedAt))
-                    .font(Font(UIFont.Montserrat(.semibold, size: 13)))
-                    .foregroundStyle(Color(UIColor.systemGray2))
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                LazyImage(url: URL(string: observableArticle.listArticle.image.original)) { state in
-                    if let image = state.image {
-                        image.resizable().aspectRatio(contentMode: .fit)
-                    } else if state.error != nil {
-                        Color.red // Indicates an error
-                    } else {
-                        Color.blue // Acts as a placeholder
+                
+                if let listArticle = observableArticle.listArticle {
+                    Button {
+                        onCategoryPress?()
+                    } label: {
+                        Text((listArticle.preTitle ?? listArticle.section.path.replacingOccurrences(of: ">", with: "/")).uppercased())
+                            .font(Font(UIFont.Montserrat(.bold, size: 13)))
+                            .foregroundStyle(Color(UIColor(hex: listArticle.section.color_hex)))
+                            .frame(maxWidth: .infinity, alignment: .leading)
                     }
+                    Text(listArticle.title)
+                        .font(Font(UIFont.Montserrat(.bold, size: 18)))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    Text(Date.formatToFullDate(apiDate: listArticle.publishedAt))
+                        .font(Font(UIFont.Montserrat(.semibold, size: 13)))
+                        .foregroundStyle(Color(UIColor.systemGray2))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    LazyImage(url: URL(string: listArticle.image.original)) { state in
+                        if let image = state.image {
+                            image.resizable().aspectRatio(contentMode: .fit)
+                        } else if state.error != nil {
+                            Color.red // Indicates an error
+                        } else {
+                            Color.blue // Acts as a placeholder
+                        }
+                    }
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .cornerRadius(8)
+                    .padding(.top, 10)
+                } else {
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle())
+                        .padding(.top, 18)
                 }
-                .frame(maxWidth: .infinity, alignment: .center)
-                .cornerRadius(8)
-                .padding(.top, 10)
+                
                 if let article = observableArticle.article {
                     WebView(text: article.longText.wrappedInHTML, dynamicHeight: $webViewHeight)
                         .frame(height: webViewHeight)
@@ -232,7 +260,7 @@ struct ArticleView: View {
                         .padding(.vertical, 12)
                         Spacer()
                             .frame(height: 10)
-                    } else {
+                    } else if observableArticle.listArticle != nil {
                         ProgressView()
                             .progressViewStyle(CircularProgressViewStyle())
                             .padding(.top, 18)

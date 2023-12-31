@@ -103,6 +103,7 @@ class LatestViewController: UIViewController {
                 }
             } catch {
                 print(error)
+                collectionView.refreshControl?.endRefreshing()
             }
         }
     }
@@ -129,6 +130,7 @@ class LatestViewController: UIViewController {
                 }
             } catch {
                 print(error)
+                refreshControl.endRefreshing()
             }
         }
     }
@@ -170,6 +172,13 @@ extension LatestViewController: UICollectionViewDataSource, UICollectionViewDele
 extension LatestViewController: ScrollableViewController {
     
     func scrollToTop() {
+        if collectionView.isAtTop {
+            collectionView.refreshControl?.beginRefreshing()
+            collectionView.setContentOffset(CGPoint(x: 0, y: collectionView.contentOffset.y - (collectionView.refreshControl?.frame.size.height ?? 0)), animated: true)
+            reloadData(refreshControl: collectionView.refreshControl ?? UIRefreshControl())
+            return
+        }
+        
         guard !articles.isEmpty else { return }
         collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
     }

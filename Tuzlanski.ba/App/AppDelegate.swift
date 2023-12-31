@@ -57,5 +57,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             service.applicationDidEnterBackground?(application)
         }
     }
+    
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
+              let incomingURL = userActivity.webpageURL,
+              let components = NSURLComponents(url: incomingURL, resolvingAgainstBaseURL: true) else {
+            return true
+        }
+        
+        guard let tabBarController = window?.rootViewController as? UITabBarController else { return false }
+        guard let homeNavigationController = tabBarController.viewControllers?[0] as? UINavigationController else { return false }
+        guard let path = components.path else { return false }
+        
+        let url = TuzlanskiHttpClient().host + "articles/" + path.deletingPrefix("/")
+        homeNavigationController.pushViewController(ArticleViewController(url: url), animated: true)
+        
+        return true
+    }
 }
 

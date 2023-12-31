@@ -30,6 +30,7 @@ struct Article: Codable {
     var isAdFree: Int
     var tags: [Tag]
     var commentsCount: Int
+    var url: String
     
     private enum CodingKeys: String, CodingKey {
         case id
@@ -48,5 +49,10 @@ struct Article: Codable {
         case isAdFree = "is_ad_free"
         case tags
         case commentsCount = "comments_count"
+        case url
+    }
+    
+    func toListArticle() -> ListArticle {
+        return ListArticle(id: id, title: title, preTitle: preTitle, publishedAt: publishedAt, isGallery: isGallery, hasVideos: hasVideos, sectionID: sectionID, hasComments: hasComments, image: image, section: section, apiURL: apiURL, commentsCount: commentsCount, url: url)
     }
 }

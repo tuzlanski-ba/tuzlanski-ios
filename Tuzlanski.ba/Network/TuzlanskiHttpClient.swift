@@ -23,7 +23,7 @@ class TuzlanskiHttpClient {
     // MARK: - Properties
    
     static let pageLimit = 25
-    private let host = "https://dev.tuzlanski.ba/api/v1/"
+    let host = "https://dev.tuzlanski.ba/api/v1/"
     
     // TODO: Delete this when public system is released
     private let auth = "Basic \(Data("tuzlanski:2023".utf8).base64EncodedString())"
@@ -105,8 +105,8 @@ class TuzlanskiHttpClient {
         return latestArticlesResponse.articles.data
     }
     
-    func getArticle(listArticle: ListArticle) async throws -> Article {
-        guard let url = URL(string: listArticle.apiURL) else { throw TuzlanskiHttpClientError.invalidURL }
+    func getArticle(apiURL: String) async throws -> Article {
+        guard let url = URL(string: apiURL) else { throw TuzlanskiHttpClientError.invalidURL }
         
         var request = URLRequest(url: url)
         request.setValue(auth, forHTTPHeaderField: "Authorization")
