@@ -160,7 +160,7 @@ class ArticleCollectionViewCell: UICollectionViewCell {
             imageView.widthAnchor.constraint(equalToConstant: 110),
             imageView.heightAnchor.constraint(equalToConstant: 85),
             imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+            imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).with(priority: .defaultHigh),
             imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             
             contentStackView.topAnchor.constraint(equalTo: imageView.topAnchor),

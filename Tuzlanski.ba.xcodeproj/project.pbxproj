@@ -75,6 +75,8 @@
 		F3BD66492B1FA9E800D4AB3F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BD66482B1FA9E800D4AB3F /* User.swift */; };
 		F3C06EF82B07D31E00065735 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C06EF72B07D31E00065735 /* URL+Extension.swift */; };
 		F3C06EFA2B0817C300065735 /* NotificationCenter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C06EF92B0817C300065735 /* NotificationCenter+Extension.swift */; };
+		F3C464FA2B45F2D800794744 /* DispatchQueue+Dedupe.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C464F92B45F2D800794744 /* DispatchQueue+Dedupe.swift */; };
+		F3D10CA32B473AC800120973 /* NSLayoutConstraint+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D10CA22B473AC700120973 /* NSLayoutConstraint+Extension.swift */; };
 		F3DD62CB2B419ACD00E74B5B /* UIScrollView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DD62CA2B419ACD00E74B5B /* UIScrollView+Extension.swift */; };
 		F3EB1E912B337BB0008818D7 /* NewCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EB1E902B337BB0008818D7 /* NewCommentViewController.swift */; };
 		F3EDC1142AFFCD6D0050915B /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDC1132AFFCD6D0050915B /* Logging.swift */; };
@@ -208,6 +210,8 @@
 		F3BD66482B1FA9E800D4AB3F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F3C06EF72B07D31E00065735 /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
 		F3C06EF92B0817C300065735 /* NotificationCenter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationCenter+Extension.swift"; sourceTree = "<group>"; };
+		F3C464F92B45F2D800794744 /* DispatchQueue+Dedupe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+Dedupe.swift"; sourceTree = "<group>"; };
+		F3D10CA22B473AC700120973 /* NSLayoutConstraint+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+Extension.swift"; sourceTree = "<group>"; };
 		F3DD62CA2B419ACD00E74B5B /* UIScrollView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Extension.swift"; sourceTree = "<group>"; };
 		F3EB1E902B337BB0008818D7 /* NewCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCommentViewController.swift; sourceTree = "<group>"; };
 		F3EDC1132AFFCD6D0050915B /* Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
@@ -446,6 +450,8 @@
 				F319F17C2B2E60F900C81793 /* UIImage+Extension.swift */,
 				F3A63AA32B3C681A00BFDA70 /* UICollectionView+Extension.swift */,
 				F3DD62CA2B419ACD00E74B5B /* UIScrollView+Extension.swift */,
+				F3C464F92B45F2D800794744 /* DispatchQueue+Dedupe.swift */,
+				F3D10CA22B473AC700120973 /* NSLayoutConstraint+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -791,6 +797,7 @@
 				F31C30BF2AFFA660005454FE /* LatestViewController.swift in Sources */,
 				F34046F42B28E7C700E16723 /* AppStorage.swift in Sources */,
 				F31C30B82AFF9B10005454FE /* MainTabBarController.swift in Sources */,
+				F3C464FA2B45F2D800794744 /* DispatchQueue+Dedupe.swift in Sources */,
 				F3EDC1192B00142E0050915B /* ListArticle.swift in Sources */,
 				F3A63AA42B3C681A00BFDA70 /* UICollectionView+Extension.swift in Sources */,
 				F3EB1E912B337BB0008818D7 /* NewCommentViewController.swift in Sources */,
@@ -818,6 +825,7 @@
 				F3EDC1522B00EC970050915B /* UIKit+Extension.swift in Sources */,
 				F319F1722B2D872E00C81793 /* AppNotifications.swift in Sources */,
 				F3881CD62B08A72300AAAAC6 /* ArticleViewController.swift in Sources */,
+				F3D10CA32B473AC800120973 /* NSLayoutConstraint+Extension.swift in Sources */,
 				F3B1B5E52B1226D500B70B70 /* ConnectivityService.swift in Sources */,
 				F3139AC02B11DFA70084AD31 /* SocialMenuButton.swift in Sources */,
 				F31C30D42AFFCA1D005454FE /* CategoriesMenuViewController.swift in Sources */,

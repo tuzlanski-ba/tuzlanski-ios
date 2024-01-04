@@ -10,6 +10,13 @@ import UIKit
 
 class SearchViewController: UIViewController {
     
+    // MARK: - Constants
+    
+    private enum Constants {
+        static let introductionText = "Za pretragu je potrebno unijeti minimalno 3 slova"
+        static let noResultsTest = "Nema rezultata za unešeni pojam"
+    }
+    
     // MARK: - UI Components
     
     private lazy var collectionView: UICollectionView = {
@@ -32,10 +39,41 @@ class SearchViewController: UIViewController {
         return collectionView
     }()
     
+    private lazy var searchInfoLabel: UILabel = {
+        let searchInfoLabel = UILabel().forAutoLayout()
+        searchInfoLabel.textAlignment = .center
+        searchInfoLabel.numberOfLines = 0
+        searchInfoLabel.text = Constants.introductionText
+        searchInfoLabel.font = .Montserrat(.semibold, size: 14)
+        searchInfoLabel.textColor = .systemGray
+        
+        return searchInfoLabel
+    }()
+    
     // MARK: - Properties
     
     private let httpClient = TuzlanskiHttpClient()
     private var articles: [ListArticle] = []
+    private var page = 0
+    private var isFetching = false
+    private var canFetchMore = true
+    private var searchQuery: String = "" {
+        didSet {
+            page = 0
+            articles = []
+            canFetchMore = true
+            isFetching = false
+            
+            if searchQuery.count > 2 {
+                searchInfoLabel.isHidden = true
+                loadNextPage()
+            } else {
+                searchInfoLabel.text = Constants.introductionText
+                searchInfoLabel.isHidden = false
+                collectionView.reloadData()
+            }
+        }
+    }
     
     // MARK: - Lifecycle
     
@@ -61,9 +99,47 @@ class SearchViewController: UIViewController {
         view.backgroundColor = .systemBackground
         view.addSubview(collectionView)
         collectionView.pin(to: view)
+        
+        view.addSubview(searchInfoLabel)
+        NSLayoutConstraint.activate([
+            searchInfoLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
+            searchInfoLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
+            searchInfoLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
     }
     
     // MARK: - Private methods
+    
+    private func loadNextPage() {
+        guard !isFetching && canFetchMore else { return }
+        isFetching = true
+        Task {
+            do {
+                page += 1
+                let articles = try await httpClient.searchArticles(query: searchQuery, page: page)
+                
+                if articles.count < TuzlanskiHttpClient.pageLimit {
+                    canFetchMore = false
+                }
+                
+                await MainActor.run {
+                    self.articles.append(contentsOf: articles)
+                    collectionView.reloadData()
+                    collectionView.refreshControl?.endRefreshing()
+                    isFetching = false
+                    
+                    if self.articles.isEmpty {
+                        searchInfoLabel.text = Constants.noResultsTest
+                        searchInfoLabel.isHidden = false
+                    } else {
+                        searchInfoLabel.isHidden = true
+                    }
+                }
+            } catch {
+                print(error)
+            }
+        }
+    }
 }
 
 // MARK: - UICollectionView delegates
@@ -76,6 +152,12 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return articles.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if articles.count - 5 == indexPath.row {
+            loadNextPage()
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -96,7 +178,10 @@ extension SearchViewController: UICollectionViewDataSource, UICollectionViewDele
 extension SearchViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
-        // TODO: Trim text and fire request to server
-        // TODO: Add debounce
+        let text = searchController.searchBar.text?.cleaned() ?? ""
+        
+        DispatchQueue.main.asyncDeduped(target: self, after: 0.3) {
+            self.searchQuery = text
+        }
     }
 }

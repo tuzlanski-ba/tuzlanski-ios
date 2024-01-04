@@ -132,7 +132,7 @@ class FeaturedArticleCollectionViewCell: UICollectionViewCell {
             containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+            containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).with(priority: .defaultHigh),
             containerView.heightAnchor.constraint(equalToConstant: ceil((UIScreen.main.bounds.width - 16 - 16) / 4 * 3)),
             
             contentStackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -8),
