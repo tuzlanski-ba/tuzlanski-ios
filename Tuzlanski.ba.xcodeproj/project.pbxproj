@@ -31,6 +31,7 @@
 		F31C30CE2AFFC7AE005454FE /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C30CD2AFFC7AE005454FE /* Theme.swift */; };
 		F31C30D12AFFC95C005454FE /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = F31C30D02AFFC95C005454FE /* SideMenu */; };
 		F31C30D42AFFCA1D005454FE /* CategoriesMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C30D32AFFCA1D005454FE /* CategoriesMenuViewController.swift */; };
+		F324A62C2B4C957500DB40AF /* SocialAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F324A62B2B4C957500DB40AF /* SocialAuthenticator.swift */; };
 		F339CBAD2B3D79EC00F93F25 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = F339CBAC2B3D79EC00F93F25 /* FirebaseAnalytics */; };
 		F339CBB52B3D79EC00F93F25 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = F339CBB42B3D79EC00F93F25 /* FirebaseAppCheck */; };
 		F339CBB72B3DC04B00F93F25 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F339CBB62B3DC04B00F93F25 /* GoogleService-Info.plist */; };
@@ -170,6 +171,7 @@
 		F31C30CB2AFFC6D3005454FE /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		F31C30CD2AFFC7AE005454FE /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		F31C30D32AFFCA1D005454FE /* CategoriesMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesMenuViewController.swift; sourceTree = "<group>"; };
+		F324A62B2B4C957500DB40AF /* SocialAuthenticator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialAuthenticator.swift; sourceTree = "<group>"; };
 		F339CBB62B3DC04B00F93F25 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F339CBB92B3DC2EC00F93F25 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		F339CBBF2B3E0FB200F93F25 /* OneSignalNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OneSignalNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -477,6 +479,7 @@
 				F31C30CD2AFFC7AE005454FE /* Theme.swift */,
 				F3EDC1132AFFCD6D0050915B /* Logging.swift */,
 				F34046F12B28E79E00E16723 /* Storage.swift */,
+				F324A62B2B4C957500DB40AF /* SocialAuthenticator.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -801,6 +804,7 @@
 				F3EDC1192B00142E0050915B /* ListArticle.swift in Sources */,
 				F3A63AA42B3C681A00BFDA70 /* UICollectionView+Extension.swift in Sources */,
 				F3EB1E912B337BB0008818D7 /* NewCommentViewController.swift in Sources */,
+				F324A62C2B4C957500DB40AF /* SocialAuthenticator.swift in Sources */,
 				F38FEF3F2B3B0B4F00757733 /* CommentReportRepository.swift in Sources */,
 				F3EDC11C2B0016500050915B /* Responses.swift in Sources */,
 				F3881CE52B09289100AAAAC6 /* WrappingHStack.swift in Sources */,

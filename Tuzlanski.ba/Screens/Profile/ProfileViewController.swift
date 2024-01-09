@@ -23,6 +23,7 @@ class ProfileViewController: UIViewController {
     private var observableProfile: ObservableProfile?
     private let httpClient = TuzlanskiHttpClient()
     private let keychain = KeychainSwift()
+    private let socialAuthenticator = SocialAuthenticator()
     
     // MARK: - Lifecycle
     
@@ -131,6 +132,27 @@ class ProfileViewController: UIViewController {
             navigationController?.pushViewController(BookmarksViewController(), animated: true)
         }
         
+        profileView.onSocialAuth = { [unowned self] type in
+            Task {
+                do {
+                    let loginResponse = try await socialAuthenticator.authenticate(type: type)
+                    observableProfile.user = loginResponse.user
+                    
+                    AppStorage.user = loginResponse.user
+                    keychain.set(loginResponse.token, forKey: "user_token", withAccess: .accessibleWhenUnlocked)
+                } catch {
+                    await MainActor.run {
+                        AlertKitAPI.present(
+                            title: "Došlo je do greške prilikom prijave.",
+                            icon: .error,
+                            style: .iOS17AppleMusic,
+                            haptic: .error
+                        )
+                    }
+                }
+            }
+        }
+        
         addSwiftUIView(profileView)
     }
 }
@@ -157,6 +179,7 @@ struct ProfileView: View {
     var onMyCommentsPress: (() -> ())?
     var onPasswordChangePress: (() -> ())?
     var onBookmarksPress: (() -> ())?
+    var onSocialAuth: ((SocialAuthType) -> ())?
     
     var body: some View {
         GeometryReader { geo in
@@ -314,6 +337,33 @@ struct ProfileView: View {
                     .frame(maxWidth: .infinity, alignment: .center)
             }
             .padding(.top, 16)
+            
+            Divider()
+                .padding(.vertical, 10)
+            
+            Text("BRZA PRIJAVA")
+                .foregroundStyle(Color(UIColor.label))
+                .font(Font(UIFont.Montserrat(.bold, size: 12)))
+                .frame(maxWidth: .infinity, alignment: .center)
+            
+            HStack(alignment: .center, spacing: 16) {
+                ForEach(SocialAuthType.allCases, id: \.self) { type in
+                    Button(action: { onSocialAuth?(type) }, label: {
+                        ZStack {
+                            Circle()
+                                .strokeBorder(Color(UIColor.systemGray4),lineWidth: 1)
+                                .background(Circle().fill(Color(UIColor.systemBackground)))
+                                .frame(width: 36, height: 36)
+                            Image(type.name)
+                                .resizable()
+                                .foregroundColor(Color(UIColor.label))
+                                .frame(width: 22, height: 22)
+                        }
+                        .frame(width: 36, height: 36)
+                    })
+                }
+            }
+            .padding(.vertical, 16)
             
             Spacer()
             
