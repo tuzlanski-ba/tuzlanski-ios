@@ -18,7 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var services: [any ApplicationService] = [
         ConnectivityService(),
-        FirebaseService()
+        FirebaseService(),
+        UserService()
     ]
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {

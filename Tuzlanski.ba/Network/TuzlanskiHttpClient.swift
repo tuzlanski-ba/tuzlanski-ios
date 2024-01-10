@@ -324,6 +324,18 @@ class TuzlanskiHttpClient {
         }
     }
     
+    func fetchUserInfo() async throws -> User {
+        guard let url = URL(string: host + "account/profile") else { throw TuzlanskiHttpClientError.invalidURL }
+        
+        var request = URLRequest(url: url)
+        request.setValue(getAuthHeader(), forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        
+        let response: User = try await execute(request: request)
+        
+        return response
+    }
+    
     // MARK: - Private methods
     
     private func execute<T: Codable>(request: URLRequest) async throws -> T {

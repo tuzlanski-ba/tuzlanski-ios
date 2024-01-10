@@ -32,6 +32,7 @@
 		F31C30D12AFFC95C005454FE /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = F31C30D02AFFC95C005454FE /* SideMenu */; };
 		F31C30D42AFFCA1D005454FE /* CategoriesMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C30D32AFFCA1D005454FE /* CategoriesMenuViewController.swift */; };
 		F324A62C2B4C957500DB40AF /* SocialAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F324A62B2B4C957500DB40AF /* SocialAuthenticator.swift */; };
+		F32D1BFE2B4DCEA900C3D3A4 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32D1BFD2B4DCEA900C3D3A4 /* UserService.swift */; };
 		F339CBAD2B3D79EC00F93F25 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = F339CBAC2B3D79EC00F93F25 /* FirebaseAnalytics */; };
 		F339CBB52B3D79EC00F93F25 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = F339CBB42B3D79EC00F93F25 /* FirebaseAppCheck */; };
 		F339CBB72B3DC04B00F93F25 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F339CBB62B3DC04B00F93F25 /* GoogleService-Info.plist */; };
@@ -172,6 +173,7 @@
 		F31C30CD2AFFC7AE005454FE /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		F31C30D32AFFCA1D005454FE /* CategoriesMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesMenuViewController.swift; sourceTree = "<group>"; };
 		F324A62B2B4C957500DB40AF /* SocialAuthenticator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialAuthenticator.swift; sourceTree = "<group>"; };
+		F32D1BFD2B4DCEA900C3D3A4 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		F339CBB62B3DC04B00F93F25 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F339CBB92B3DC2EC00F93F25 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		F339CBBF2B3E0FB200F93F25 /* OneSignalNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OneSignalNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -330,6 +332,7 @@
 				F34046F32B28E7C700E16723 /* AppStorage.swift */,
 				F319F1712B2D872E00C81793 /* AppNotifications.swift */,
 				F339CBB92B3DC2EC00F93F25 /* FirebaseService.swift */,
+				F32D1BFD2B4DCEA900C3D3A4 /* UserService.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -790,6 +793,7 @@
 				F3932B052B34C35700712046 /* EmbeddedCommentView.swift in Sources */,
 				F3881CE72B09289100AAAAC6 /* ViewType.swift in Sources */,
 				F34046F62B28E84E00E16723 /* UIViewController+Extension.swift in Sources */,
+				F32D1BFE2B4DCEA900C3D3A4 /* UserService.swift in Sources */,
 				F3881CDA2B0905FB00AAAAC6 /* String+HTML.swift in Sources */,
 				F3881CE42B09289100AAAAC6 /* ContentManager.swift in Sources */,
 				F3FA57D12B386D4F00382A2E /* Bookmark.swift in Sources */,
