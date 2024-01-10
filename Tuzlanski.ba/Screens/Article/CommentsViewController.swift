@@ -85,8 +85,19 @@ class CommentsViewController: UIViewController {
     // MARK: - Public methods
     
     func addPostedComment(_ comment: Comment) {
-        comments.insert(comment, at: 0)
-        collectionView.reloadData()
+        var index = 0
+        if comment.thread_id != 0 {
+            index = (comments.lastIndex(where: { $0.thread_id == comment.thread_id || $0.id == comment.thread_id }) ?? -1) + 1
+        }
+          
+        comments.insert(comment, at: index)
+        
+        let indexPath = IndexPath(item: index, section: 0)
+        collectionView.performBatchUpdates {
+            collectionView.insertItems(at: [indexPath])
+        } completion: { _ in
+            self.collectionView.scrollToItem(at: indexPath, at: .centeredVertically, animated: true)
+        }
     }
     
     // MARK: - Private methods
@@ -97,11 +108,12 @@ class CommentsViewController: UIViewController {
         Task {
             do {
                 page += 1
-                let comments = try await httpClient.getLatestComments(page: page, articleID: article.id).reduce(into: [Comment]()) { partialResult, comment in
+                let fetchedComments = try await httpClient.getLatestComments(page: page, articleID: article.id)
+                let comments = fetchedComments.reduce(into: [Comment]()) { partialResult, comment in
                     partialResult += [comment] + (comment.subcomments ?? [])
                 }
                 
-                if comments.count < TuzlanskiHttpClient.pageLimit {
+                if fetchedComments.count < TuzlanskiHttpClient.pageLimit {
                     canFetchMore = false
                 }
                 
@@ -125,11 +137,12 @@ class CommentsViewController: UIViewController {
         Task {
             do {
                 page += 1
-                let comments = try await httpClient.getLatestComments(page: page, articleID: article.id).reduce(into: [Comment]()) { partialResult, comment in
+                let fetchedComments = try await httpClient.getLatestComments(page: page, articleID: article.id)
+                let comments = fetchedComments.reduce(into: [Comment]()) { partialResult, comment in
                     partialResult += [comment] + (comment.subcomments ?? [])
                 }
                 
-                if comments.count < TuzlanskiHttpClient.pageLimit {
+                if fetchedComments.count < TuzlanskiHttpClient.pageLimit {
                     canFetchMore = false
                 }
                 
