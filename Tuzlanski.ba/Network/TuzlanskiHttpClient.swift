@@ -282,9 +282,19 @@ class TuzlanskiHttpClient {
         
         request.httpBody = body.percentEncoded()
         
-        let comment: Comment = try await execute(request: request)
-        
-        return comment
+        var data = Data()
+        do {
+            let response = try await URLSession.shared.data(for: request)
+            data = try mapResponse(response: response, allowAllStatusCodes: true)
+            
+            Log.api.info("Fetched data: \(String(data: data, encoding: .utf8) ?? "null")")
+            
+            let comment = try JSONDecoder().decode(Comment.self, from: data)
+            return comment
+        } catch {
+            guard let errorResponse = try? JSONDecoder().decode(FailLoginResponse.self, from: data) else { throw error }
+            throw TuzlanskiHttpClientError.messageError(errorResponse.message)
+        }
     }
     
     func getUserComments() async throws -> [UserCommentsResponse.UserComment] {

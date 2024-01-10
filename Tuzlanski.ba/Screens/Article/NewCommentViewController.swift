@@ -65,6 +65,8 @@ class NewCommentViewController: UIViewController {
                             )
                         }
                     }
+                } catch TuzlanskiHttpClientError.messageError(let message) {
+                    present(UIAlertController.make(title: nil, message: message), animated: true)
                 } catch {
                     print("Error while adding new comment:", error)
                     present(UIAlertController.make(title: nil, message: "Dogodila se greška prilikom objave komentara. Provjerite vaše podatke pa pokušajte ponovo."), animated: true)
