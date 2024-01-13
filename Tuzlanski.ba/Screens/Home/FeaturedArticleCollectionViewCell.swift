@@ -169,7 +169,7 @@ class FeaturedArticleCollectionViewCell: UICollectionViewCell {
         titleLabel.text = article.title
         subtitleLabel.text = article.preTitle?.uppercased() ?? article.section.name.uppercased()
         subtitleLabel.textColor = UIColor(hex: article.section.color_hex)
-        imageView.url = URL(string: article.image.original)
+        imageView.url = URL(string: article.image.original ?? "")
         dateLabel.text = Date.format(apiDate: article.publishedAt)
         galleryContainerView.isHidden = !article.isGallery.bool
         galleryContainerView.backgroundColor = UIColor(hex: article.section.color_hex)

@@ -205,7 +205,7 @@ class ArticleCollectionViewCell: UICollectionViewCell {
         titleLabel.text = article.title
         subtitleLabel.text = article.preTitle?.uppercased() ?? article.section.name.uppercased()
         subtitleLabel.textColor = UIColor(hex: article.section.color_hex)
-        imageView.url = URL(string: article.image.original)
+        imageView.url = URL(string: article.image.original ?? "")
         dateLabel.text = Date.format(apiDate: article.publishedAt)
         timeLabel.text = Date.formatToTime(apiDate: article.publishedAt)
         timeContainerView.isHidden = displayTimeOnImage == false

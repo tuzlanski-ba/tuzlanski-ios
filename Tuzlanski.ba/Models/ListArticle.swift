@@ -8,7 +8,7 @@
 import Foundation
 
 struct ListArticleImage: Codable {
-    var original: String
+    var original: String?
 }
 
 struct ListArticleSection: Codable {

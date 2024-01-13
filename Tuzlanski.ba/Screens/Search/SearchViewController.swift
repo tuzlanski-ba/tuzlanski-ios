@@ -137,6 +137,7 @@ class SearchViewController: UIViewController {
                 }
             } catch {
                 print(error)
+                collectionView.reloadData()
             }
         }
     }

@@ -204,7 +204,7 @@ struct ArticleView: View {
                         .font(Font(UIFont.Montserrat(.semibold, size: 13)))
                         .foregroundStyle(Color(UIColor.systemGray2))
                         .frame(maxWidth: .infinity, alignment: .leading)
-                    LazyImage(url: URL(string: listArticle.image.original)) { state in
+                    LazyImage(url: URL(string: listArticle.image.original ?? "")) { state in
                         if let image = state.image {
                             image.resizable().aspectRatio(contentMode: .fit)
                         } else if state.error != nil {
