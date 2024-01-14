@@ -736,7 +736,6 @@
 /* Begin PBXShellScriptBuildPhase section */
 		F339CBB82B3DC10100F93F25 /* Run Script - Firebase */ = {
 			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -1020,6 +1019,7 @@
 				OTHER_LDFLAGS = (
 					"-Xlinker",
 					"-no_warn_duplicate_libraries",
+					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tuzlanski.ba.tuzlanski.ba;
 				PRODUCT_NAME = "$(TARGET_NAME)";
