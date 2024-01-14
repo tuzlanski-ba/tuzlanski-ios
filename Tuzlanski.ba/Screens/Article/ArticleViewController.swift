@@ -85,8 +85,7 @@ class ArticleViewController: UIViewController {
     }
     
     override func loadView() {
-        view = UIView(frame: UIScreen.main.bounds)
-        view.backgroundColor = .primaryBackground
+        view = UIView.screen()
         
         var articleView = ArticleView(observableArticle: observableArticle)
         articleView.onCategoryPress = { [unowned self] in

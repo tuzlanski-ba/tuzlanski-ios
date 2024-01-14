@@ -103,6 +103,7 @@ class FeaturedArticleCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        backgroundColor = .clear
         
         let containerView = UIView().forAutoLayout()
         containerView.layer.cornerRadius = 8

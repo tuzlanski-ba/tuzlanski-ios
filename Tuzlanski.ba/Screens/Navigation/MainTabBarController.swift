@@ -29,6 +29,7 @@ class MainTabBarController: UITabBarController {
         tabBarAppearance.shadowColor = .clear
         tabBarAppearance.stackedLayoutAppearance.normal.titleTextAttributes = [NSAttributedString.Key.font: UIFont.Montserrat(.bold, size: 10)]
         tabBarAppearance.stackedLayoutAppearance.selected.titleTextAttributes = [NSAttributedString.Key.font: UIFont.Montserrat(.bold, size: 10)]
+        tabBarAppearance.backgroundColor = .screenBackground
         UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.Montserrat(.bold, size: 10)], for: .normal)
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.Montserrat(.bold, size: 10)], for: .selected)

@@ -37,8 +37,7 @@ class ProfileViewController: UIViewController {
     }
     
     override func loadView() {
-        view = UIView(frame: UIScreen.main.bounds)
-        view.backgroundColor = .systemBackground
+        view = UIView.screen()
         
         let observableProfile = ObservableProfile()
         observableProfile.user = AppStorage.user
@@ -120,10 +119,19 @@ class ProfileViewController: UIViewController {
         }
         
         profileView.onMyCommentsPress = { [unowned self] in
+            guard let user = observableProfile.user else { return }
+            if !user.has_verified_email {
+                present(UIAlertController.make(title: nil, message: "Morate verifikovati email kako bi otključali ovu funkcionalnost."), animated: true)
+            }
+            
             navigationController?.pushViewController(UserCommentsViewController(), animated: true)
         }
         
         profileView.onPasswordChangePress = { [unowned self] in
+            guard let user = observableProfile.user else { return }
+            if !user.has_verified_email {
+                present(UIAlertController.make(title: nil, message: "Morate verifikovati email kako bi otključali ovu funkcionalnost."), animated: true)
+            }
             let passwordChangeViewController = PasswordChangeViewController().embeddedInNavigation()
             present(passwordChangeViewController , animated: true)
         }
@@ -352,7 +360,7 @@ struct ProfileView: View {
                         ZStack {
                             Circle()
                                 .strokeBorder(Color(UIColor.systemGray4),lineWidth: 1)
-                                .background(Circle().fill(Color(UIColor.systemBackground)))
+                                .background(Circle().fill(Color(UIColor.screenBackground)))
                                 .frame(width: 36, height: 36)
                             Image(type.name)
                                 .resizable()

@@ -20,13 +20,22 @@ class UserCommentsViewController: UIViewController {
             configuration.separatorConfiguration.bottomSeparatorInsets = .zero
             configuration.headerTopPadding = 0
             
-            return .list(using: configuration, layoutEnvironment: environment)
+            let section = NSCollectionLayoutSection.list(using: configuration, layoutEnvironment: environment)
+            
+            let sectionBackground = NSCollectionLayoutDecorationItem.background(
+                elementKind: SectionBackgroundDecorationView.kind)
+            section.decorationItems = [sectionBackground]
+            
+            return section
         }
+        
+        layout.register(SectionBackgroundDecorationView.self, forDecorationViewOfKind: SectionBackgroundDecorationView.kind)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout).forAutoLayout()
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(UserCommentCollectionViewCell.self, forCellWithReuseIdentifier: UserCommentCollectionViewCell.identifier)
+        collectionView.backgroundColor = .screenBackground
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(loadData), for: .valueChanged)
@@ -57,8 +66,7 @@ class UserCommentsViewController: UIViewController {
     }
     
     override func loadView() {
-        view = UIView(frame: UIScreen.main.bounds)
-        view.backgroundColor = .primaryBackground
+        view = UIView.screen()
         view.addSubview(collectionView)
         collectionView.pin(to: view)
     }

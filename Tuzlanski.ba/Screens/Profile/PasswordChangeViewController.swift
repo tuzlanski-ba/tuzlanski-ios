@@ -33,8 +33,7 @@ class PasswordChangeViewController: UIViewController {
     }
     
     override func loadView() {
-        view = UIView(frame: UIScreen.main.bounds)
-        view.backgroundColor = .systemBackground
+        view = UIView.screen()
         
         var passwordChangeView = PasswordChangeView(observablePasswordChangeData: observablePasswordChangeData)
         

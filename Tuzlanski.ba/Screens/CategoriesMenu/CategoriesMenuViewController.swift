@@ -62,7 +62,7 @@ class CategoriesMenuViewController: UIViewController {
     
     override func loadView() {
         view = UIView(frame: UIScreen.main.bounds)
-        view.backgroundColor = .primaryBackground
+        view.backgroundColor = .tuzlanskiDarkBlue
         
         overrideUserInterfaceStyle = .dark
         
@@ -88,7 +88,7 @@ struct CategoriesView: View {
     
     var body: some View {
         ZStack {
-            Color(UIColor.primaryBackground)
+            Color(UIColor.tuzlanskiDarkBlue)
                 .ignoresSafeArea()
             
             GeometryReader { geo in

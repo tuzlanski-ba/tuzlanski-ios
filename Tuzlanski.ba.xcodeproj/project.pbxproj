@@ -33,6 +33,7 @@
 		F31C30D42AFFCA1D005454FE /* CategoriesMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C30D32AFFCA1D005454FE /* CategoriesMenuViewController.swift */; };
 		F324A62C2B4C957500DB40AF /* SocialAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F324A62B2B4C957500DB40AF /* SocialAuthenticator.swift */; };
 		F32D1BFE2B4DCEA900C3D3A4 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32D1BFD2B4DCEA900C3D3A4 /* UserService.swift */; };
+		F338FDFE2B54172C002FB405 /* SectionBackgroundDecorationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F338FDFD2B54172C002FB405 /* SectionBackgroundDecorationView.swift */; };
 		F339CBAD2B3D79EC00F93F25 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = F339CBAC2B3D79EC00F93F25 /* FirebaseAnalytics */; };
 		F339CBB52B3D79EC00F93F25 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = F339CBB42B3D79EC00F93F25 /* FirebaseAppCheck */; };
 		F339CBB72B3DC04B00F93F25 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F339CBB62B3DC04B00F93F25 /* GoogleService-Info.plist */; };
@@ -174,6 +175,7 @@
 		F31C30D32AFFCA1D005454FE /* CategoriesMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesMenuViewController.swift; sourceTree = "<group>"; };
 		F324A62B2B4C957500DB40AF /* SocialAuthenticator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialAuthenticator.swift; sourceTree = "<group>"; };
 		F32D1BFD2B4DCEA900C3D3A4 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		F338FDFD2B54172C002FB405 /* SectionBackgroundDecorationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionBackgroundDecorationView.swift; sourceTree = "<group>"; };
 		F339CBB62B3DC04B00F93F25 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F339CBB92B3DC2EC00F93F25 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		F339CBBF2B3E0FB200F93F25 /* OneSignalNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OneSignalNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -472,6 +474,7 @@
 				F319F17E2B2E649A00C81793 /* UserAvatarView.swift */,
 				F3932B042B34C35700712046 /* EmbeddedCommentView.swift */,
 				F3932B082B34C56F00712046 /* RadioButton.swift */,
+				F338FDFD2B54172C002FB405 /* SectionBackgroundDecorationView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -768,6 +771,7 @@
 				F3EDC1502B00EC090050915B /* ArticleCollectionViewCell.swift in Sources */,
 				F3DD62CB2B419ACD00E74B5B /* UIScrollView+Extension.swift in Sources */,
 				F31C30CE2AFFC7AE005454FE /* Theme.swift in Sources */,
+				F338FDFE2B54172C002FB405 /* SectionBackgroundDecorationView.swift in Sources */,
 				F3881CD82B08AC1400AAAAC6 /* Article.swift in Sources */,
 				F3FA57C52B3611F900382A2E /* UserCommentsViewController.swift in Sources */,
 				F31C30C32AFFA68F005454FE /* ProfileViewController.swift in Sources */,

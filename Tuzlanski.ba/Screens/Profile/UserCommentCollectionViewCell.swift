@@ -102,7 +102,7 @@ class UserCommentCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         
         let containerView = UIView().forAutoLayout()
-        containerView.backgroundColor = .systemGray6
+        containerView.backgroundColor = .secondaryBackground
         containerView.layer.cornerRadius = 10
         
         let metaDataStackView = UIStackView().forAutoLayout()

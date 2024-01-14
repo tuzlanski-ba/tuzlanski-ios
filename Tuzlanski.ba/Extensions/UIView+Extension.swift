@@ -11,7 +11,10 @@ extension UIView {
     
     /// Creates view with the size of the device's screen. These views are used for UIViewController views.
     static func screen() -> UIView {
-        return UIView(frame: UIScreen.main.bounds)
+        let view = UIView(frame: UIScreen.main.bounds)
+        view.backgroundColor = .screenBackground
+        
+        return view
     }
     
     func forAutoLayout() -> Self {

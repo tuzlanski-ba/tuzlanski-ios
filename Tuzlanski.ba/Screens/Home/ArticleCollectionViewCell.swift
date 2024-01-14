@@ -141,6 +141,7 @@ class ArticleCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        backgroundColor = .clear
         
         let contentStackView = UIStackView().forAutoLayout()
         contentStackView.axis = .vertical

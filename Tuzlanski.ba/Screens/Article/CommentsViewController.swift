@@ -21,14 +21,23 @@ class CommentsViewController: UIViewController {
             configuration.headerTopPadding = 0
             configuration.headerMode = .supplementary
             
-            return .list(using: configuration, layoutEnvironment: environment)
+            let section = NSCollectionLayoutSection.list(using: configuration, layoutEnvironment: environment)
+            
+            let sectionBackground = NSCollectionLayoutDecorationItem.background(
+                elementKind: SectionBackgroundDecorationView.kind)
+            section.decorationItems = [sectionBackground]
+            
+            return section
         }
+        
+        layout.register(SectionBackgroundDecorationView.self, forDecorationViewOfKind: SectionBackgroundDecorationView.kind)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout).forAutoLayout()
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(CommentCollectionViewCell.self, forCellWithReuseIdentifier: CommentCollectionViewCell.identifier)
         collectionView.register(CommentArticleHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CommentArticleHeaderView.identifier)
+        collectionView.backgroundColor = .screenBackground
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(reloadData), for: .valueChanged)
@@ -77,7 +86,7 @@ class CommentsViewController: UIViewController {
     
     override func loadView() {
         view = UIView(frame: UIScreen.main.bounds)
-        view.backgroundColor = .primaryBackground
+        view.backgroundColor = .tuzlanskiDarkBlue
         view.addSubview(collectionView)
         collectionView.pin(to: view)
     }
@@ -159,15 +168,21 @@ class CommentsViewController: UIViewController {
     }
     
     private func canPerformActions() -> Bool {
-        guard let user = AppStorage.user else { return false }
-        return user.has_verified_email
+        guard let user = AppStorage.user else {
+            present(UIAlertController.make(title: nil, message: "Da biste mogli objaviti komentar morate biti prijavljeni."), animated: true)
+            return false
+        }
+        
+        if !user.has_verified_email {
+            present(UIAlertController.make(title: nil, message: "Morate verifikovati email kako bi otključali ovu funkcionalnost."), animated: true)
+            return false
+        }
+        
+        return true
     }
     
     @objc private func newCommentButtonPressed() {
-        guard canPerformActions() else {
-            present(UIAlertController.make(title: nil, message: "Da biste mogli objaviti komentar morate biti prijavljeni."), animated: true)
-            return
-        }
+        guard canPerformActions() else { return }
         
         showAddNewCommentScreen()
     }
@@ -275,10 +290,7 @@ extension CommentsViewController: CommentCollectionViewCellDelegate {
     }
     
     func reply(comment: Comment) {
-        guard canPerformActions() else {
-            present(UIAlertController.make(title: nil, message: "Da biste mogli odgovoriti na komentar morate biti prijavljeni."), animated: true)
-            return
-        }
+        guard canPerformActions() else { return }
         
         showAddNewCommentScreen(replyToComment: comment)
     }

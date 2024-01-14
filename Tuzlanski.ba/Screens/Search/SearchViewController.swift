@@ -28,13 +28,23 @@ class SearchViewController: UIViewController {
             configuration.separatorConfiguration.bottomSeparatorInsets = .zero
             configuration.headerTopPadding = 0
             
-            return .list(using: configuration, layoutEnvironment: environment)
+            let section = NSCollectionLayoutSection.list(using: configuration, layoutEnvironment: environment)
+            
+            let sectionBackground = NSCollectionLayoutDecorationItem.background(
+                elementKind: SectionBackgroundDecorationView.kind)
+            section.decorationItems = [sectionBackground]
+            
+            return section
         }
+        
+        layout.register(SectionBackgroundDecorationView.self, forDecorationViewOfKind: SectionBackgroundDecorationView.kind)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout).forAutoLayout()
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(ArticleCollectionViewCell.self, forCellWithReuseIdentifier: ArticleCollectionViewCell.identifier)
+        collectionView.backgroundColor = .screenBackground
+        collectionView.keyboardDismissMode = .interactive
 
         return collectionView
     }()
@@ -96,7 +106,6 @@ class SearchViewController: UIViewController {
     
     override func loadView() {
         view = UIView.screen()
-        view.backgroundColor = .systemBackground
         view.addSubview(collectionView)
         collectionView.pin(to: view)
         

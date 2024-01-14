@@ -46,6 +46,7 @@ class CategoryHeaderView: UICollectionReusableView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        backgroundColor = .clear
 
         addSubview(nameLabel)
         addSubview(moreButton)

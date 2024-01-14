@@ -32,8 +32,7 @@ class RegisterViewController: UIViewController {
     }
     
     override func loadView() {
-        view = UIView(frame: UIScreen.main.bounds)
-        view.backgroundColor = .systemBackground
+        view = UIView.screen()
         
         var registerView = RegisterView(observableRegisterData: observableRegisterData)
         

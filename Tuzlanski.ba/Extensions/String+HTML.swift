@@ -30,7 +30,7 @@ extension String {
                     }
             
                     body {
-                        background: \(UIColor.systemBackground.hex);
+                        background: \(UIColor.screenBackground.hex);
                         font-family: 'Montserrat';
                         color: \(UIColor.label.hex);
                         -webkit-text-size-adjust: none;

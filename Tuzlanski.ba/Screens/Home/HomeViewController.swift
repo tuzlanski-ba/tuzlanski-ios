@@ -43,6 +43,10 @@ class HomeViewController: UIViewController {
             )
             sectionHeader.pinToVisibleBounds = false
             
+            let sectionBackground = NSCollectionLayoutDecorationItem.background(
+                elementKind: SectionBackgroundDecorationView.kind)
+            section.decorationItems = [sectionBackground]
+            
             if self.homeData[index].category != nil {
                 configuration.headerMode = .supplementary
                 section.boundarySupplementaryItems = [sectionHeader]
@@ -51,12 +55,15 @@ class HomeViewController: UIViewController {
             return section
         }
         
+        layout.register(SectionBackgroundDecorationView.self, forDecorationViewOfKind: SectionBackgroundDecorationView.kind)
+        
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout).forAutoLayout()
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(ArticleCollectionViewCell.self, forCellWithReuseIdentifier: ArticleCollectionViewCell.identifier)
         collectionView.register(FeaturedArticleCollectionViewCell.self, forCellWithReuseIdentifier: FeaturedArticleCollectionViewCell.identifier)
         collectionView.register(CategoryHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CategoryHeaderView.identifier)
+        collectionView.backgroundColor = .screenBackground
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(reloadData), for: .valueChanged)
@@ -97,7 +104,6 @@ class HomeViewController: UIViewController {
     
     override func loadView() {
         view = UIView.screen()
-        view.backgroundColor = .systemBackground
         view.addSubview(collectionView)
         collectionView.pin(to: view)
     }
