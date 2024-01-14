@@ -38,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             _ = service.application?(application, didFinishLaunchingWithOptions: launchOptions)
         }
         
-        OneSignal.Debug.setLogLevel(.LL_VERBOSE)
+        OneSignal.Debug.setLogLevel(.LL_WARN)
         OneSignal.initialize("03d993d5-fe52-404e-b32e-c0028343c658", withLaunchOptions: launchOptions)
         OneSignal.Notifications.requestPermission({ accepted in
             print("User accepted notifications: \(accepted)")

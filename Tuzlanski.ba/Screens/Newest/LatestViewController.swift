@@ -60,6 +60,10 @@ class LatestViewController: UIViewController {
         if let name = fetchDataSource.name {
             navigationItem.title = name
         }
+        
+        NotificationCenter.observe(notification: UIApplication.willEnterForegroundNotification) { [weak self] _ in
+            self?.reloadData(refreshControl: self?.collectionView.refreshControl ?? UIRefreshControl())
+        }
     }
     
     override func viewIsAppearing(_ animated: Bool) {

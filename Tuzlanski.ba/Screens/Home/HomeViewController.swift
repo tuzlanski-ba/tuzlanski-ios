@@ -81,6 +81,10 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.rightBarButtonItem = searchBarButtonItem
+        
+        NotificationCenter.observe(notification: UIApplication.willEnterForegroundNotification) { [weak self] _ in
+            self?.reloadData()
+        }
     }
     
     override func viewIsAppearing(_ animated: Bool) {
