@@ -222,7 +222,7 @@ struct ArticleView: View {
                 }
                 
                 if let article = observableArticle.article {
-                    WebView(text: article.longText.wrappedInHTML, dynamicHeight: $webViewHeight)
+                    WebView(text: article.body().wrappedInHTML, dynamicHeight: $webViewHeight)
                         .frame(height: webViewHeight)
                         .padding(.top, 8)
                     if webViewHeight > 0 {

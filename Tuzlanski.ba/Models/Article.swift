@@ -55,4 +55,13 @@ struct Article: Codable {
     func toListArticle() -> ListArticle {
         return ListArticle(id: id, title: title, preTitle: preTitle, publishedAt: publishedAt, isGallery: isGallery, hasVideos: hasVideos, sectionID: sectionID, hasComments: hasComments, image: image, section: section, apiURL: apiURL, commentsCount: commentsCount, url: url)
     }
+    
+    func body() -> String {
+        var shortText = self.shortText ?? ""
+        if !shortText.isEmpty {
+            shortText = "<strong>\(shortText)</strong>\r\n"
+        }
+        
+        return shortText + self.longText
+    }
 }

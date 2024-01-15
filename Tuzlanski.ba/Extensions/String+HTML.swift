@@ -72,6 +72,11 @@ extension String {
                         text-decoration: none !important;
                     }
             
+                    p {
+                        padding: 0;
+                        margin: 0;
+                    }
+            
                     span {
                         color: \(UIColor.tintColor.hex) !important;
                     }
