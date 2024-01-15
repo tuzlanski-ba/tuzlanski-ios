@@ -79,7 +79,6 @@ class SocialAuthenticator: NSObject, ASWebAuthenticationPresentationContextProvi
             self.session = session
             
             session.presentationContextProvider = self
-            session.prefersEphemeralWebBrowserSession = true
             session.start()
         }
     }
