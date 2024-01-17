@@ -72,7 +72,7 @@ class BookmarksViewController: UIViewController {
     
     @objc private func reloadData() {
         bookmarks = repository.bookmarks()
-        navigationItem.title = "Spremljene vijesti \(bookmarks.count > 0 ? "(" + String(bookmarks.count) + ")" : "")"
+        navigationItem.title = "Sačuvane vijesti \(bookmarks.count > 0 ? "(" + String(bookmarks.count) + ")" : "")"
         collectionView.refreshControl?.endRefreshing()
         collectionView.reloadData()
     }

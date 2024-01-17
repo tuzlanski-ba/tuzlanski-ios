@@ -26,7 +26,7 @@ class SideNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
-        navigationBar.tintColor = .tintColor
+        navigationBar.tintColor = .label
         
         SideMenuManager.default.addPanGestureToPresent(toView: self.navigationBar)
         SideMenuManager.default.addScreenEdgePanGesturesToPresent(toView: self.view, forMenu: .left)

@@ -144,7 +144,7 @@ class ArticleViewController: UIViewController {
             optionsBarButtonItem.menu = generateOptionsMenu()
         }
         
-        let unbookmarkAction = UIAction(title: "Ukloni iz spremljenih vijesti", image: UIImage(named: "bookmark")) { [weak self] _ in
+        let unbookmarkAction = UIAction(title: "Ukloni iz spremljenih vijesti", image: UIImage(named: "bookmark-filled")) { [weak self] _ in
             guard let self else { return }
             guard let bookmark else { return }
             bookmarkRepository.remove(bookmark: bookmark)

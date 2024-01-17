@@ -29,7 +29,7 @@ class MainTabBarController: UITabBarController {
     init() {
         super.init(nibName: nil, bundle: nil)
         self.delegate = self
-        self.tabBar.tintColor = .tintColor
+        self.tabBar.tintColor = .label
         
         let tabBarAppearance = UITabBarAppearance()
         tabBarAppearance.configureWithOpaqueBackground()

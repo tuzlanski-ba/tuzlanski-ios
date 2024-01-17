@@ -11,7 +11,7 @@ class ThemedNavigationController: UINavigationController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationBar.tintColor = .tintColor
+        navigationBar.tintColor = .label
         navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.Montserrat(.extraBold, size: 16)]
     }
     
