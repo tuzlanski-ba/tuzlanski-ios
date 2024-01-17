@@ -199,10 +199,29 @@ struct ArticleView: View {
                     Text(listArticle.title)
                         .font(Font(UIFont.Montserrat(.bold, size: 18)))
                         .frame(maxWidth: .infinity, alignment: .leading)
-                    Text(Date.formatToFullDate(apiDate: listArticle.publishedAt))
-                        .font(Font(UIFont.Montserrat(.semibold, size: 13)))
-                        .foregroundStyle(Color(UIColor.systemGray2))
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                    HStack(alignment: .center, spacing: 1) {
+                        Text(Date.formatToFullDate(apiDate: listArticle.publishedAt))
+                            .font(Font(UIFont.Montserrat(.semibold, size: 13)))
+                            .foregroundStyle(Color(UIColor.systemGray))
+                        Spacer()
+                        if observableArticle.article?.hasComments?.bool ?? true {
+                            Button {
+                                onCommentPress?()
+                            } label: {
+                                HStack {
+                                    Image("comments")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 16, height: 20)
+                                        .tint(Color(UIColor.systemGray))
+                                    Text(String(listArticle.commentsCount))
+                                        .font(Font(UIFont.Montserrat(.semibold, size: 13)))
+                                        .foregroundStyle(Color(UIColor.systemGray))
+                                }
+                            }
+                        }
+                    }
+                    .padding(.vertical, 4)
                     LazyImage(url: URL(string: listArticle.image.original ?? "")) { state in
                         if let image = state.image {
                             image.resizable().aspectRatio(contentMode: .fit)
@@ -244,19 +263,21 @@ struct ArticleView: View {
                             }
                         }
                         .padding(.top, 4)
-                        Divider()
-                            .overlay(Color(UIColor(hex: article.section.color_hex)))
-                            .padding(.top, 10)
-                        Button(action: { onCommentPress?() }) {
-                            Text("KOMENTARI (\(article.commentsCount))")
-                                .font(Font(UIFont.Montserrat(.bold, size: 14)))
-                                .tint(Color.white)
-                                .frame(maxWidth: .infinity, alignment: .center)
+                        if article.hasComments?.bool ?? true {
+                            Divider()
+                                .overlay(Color(UIColor(hex: article.section.color_hex)))
+                                .padding(.top, 10)
+                            Button(action: { onCommentPress?() }) {
+                                Text("KOMENTARI (\(article.commentsCount))")
+                                    .font(Font(UIFont.Montserrat(.bold, size: 14)))
+                                    .tint(Color.white)
+                                    .frame(maxWidth: .infinity, alignment: .center)
+                            }
+                            .frame(height: 40)
+                            .background(Color(UIColor(hex: article.section.color_hex)))
+                            .cornerRadius(6)
+                            .padding(.vertical, 12)
                         }
-                        .frame(height: 40)
-                        .background(Color(UIColor(hex: article.section.color_hex)))
-                        .cornerRadius(6)
-                        .padding(.vertical, 12)
                         Spacer()
                             .frame(height: 10)
                     } else if observableArticle.listArticle != nil {
