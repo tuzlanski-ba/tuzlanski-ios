@@ -13,6 +13,13 @@ protocol ScrollableViewController {
 
 class MainTabBarController: UITabBarController {
     
+    enum Screen: Int {
+        case home = 0
+        case latest = 1
+        case popular = 2
+        case profile = 3
+    }
+    
     // MARK: - Properties
     
     private var previousViewController: UIViewController?
@@ -44,6 +51,13 @@ class MainTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    // MARK: - Public methods
+    
+    func show(screen: Screen) {
+        self.selectedIndex = screen.rawValue
+        (self.viewControllers?[screen.rawValue] as? UINavigationController)?.popToRootViewController(animated: true)
     }
     
     // MARK: - Private methods

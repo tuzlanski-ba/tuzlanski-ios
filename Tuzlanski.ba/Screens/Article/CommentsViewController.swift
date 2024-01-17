@@ -46,6 +46,47 @@ class CommentsViewController: UIViewController {
         return collectionView
     }()
     
+    private lazy var noCommentsView: UIStackView = {
+        let noCommentsView = UIStackView().forAutoLayout()
+        noCommentsView.axis = .vertical
+        noCommentsView.spacing = 10
+        noCommentsView.alignment = .center
+        
+        let noCommentsLabel = UILabel().forAutoLayout()
+        noCommentsLabel.font = .Montserrat(.semibold, size: 14)
+        noCommentsLabel.textColor = .systemGray
+        noCommentsLabel.text = "Na ovu objavu još niko nije ostavio komentar."
+        noCommentsLabel.textAlignment = .center
+        
+        let signInButton = UIButton(type: .system).forAutoLayout()
+        signInButton.addTarget(self, action: #selector(signInButtonPressed), for: .touchUpInside)
+        
+        var container = AttributeContainer()
+        container.font = .Montserrat(.bold, size: 14)
+        container.foregroundColor = .label
+        
+        var config = UIButton.Configuration.filled()
+        config.attributedTitle = AttributedString("Prijavi se i ostavi komentar", attributes: container)
+        config.background.backgroundColor = UIColor.secondaryBackground
+        config.cornerStyle = .medium
+        
+        signInButton.configurationUpdateHandler = { button in
+            switch button.state {
+            case .highlighted:
+                button.alpha = 0.7
+            default:
+                button.alpha = 1
+            }
+        }
+        
+        signInButton.configuration = config
+        
+        noCommentsView.addArrangedSubview(noCommentsLabel)
+        noCommentsView.addArrangedSubview(signInButton)
+        
+        return noCommentsView
+    }()
+    
     // MARK: - Properties
     
     private let httpClient = TuzlanskiHttpClient()
@@ -89,6 +130,14 @@ class CommentsViewController: UIViewController {
         view.backgroundColor = .tuzlanskiDarkBlue
         view.addSubview(collectionView)
         collectionView.pin(to: view)
+        
+        view.addSubview(noCommentsView)
+        noCommentsView.isHidden = true
+        NSLayoutConstraint.activate([
+            noCommentsView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            noCommentsView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            noCommentsView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
     }
     
     // MARK: - Public methods
@@ -131,9 +180,11 @@ class CommentsViewController: UIViewController {
                     collectionView.reloadData()
                     collectionView.refreshControl?.endRefreshing()
                     isFetching = false
+                    noCommentsView.isHidden = !self.comments.isEmpty
                 }
             } catch {
                 print(error)
+                collectionView.refreshControl?.endRefreshing()
             }
         }
     }
@@ -160,9 +211,11 @@ class CommentsViewController: UIViewController {
                     collectionView.reloadData()
                     isFetching = false
                     refreshControl.endRefreshing()
+                    noCommentsView.isHidden = !self.comments.isEmpty
                 }
             } catch {
                 print(error)
+                collectionView.refreshControl?.endRefreshing()
             }
         }
     }
@@ -191,6 +244,11 @@ class CommentsViewController: UIViewController {
         let newCommentViewController = NewCommentViewController(article: article, replyToComment: replyToComment)
         newCommentViewController.onNewComment = { [weak self] comment in self?.addPostedComment(comment) }
         present(newCommentViewController.embeddedInNavigation(), animated: true)
+    }
+    
+    @objc private func signInButtonPressed() {
+        guard let tabBarController = self.tabBarController as? MainTabBarController else { return }
+        tabBarController.show(screen: .profile)
     }
 }
 
