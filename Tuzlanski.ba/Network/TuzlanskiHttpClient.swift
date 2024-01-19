@@ -119,7 +119,7 @@ class TuzlanskiHttpClient {
         return latestArticlesResponse.articles.data
     }
     
-    func getArticle(apiURL: String) async throws -> Article {
+    func getArticle(apiURL: String) async throws -> ArticleResponse {
         guard let url = URL(string: apiURL) else { throw TuzlanskiHttpClientError.invalidURL }
         
         var request = URLRequest(url: url)
@@ -127,7 +127,7 @@ class TuzlanskiHttpClient {
         
         let articleResponse: ArticleResponse = try await execute(request: request)
         
-        return articleResponse.article
+        return articleResponse
     }
     
     func login(email: String, password: String) async throws -> LoginResponse {

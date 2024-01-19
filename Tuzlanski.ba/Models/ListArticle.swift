@@ -18,7 +18,7 @@ struct ListArticleSection: Codable {
     var color_hex: String
 }
 
-struct ListArticle: Codable {
+struct ListArticle: Codable, Identifiable, Hashable {
     var id: Int64
     var title: String
     var preTitle: String?
@@ -47,6 +47,14 @@ struct ListArticle: Codable {
         case apiURL = "api_url"
         case commentsCount = "comments_count"
         case url
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
+    static func == (lhs: ListArticle, rhs: ListArticle) -> Bool {
+        return lhs.id == rhs.id
     }
 }
 

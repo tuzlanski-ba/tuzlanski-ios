@@ -13,6 +13,7 @@ class ObservableArticle: ObservableObject {
     @Published var url: String?
     @Published var listArticle: ListArticle?
     @Published var article: Article?
+    @Published var relatedArticles: [ListArticle] = []
     
     internal init (url: String) {
         self.url = url
@@ -68,12 +69,13 @@ class ArticleViewController: UIViewController {
         let url = observableArticle.url ?? observableArticle.listArticle?.apiURL ?? ""
         Task {
             do {
-                let article = try await httpClient.getArticle(apiURL: url)
+                let articleResponse = try await httpClient.getArticle(apiURL: url)
                 if observableArticle.listArticle == nil {
-                    observableArticle.listArticle = article.toListArticle()
+                    observableArticle.listArticle = articleResponse.article.toListArticle()
                     optionsBarButtonItem.menu = generateOptionsMenu()
                 }
-                observableArticle.article = article
+                observableArticle.relatedArticles = articleResponse.related
+                observableArticle.article = articleResponse.article
             } catch {
                 print(error)
             }
@@ -103,6 +105,9 @@ class ArticleViewController: UIViewController {
         articleView.onCommentPress = { [unowned self] in
             guard let article = observableArticle.article else { return }
             self.navigationController?.pushViewController(CommentsViewController(article: article), animated: true)
+        }
+        articleView.onArticlePress = { [unowned self] listArticle in
+            self.navigationController?.pushViewController(ArticleViewController(listArticle: listArticle), animated: true)
         }
         
         addSwiftUIView(articleView)
@@ -178,8 +183,9 @@ struct ArticleView: View {
     
     var onCategoryPress: (() -> Void)?
     var onTagPress: ((Tag) -> Void)?
-    var fetchArticle: (() async throws -> Article)?
+    var fetchArticle: (() async throws -> ArticleResponse)?
     var onCommentPress: (() -> Void)?
+    var onArticlePress: ((ListArticle) -> Void)?
     
     var body: some View {
         ScrollView {
@@ -245,7 +251,7 @@ struct ArticleView: View {
                         .frame(height: webViewHeight)
                         .padding(.top, 8)
                     if webViewHeight > 0 {
-                    Divider()
+                        Divider()
                             .overlay(Color(UIColor(hex: article.section.color_hex)))
                             .padding(.top, 10)
                         Text("TAGOVI")
@@ -263,6 +269,39 @@ struct ArticleView: View {
                             }
                         }
                         .padding(.top, 4)
+                        if !observableArticle.relatedArticles.isEmpty {
+                            Divider()
+                                    .overlay(Color(UIColor(hex: article.section.color_hex)))
+                                    .padding(.top, 10)
+                            Text("POVEZANO")
+                                .font(Font(UIFont.Montserrat(.extraBold, size: 13)))
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(.top, 10)
+                            ForEach(Array(observableArticle.relatedArticles.enumerated()), id: \.element) { index, relatedArticle in
+                                Button {
+                                    onArticlePress?(relatedArticle)
+                                } label: {
+                                    HStack(alignment: .center, spacing: 12) {
+                                        LazyImage(url: URL(string: relatedArticle.image.original ?? "")) { state in
+                                            if let image = state.image {
+                                                image.resizable().aspectRatio(contentMode: .fill)
+                                            } else {
+                                                Color.clear
+                                            }
+                                        }
+                                        .frame(width: 48, height: 36)
+                                        .cornerRadius(8)
+                                        Text(relatedArticle.title)
+                                            .font(Font(UIFont.Montserrat(.semibold, size: 15)))
+                                            .foregroundStyle(Color.primary)
+                                            .multilineTextAlignment(.leading)
+                                            .lineLimit(2)
+                                        Spacer()
+                                    }
+                                    .padding(.top, index == 0 ? 10 : 16)
+                                }
+                            }
+                        }
                         if article.hasComments?.bool ?? true {
                             Divider()
                                 .overlay(Color(UIColor(hex: article.section.color_hex)))
@@ -293,8 +332,9 @@ struct ArticleView: View {
         .refreshable {
             guard let fetchArticle else { return }
             do {
-                let article = try await fetchArticle()
-                self.observableArticle.article = article
+                let articleResponse = try await fetchArticle()
+                self.observableArticle.article = articleResponse.article
+                self.observableArticle.relatedArticles = articleResponse.related
             } catch {
                 print("Error while refetching article:", error)
             }

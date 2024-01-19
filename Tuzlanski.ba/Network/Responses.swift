@@ -46,6 +46,7 @@ struct LatestArticleResponse: Codable {
 
 struct ArticleResponse: Codable {
     var article: Article
+    var related: [ListArticle]
 }
 
 struct LoginResponse: Codable {
