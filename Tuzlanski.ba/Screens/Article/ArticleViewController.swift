@@ -29,16 +29,16 @@ class ArticleViewController: UIViewController {
     
     // MARK: - UI Components
     
-    private lazy var textSizeBarButtonItem: UIBarButtonItem = {
-        let textSizeBarButtonItem = UIBarButtonItem(image: UIImage(named: "text-size")?.resized(to: CGSize(width: 25, height: 25)).withRenderingMode(.alwaysTemplate), menu: generateTextSizeMenu())
-        
-        return textSizeBarButtonItem
-    }()
-    
     private lazy var optionsBarButtonItem: UIBarButtonItem = {
         let optionsBarButtonItem = UIBarButtonItem(image: UIImage(named: "options")?.resized(to: CGSize(width: 20, height: 20)).withRenderingMode(.alwaysTemplate), menu: generateOptionsMenu())
         
         return optionsBarButtonItem
+    }()
+    
+    private lazy var shareBarButtonItem: UIBarButtonItem = {
+        let shareBarButtonItem = UIBarButtonItem(image: UIImage(named: "share")?.resized(to: CGSize(width: 24, height: 24)).withRenderingMode(.alwaysTemplate), style: .plain, target: self, action: #selector(shareButtonPressed))
+        
+        return shareBarButtonItem
     }()
     
     // MARK: - Properties
@@ -83,7 +83,7 @@ class ArticleViewController: UIViewController {
         
         (navigationController as? SideNavigationController)?.addLogoToCurrentViewController()
         
-        self.navigationItem.rightBarButtonItems = [optionsBarButtonItem, textSizeBarButtonItem]
+        self.navigationItem.rightBarButtonItems = [optionsBarButtonItem, shareBarButtonItem]
     }
     
     override func loadView() {
@@ -119,18 +119,18 @@ class ArticleViewController: UIViewController {
         let decreaseAction = UIAction(title: "Smanji", image: UIImage(named: "decrease-text"), identifier: nil, discoverabilityTitle: nil, attributes: [], state: .off) { [weak self] _ in
             AppStorage.articleFontSize = max(AppStorage.articleFontSize - 1, 13)
             NotificationCenter.dispatch(notification: .articleFontSizeChanged)
-            self?.textSizeBarButtonItem.menu = self?.generateTextSizeMenu()
+            self?.optionsBarButtonItem.menu = self?.generateOptionsMenu()
         }
         
         let increaseAction = UIAction(title: "Povećaj", image: UIImage(named: "increase-text"), identifier: nil, discoverabilityTitle: nil, attributes: [], state: .off) { [weak self] _ in
             AppStorage.articleFontSize = min(AppStorage.articleFontSize + 1, 20)
             NotificationCenter.dispatch(notification: .articleFontSizeChanged)
-            self?.textSizeBarButtonItem.menu = self?.generateTextSizeMenu()
+            self?.optionsBarButtonItem.menu = self?.generateOptionsMenu()
         }
         
         let statusAction = UIAction(title: String(AppStorage.articleFontSize), image: nil, identifier: nil, discoverabilityTitle: nil, attributes: [.disabled], state: .off) { _ in }
         
-        let menu = UIMenu(title: "Povećajte ili smanjite veličinu teksta u člancima",  children: [decreaseAction, statusAction, increaseAction])
+        let menu = UIMenu(title: "Povećajte ili smanjite veličinu teksta u člancima", options: .displayInline,  children: [decreaseAction, statusAction, increaseAction])
         if #available(iOS 16.0, *) {
             menu.preferredElementSize = .medium
         }
@@ -156,11 +156,7 @@ class ArticleViewController: UIViewController {
             optionsBarButtonItem.menu = generateOptionsMenu()
         }
         
-        let shareAction = UIAction(title: "Podijeli", image: UIImage(named: "share")) { [weak self] _ in
-            self?.shareButtonPressed()
-        }
-        
-        let menu = UIMenu(title: "",  children: [bookmark == nil ? bookmarkAction : unbookmarkAction , shareAction])
+        let menu = UIMenu(title: "",  children: [bookmark == nil ? bookmarkAction : unbookmarkAction , generateTextSizeMenu()])
         
         return menu
     }
