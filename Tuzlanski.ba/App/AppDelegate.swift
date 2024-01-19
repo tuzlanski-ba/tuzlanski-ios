@@ -43,6 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         OneSignal.Notifications.requestPermission({ accepted in
             print("User accepted notifications: \(accepted)")
         }, fallbackToSettings: true)
+        OneSignal.Notifications.addClickListener(self)
         
         return true
     }
@@ -61,8 +62,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
-              let incomingURL = userActivity.webpageURL,
-              let components = NSURLComponents(url: incomingURL, resolvingAgainstBaseURL: true) else {
+              let incomingURL = userActivity.webpageURL else {
+            return true
+        }
+        
+        return openInternalURL(url: incomingURL)
+    }
+}
+
+// MARK: - OSNotificationClickListener
+
+extension AppDelegate: OSNotificationClickListener {
+    
+    func onClick(event: OSNotificationClickEvent) {
+        guard let launchURL = event.notification.launchURL else { return }
+        print("Notification URL: \(launchURL)")
+        
+        guard let url = URL(string: launchURL) else { return }
+        openInternalURL(url: url)
+    }
+    
+    @discardableResult
+    private func openInternalURL(url: URL) -> Bool {
+        guard let components = NSURLComponents(url: url, resolvingAgainstBaseURL: true) else {
             return true
         }
         
