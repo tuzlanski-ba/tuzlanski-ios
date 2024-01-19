@@ -208,8 +208,15 @@ struct ProfileView: View {
                         Text("\(user.name)")
                             .font(Font(UIFont.Montserrat(.bold, size: 14)))
                             .frame(maxWidth: .infinity, alignment: .center)
-                            .padding(.bottom, 12)
+                            .padding(.bottom, 6)
                             .padding(.top, 12)
+                        
+                        Text("Korisnik od \(Date.formatToDate(apiDate: user.created_at))")
+                            .font(Font(UIFont.Montserrat(.semibold, size: 14)))
+                            .foregroundStyle(Color.gray)
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .padding(.bottom, 12)
+                            .padding(.top, 6)
                         
                         if !user.has_verified_email {
                             VStack(spacing: 8) {
