@@ -14,6 +14,7 @@ enum GenericLink: String {
     case impressum = "https://dev.tuzlanski.ba/stranica/impressum/2"
     case marketing = "https://dev.tuzlanski.ba/stranica/marketing/4"
     case terms = "https://dev.tuzlanski.ba/stranica/uslovi-koristenja/1"
+    case sendNews = "https://dev.tuzlanski.ba/stranica/posalji-vijest/6"
     
     var title: String {
         switch self {
@@ -25,6 +26,8 @@ enum GenericLink: String {
             return "Marketing"
         case .terms:
             return "Uslovi korištenja"
+        case .sendNews:
+            return "Pošalji vijest"
         }
     }
     
@@ -111,6 +114,8 @@ struct CategoriesView: View {
                         genericLinkRow(.marketing)
                         Divider()
                         genericLinkRow(.terms)
+                        Divider()
+                        genericLinkRow(.sendNews)
                         Spacer()
                         HStack(alignment: .center, spacing: 18, content: {
                             SocialMenuButton(socialNetwork: .facebook)
