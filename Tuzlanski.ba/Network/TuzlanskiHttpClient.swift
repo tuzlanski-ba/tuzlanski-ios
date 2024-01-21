@@ -146,7 +146,7 @@ class TuzlanskiHttpClient {
             let loginResponse = try JSONDecoder().decode(LoginResponse.self, from: data)
             return loginResponse
         } catch {
-            guard let failLoginResponse = try? JSONDecoder().decode(FailLoginResponse.self, from: data) else { throw error }
+            guard let failLoginResponse = try? JSONDecoder().decode(MessageResponse.self, from: data) else { throw error }
             throw TuzlanskiHttpClientError.messageError(failLoginResponse.message)
         }
     }
@@ -159,7 +159,20 @@ class TuzlanskiHttpClient {
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         request.setValue(getAuthHeader(), forHTTPHeaderField: "Authorization")
         
-        let _: FailLoginResponse = try await execute(request: request)
+        let _: MessageResponse = try await execute(request: request)
+    }
+    
+    func requestAccountDeletion() async throws -> MessageResponse {
+        guard let url = URL(string: host + "account/remove") else { throw TuzlanskiHttpClientError.invalidURL }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        request.setValue(getAuthHeader(), forHTTPHeaderField: "Authorization")
+        
+        let response: MessageResponse = try await execute(request: request)
+        
+        return response
     }
     
     func resetPassword(email: String) async throws {
@@ -170,7 +183,7 @@ class TuzlanskiHttpClient {
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         request.httpBody = ["email": email].percentEncoded()
         
-        let response: FailLoginResponse = try await execute(request: request)
+        let response: MessageResponse = try await execute(request: request)
         
         if response.message != "Poslan vam je e-mail za promjenu šifre!" {
             throw TuzlanskiHttpClientError.messageError("Došlo je do greške prilikom resetovanja šifre. Molimo pokušajte ponovo.")
@@ -292,7 +305,7 @@ class TuzlanskiHttpClient {
             let comment = try JSONDecoder().decode(Comment.self, from: data)
             return comment
         } catch {
-            guard let errorResponse = try? JSONDecoder().decode(FailLoginResponse.self, from: data) else { throw error }
+            guard let errorResponse = try? JSONDecoder().decode(MessageResponse.self, from: data) else { throw error }
             throw TuzlanskiHttpClientError.messageError(errorResponse.message)
         }
     }

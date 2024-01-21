@@ -161,6 +161,44 @@ class ProfileViewController: UIViewController {
             }
         }
         
+        profileView.onAccountRemove = { [unowned self] in
+            let alert = UIAlertController(title: nil, message: "Jeste li sigurni da želite obrisati svoj profil? Obrisani profil nije moguće vratiti.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Da", style: .destructive, handler: { _ in
+                Task {
+                    do {
+                        observableProfile.loading = true
+                        let message = try await self.httpClient.requestAccountDeletion().message
+                        AppStorage.user = nil
+                        self.observableProfile?.user = nil
+                        self.keychain.delete("user_token")
+                        await MainActor.run {
+                            AlertKitAPI.present(
+                                title: message,
+                                icon: .done,
+                                style: .iOS17AppleMusic,
+                                haptic: .success
+                            )
+                        }
+                    } catch {
+                        print("Error while logging out:", error)
+                        await MainActor.run {
+                            AlertKitAPI.present(
+                                title: "Došlo je do greške prilikom brisanja profila.",
+                                icon: .error,
+                                style: .iOS17AppleMusic,
+                                haptic: .error
+                            )
+                        }
+                    }
+                    observableProfile.loading = false
+                }
+            }))
+            
+            alert.addAction(UIAlertAction(title: "Zatvori", style: .cancel))
+            
+            self.present(alert, animated: true)
+        }
+        
         addSwiftUIView(profileView)
     }
 }
@@ -188,6 +226,7 @@ struct ProfileView: View {
     var onPasswordChangePress: (() -> ())?
     var onBookmarksPress: (() -> ())?
     var onSocialAuth: ((SocialAuthType) -> ())?
+    var onAccountRemove: (() -> ())?
     
     var body: some View {
         GeometryReader { geo in
@@ -258,6 +297,10 @@ struct ProfileView: View {
                         Divider()
                         SettingsItem(text: "Odjavi se", imageName: "logout", destructive: true) {
                             onLogout?()
+                        }
+                        Divider()
+                        SettingsItem(text: "Ukloni profil", imageName: "account-remove", destructive: true) {
+                            onAccountRemove?()
                         }
                         
                         Spacer()

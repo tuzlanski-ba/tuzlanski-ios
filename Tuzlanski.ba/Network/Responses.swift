@@ -54,7 +54,7 @@ struct LoginResponse: Codable {
     var token: String
 }
 
-struct FailLoginResponse: Codable {
+struct MessageResponse: Codable {
     var message: String
 }
 
