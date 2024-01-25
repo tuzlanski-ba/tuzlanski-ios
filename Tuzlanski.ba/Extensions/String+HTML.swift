@@ -9,7 +9,7 @@ import UIKit
 
 extension String {
     
-    var wrappedInHTML: String {
+    func wrappedInHTML(linkColor: UIColor = .tintColor) -> String {
         
         var processedText = self.replacingOccurrences(of: "\r\n", with: "<br>")
         processedText.removingRegexMatches(pattern: "\\[gallery.*\\]")
@@ -20,6 +20,22 @@ extension String {
             <head>
                 <meta charset="utf-8">
                 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, shrink-to-fit=no'>
+                <script>window.twttr = (function(d, s, id) {
+                  var js, fjs = d.getElementsByTagName(s)[0],
+                    t = window.twttr || {};
+                  if (d.getElementById(id)) return t;
+                  js = d.createElement(s);
+                  js.id = id;
+                  js.src = "https://platform.twitter.com/widgets.js";
+                  fjs.parentNode.insertBefore(js, fjs);
+
+                  t._e = [];
+                  t.ready = function(f) {
+                    t._e.push(f);
+                  };
+
+                  return t;
+                }(document, "script", "twitter-wjs"));</script>
                 <style type="text/css">
                     @font-face { font-family: 'Montserrat'; src: url('Montserrat-Medium.ttf') format('truetype'); font-weight: 400; }
                     @font-face { font-family: 'Montserrat'; src: url('Montserrat-SemiBold.ttf') format('truetype'); font-weight: 600; }
@@ -68,7 +84,7 @@ extension String {
                     }
             
                     a {
-                        color: \(UIColor.tintColor.hex) !important;
+                        color: \(linkColor.hex) !important;
                         text-decoration: none !important;
                     }
             
@@ -96,6 +112,10 @@ extension String {
                     iframe {
                         max-width: 100% !important;
                         width: 100% !important;
+                    }
+            
+                    .tiktok-embed {
+                        height: 739px !important;
                     }
                 </style>
             

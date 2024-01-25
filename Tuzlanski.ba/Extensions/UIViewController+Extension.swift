@@ -10,9 +10,9 @@ import SwiftUI
 
 extension UIViewController {
     
-    func addSwiftUIView(_ rootView: some View, safely: Bool = false) {
+    func addSwiftUIView(_ rootView: some View, safely: Bool = false, backgroundColor: UIColor? = .screenBackground) {
         let vc = UIHostingController(rootView: rootView)
-        vc.view.backgroundColor = .screenBackground
+        vc.view.backgroundColor = backgroundColor
         let swiftuiView = vc.view!
         swiftuiView.translatesAutoresizingMaskIntoConstraints = false
         addChild(vc)

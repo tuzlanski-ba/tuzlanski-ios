@@ -69,7 +69,8 @@ class ArticleViewController: UIViewController {
         let url = observableArticle.url ?? observableArticle.listArticle?.apiURL ?? ""
         Task {
             do {
-                let articleResponse = try await httpClient.getArticle(apiURL: url)
+                var articleResponse = try await httpClient.getArticle(apiURL: url)
+                articleResponse.article._images = articleResponse.article.images.sorted { $0.is_main > $1.is_main }
                 if observableArticle.listArticle == nil {
                     observableArticle.listArticle = articleResponse.article.toListArticle()
                     optionsBarButtonItem.menu = generateOptionsMenu()
@@ -109,8 +110,18 @@ class ArticleViewController: UIViewController {
         articleView.onArticlePress = { [unowned self] listArticle in
             self.navigationController?.pushViewController(ArticleViewController(listArticle: listArticle), animated: true)
         }
+        articleView.onImagePress = { [unowned self] index in
+            guard let article = observableArticle.article else { return }
+            let galleryViewController = GalleryViewController(images: article.images, currentIndex: index)
+            galleryViewController.modalPresentationStyle = .overFullScreen
+            self.present(galleryViewController, animated: true)
+        }
         
         addSwiftUIView(articleView)
+    }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
     }
     
     // MARK: - Private methods
@@ -176,12 +187,14 @@ struct ArticleView: View {
     @ObservedObject var observableArticle: ObservableArticle
     
     @State private var webViewHeight: CGFloat = .zero
+    @State private var index = 0
     
     var onCategoryPress: (() -> Void)?
     var onTagPress: ((Tag) -> Void)?
     var fetchArticle: (() async throws -> ArticleResponse)?
     var onCommentPress: (() -> Void)?
     var onArticlePress: ((ListArticle) -> Void)?
+    var onImagePress: ((Int) -> Void)?
     
     var body: some View {
         ScrollView {
@@ -198,9 +211,11 @@ struct ArticleView: View {
                             .foregroundStyle(Color(UIColor(hex: listArticle.section.color_hex)))
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
+                    .padding(.horizontal, 16)
                     Text(listArticle.title)
                         .font(Font(UIFont.Montserrat(.bold, size: 18)))
                         .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.horizontal, 16)
                     HStack(alignment: .center, spacing: 1) {
                         Text(Date.formatToFullDate(apiDate: listArticle.publishedAt))
                             .font(Font(UIFont.Montserrat(.semibold, size: 13)))
@@ -224,18 +239,49 @@ struct ArticleView: View {
                         }
                     }
                     .padding(.vertical, 4)
-                    LazyImage(url: URL(string: listArticle.image.original ?? "")) { state in
-                        if let image = state.image {
-                            image.resizable().aspectRatio(contentMode: .fit)
-                        } else if state.error != nil {
-                            Color.red // Indicates an error
-                        } else {
-                            Color.blue // Acts as a placeholder
+                    .padding(.horizontal, 16)
+                    if let article = observableArticle.article, !article.images.isEmpty {
+                        ZStack(alignment: .bottomLeading) {
+                            PagingView(index: $index.animation(), maxIndex: article.images.count - 1) {
+                                ForEach(article.images) { image in
+                                    LazyImage(url: URL(string: image.styles.original)) { state in
+                                        if let image = state.image {
+                                            image.resizable().aspectRatio(contentMode: .fill)
+                                        } else {
+                                            Color.gray.opacity(0.2) // Acts as a placeholder
+                                        }
+                                    }
+                                    .aspectRatio(4.5/3, contentMode: .fill)
+                                    .frame(width: UIScreen.main.bounds.width)
+                                }
+                            }
+                            .aspectRatio(4.5/3, contentMode: .fill)
+                            .frame(width: UIScreen.main.bounds.width)
+                            Text("Autor: \(article.images[index].author)")
+                                .font(Font(UIFont.Montserrat(.semibold, size: 13)))
+                                .padding(.horizontal, 10)
+                                .padding(.vertical, 8)
+                                .background(Color.black.opacity(0.7))
+                                .foregroundStyle(Color.white)
+                                .cornerRadius(8, corners: [.topRight])
                         }
+                        .frame(width: UIScreen.main.bounds.width)
+                        .padding(.top, 10)
+                        .onTapGesture {
+                            onImagePress?(index)
+                        }
+                    } else {
+                        LazyImage(url: URL(string: listArticle.image.original ?? "")) { state in
+                            if let image = state.image {
+                                image.resizable().aspectRatio(contentMode: .fill)
+                            } else {
+                                Color.gray.opacity(0.2) // Acts as a placeholder
+                            }
+                        }
+                        .aspectRatio(4.5/3, contentMode: .fill)
+                        .frame(width: UIScreen.main.bounds.width)
+                        .padding(.top, 10)
                     }
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .cornerRadius(8)
-                    .padding(.top, 10)
                 } else {
                     ProgressView()
                         .progressViewStyle(CircularProgressViewStyle())
@@ -243,9 +289,11 @@ struct ArticleView: View {
                 }
                 
                 if let article = observableArticle.article {
-                    WebView(text: article.body().wrappedInHTML, dynamicHeight: $webViewHeight)
+                    let _ = print("webview height: \(webViewHeight)")
+                    WebView(text: article.body().wrappedInHTML(linkColor: UIColor(hex: article.section.color_hex)), dynamicHeight: $webViewHeight)
                         .frame(height: webViewHeight)
                         .padding(.top, 8)
+                        .padding(.horizontal, 16)
                     if webViewHeight > 0 {
                         Divider()
                             .overlay(Color(UIColor(hex: article.section.color_hex)))
@@ -254,6 +302,7 @@ struct ArticleView: View {
                             .font(Font(UIFont.Montserrat(.extraBold, size: 13)))
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.top, 10)
+                            .padding(.horizontal, 16)
                         WrappingHStack(article.tags, id:\.self, lineSpacing: 8) { tag in
                             Button(action: { onTagPress?(tag) }) {
                                 Text(tag.name.uppercased())
@@ -265,6 +314,7 @@ struct ArticleView: View {
                             }
                         }
                         .padding(.top, 4)
+                        .padding(.horizontal, 16)
                         if !observableArticle.relatedArticles.isEmpty {
                             Divider()
                                     .overlay(Color(UIColor(hex: article.section.color_hex)))
@@ -273,6 +323,7 @@ struct ArticleView: View {
                                 .font(Font(UIFont.Montserrat(.extraBold, size: 13)))
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(.top, 10)
+                                .padding(.horizontal, 16)
                             ForEach(Array(observableArticle.relatedArticles.enumerated()), id: \.element) { index, relatedArticle in
                                 Button {
                                     onArticlePress?(relatedArticle)
@@ -294,6 +345,7 @@ struct ArticleView: View {
                                             .lineLimit(2)
                                         Spacer()
                                     }
+                                    .padding(.horizontal, 16)
                                     .padding(.top, index == 0 ? 10 : 16)
                                 }
                             }
@@ -312,6 +364,7 @@ struct ArticleView: View {
                             .background(Color(UIColor(hex: article.section.color_hex)))
                             .cornerRadius(6)
                             .padding(.vertical, 12)
+                            .padding(.horizontal, 16)
                         }
                         Spacer()
                             .frame(height: 10)
@@ -322,13 +375,13 @@ struct ArticleView: View {
                     }
                 }
             }
-            .padding(.horizontal, 16)
             Spacer()
         }
         .refreshable {
             guard let fetchArticle else { return }
             do {
-                let articleResponse = try await fetchArticle()
+                var articleResponse = try await fetchArticle()
+                articleResponse.article._images = articleResponse.article.images.sorted { $0.is_main > $1.is_main }
                 self.observableArticle.article = articleResponse.article
                 self.observableArticle.relatedArticles = articleResponse.related
             } catch {

@@ -39,6 +39,16 @@ class SideNavigationController: UINavigationController {
         navigationBar.topItem?.backButtonDisplayMode = .minimal
     }
     
+    // MARK: - Rotation
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        if let presented = topViewController?.presentedViewController {
+            return presented.supportedInterfaceOrientations
+        }
+        
+        return self.viewControllers.last?.supportedInterfaceOrientations ?? .portrait
+    }
+    
     // MARK: - Public methods
     
     func addLogoToCurrentViewController() {

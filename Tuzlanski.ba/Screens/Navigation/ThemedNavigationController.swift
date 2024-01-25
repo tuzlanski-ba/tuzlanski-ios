@@ -19,4 +19,8 @@ class ThemedNavigationController: UINavigationController {
         super.viewWillLayoutSubviews()
         navigationBar.topItem?.backButtonDisplayMode = .minimal
     }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return self.viewControllers.last?.supportedInterfaceOrientations ?? .portrait
+    }
 }

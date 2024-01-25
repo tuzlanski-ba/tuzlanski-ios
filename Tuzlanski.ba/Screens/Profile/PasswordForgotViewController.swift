@@ -47,6 +47,10 @@ class PasswordForgotViewController: UIViewController {
         
         addSwiftUIView(passwordForgotView)
     }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
 }
 
 struct PasswordForgotView: View {

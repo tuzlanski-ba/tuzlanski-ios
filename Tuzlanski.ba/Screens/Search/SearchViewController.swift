@@ -117,6 +117,10 @@ class SearchViewController: UIViewController {
         ])
     }
     
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
+    
     // MARK: - Private methods
     
     private func loadNextPage() {

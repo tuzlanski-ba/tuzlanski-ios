@@ -53,6 +53,12 @@ class MainTabBarController: UITabBarController {
         super.viewDidLoad()
     }
     
+    // MARK: - Rotation
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return self.viewControllers?[self.selectedIndex].supportedInterfaceOrientations ?? .allButUpsideDown
+    }
+    
     // MARK: - Public methods
     
     func show(screen: Screen) {

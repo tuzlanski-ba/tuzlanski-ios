@@ -13,6 +13,32 @@ struct Tag: Identifiable, Codable {
     var slug: String
 }
 
+struct GalleryImage: Identifiable, Codable {
+    
+    struct Style: Codable {
+        var _120x88: String
+        var _440x272: String
+        var _676x617: String
+        var _1200x744: String
+        var original: String
+        
+        private enum CodingKeys: String, CodingKey {
+            case _120x88 = "120x88"
+            case _440x272 = "440x272"
+            case _676x617 = "676x617"
+            case _1200x744 = "1200x744"
+            case original
+        }
+    }
+    
+    var id: Int64
+    var is_main: Int
+    var title: String
+    var image_file_name: String
+    var author: String
+    var styles: Style
+}
+
 struct Article: Codable {
     var id: Int64
     var title: String
@@ -31,6 +57,11 @@ struct Article: Codable {
     var tags: [Tag]
     var commentsCount: Int
     var url: String
+    var _images: [GalleryImage]?
+    
+    var images: [GalleryImage] {
+        return _images ?? []
+    }
     
     private enum CodingKeys: String, CodingKey {
         case id
@@ -50,6 +81,7 @@ struct Article: Codable {
         case tags
         case commentsCount = "comments_count"
         case url
+        case _images = "images"
     }
     
     func toListArticle() -> ListArticle {

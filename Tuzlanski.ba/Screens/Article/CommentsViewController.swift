@@ -140,6 +140,10 @@ class CommentsViewController: UIViewController {
         ])
     }
     
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
+    
     // MARK: - Public methods
     
     func addPostedComment(_ comment: Comment) {

@@ -25,8 +25,7 @@ class TuzlanskiHttpClient {
     static let pageLimit = 25
     let host = "https://dev.tuzlanski.ba/api/v1/"
     
-    // TODO: Delete this when public system is released
-    private let auth = "Basic \(Data("tuzlanski:2023".utf8).base64EncodedString())"
+    private let authToken = "6e49696f0e4fd2002bc9379118da031be581cb48"
     
     // MARK: - API
     
@@ -45,8 +44,7 @@ class TuzlanskiHttpClient {
     func fetchRawCategories() async throws -> [String: MenuItem] {
         guard let url = URL(string: host + "menu") else { throw TuzlanskiHttpClientError.invalidURL }
         
-        var request = URLRequest(url: url)
-        request.setValue(auth, forHTTPHeaderField: "Authorization")
+        let request = createRequest(url: url)
         let response: [String: MenuItem] = try await execute(request: request)
         
         return response
@@ -55,9 +53,7 @@ class TuzlanskiHttpClient {
     func getHomeArticles() async throws -> IndexResponse {
         guard let url = URL(string: host + "index") else { throw TuzlanskiHttpClientError.invalidURL }
         
-        var request = URLRequest(url: url)
-        request.setValue(auth, forHTTPHeaderField: "Authorization")
-        
+        let request = createRequest(url: url)
         let dataResponse: DataResponse<IndexResponse> = try await execute(request: request)
         
         return dataResponse.data
@@ -71,9 +67,7 @@ class TuzlanskiHttpClient {
             url.appendQueryItem(name: "section_id", value: String(sectionID))
         }
         
-        var request = URLRequest(url: url)
-        request.setValue(auth, forHTTPHeaderField: "Authorization")
-        
+        let request = createRequest(url: url)
         let latestArticlesResponse: LatestArticleResponse = try await execute(request: request)
         
         return latestArticlesResponse.articles.data
@@ -84,9 +78,7 @@ class TuzlanskiHttpClient {
         url.appendQueryItem(name: "limit", value: "\(Self.pageLimit)")
         url.appendQueryItem(name: "page", value: String(page))
         
-        var request = URLRequest(url: url)
-        request.setValue(auth, forHTTPHeaderField: "Authorization")
-        
+        let request = createRequest(url: url)
         let latestArticlesResponse: LatestArticleResponse = try await execute(request: request)
         
         return latestArticlesResponse.articles.data
@@ -97,9 +89,7 @@ class TuzlanskiHttpClient {
         url.appendQueryItem(name: "limit", value: "\(Self.pageLimit)")
         url.appendQueryItem(name: "page", value: String(page))
         
-        var request = URLRequest(url: url)
-        request.setValue(auth, forHTTPHeaderField: "Authorization")
-        
+        let request = createRequest(url: url)
         let latestArticlesResponse: LatestArticleResponse = try await execute(request: request)
         
         return latestArticlesResponse.articles.data
@@ -111,9 +101,7 @@ class TuzlanskiHttpClient {
         url.appendQueryItem(name: "limit", value: "\(Self.pageLimit)")
         url.appendQueryItem(name: "page", value: String(page))
         
-        var request = URLRequest(url: url)
-        request.setValue(auth, forHTTPHeaderField: "Authorization")
-        
+        let request = createRequest(url: url)
         let latestArticlesResponse: LatestArticleResponse = try await execute(request: request)
         
         return latestArticlesResponse.articles.data
@@ -122,9 +110,7 @@ class TuzlanskiHttpClient {
     func getArticle(apiURL: String) async throws -> ArticleResponse {
         guard let url = URL(string: apiURL) else { throw TuzlanskiHttpClientError.invalidURL }
         
-        var request = URLRequest(url: url)
-        request.setValue(auth, forHTTPHeaderField: "Authorization")
-        
+        let request = createRequest(url: url)
         let articleResponse: ArticleResponse = try await execute(request: request)
         
         return articleResponse
@@ -133,7 +119,7 @@ class TuzlanskiHttpClient {
     func login(email: String, password: String) async throws -> LoginResponse {
         guard let url = URL(string: host + "auth/login") else { throw TuzlanskiHttpClientError.invalidURL }
         
-        var request = URLRequest(url: url)
+        var request = createRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         request.httpBody = ["email": email, "password": password].percentEncoded()
@@ -154,7 +140,7 @@ class TuzlanskiHttpClient {
     func logout() async throws {
         guard let url = URL(string: host + "auth/logout") else { throw TuzlanskiHttpClientError.invalidURL }
         
-        var request = URLRequest(url: url)
+        var request = createRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         request.setValue(getAuthHeader(), forHTTPHeaderField: "Authorization")
@@ -163,9 +149,9 @@ class TuzlanskiHttpClient {
     }
     
     func requestAccountDeletion() async throws -> MessageResponse {
-        guard let url = URL(string: host + "account/remove") else { throw TuzlanskiHttpClientError.invalidURL }
+        guard let url = URL(string: host + "account/request-for-deletion") else { throw TuzlanskiHttpClientError.invalidURL }
         
-        var request = URLRequest(url: url)
+        var request = createRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         request.setValue(getAuthHeader(), forHTTPHeaderField: "Authorization")
@@ -178,7 +164,7 @@ class TuzlanskiHttpClient {
     func resetPassword(email: String) async throws {
         guard let url = URL(string: host + "password/email") else { throw TuzlanskiHttpClientError.invalidURL }
         
-        var request = URLRequest(url: url)
+        var request = createRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         request.httpBody = ["email": email].percentEncoded()
@@ -193,9 +179,8 @@ class TuzlanskiHttpClient {
     func register(username: String, email: String, password: String, passwordConfirm: String) async throws -> Result<LoginResponse, InputErrorResponse> {
         guard let url = URL(string: host + "auth/register") else { throw TuzlanskiHttpClientError.invalidURL }
         
-        var request = URLRequest(url: url)
+        var request = createRequest(url: url)
         request.httpMethod = "POST"
-        request.setValue(auth, forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         request.httpBody = ["name": username, "email": email, "password": password, "password_confirmation": passwordConfirm, "tos": "1"].percentEncoded()
         
@@ -217,7 +202,7 @@ class TuzlanskiHttpClient {
     func resendVerificationEmail() async throws {
         guard let url = URL(string: host + "email/resend") else { throw TuzlanskiHttpClientError.invalidURL }
         
-        var request = URLRequest(url: url)
+        var request = createRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         request.setValue(getAuthHeader(), forHTTPHeaderField: "Authorization")
@@ -232,9 +217,7 @@ class TuzlanskiHttpClient {
         url.appendQueryItem(name: "article_id", value: String(articleID))
         url.appendQueryItem(name: "sort_column", value: String("upvotes"))
         
-        var request = URLRequest(url: url)
-        request.setValue(auth, forHTTPHeaderField: "Authorization")
-        
+        let request = createRequest(url: url)
         let dataResponse: DataResponse<[Comment]> = try await execute(request: request)
         
         return dataResponse.data
@@ -243,7 +226,7 @@ class TuzlanskiHttpClient {
     func upvote(comment: Comment) async throws -> Comment {
         guard let url = URL(string: host + "comments/upvote/\(comment.id)") else { throw TuzlanskiHttpClientError.invalidURL }
         
-        var request = URLRequest(url: url)
+        var request = createRequest(url: url)
         request.httpMethod = "POST"
         request.setValue(getAuthHeader(), forHTTPHeaderField: "Authorization")
         
@@ -255,7 +238,7 @@ class TuzlanskiHttpClient {
     func downvote(comment: Comment) async throws -> Comment {
         guard let url = URL(string: host + "comments/downvote/\(comment.id)") else { throw TuzlanskiHttpClientError.invalidURL }
         
-        var request = URLRequest(url: url)
+        var request = createRequest(url: url)
         request.httpMethod = "POST"
         request.setValue(getAuthHeader(), forHTTPHeaderField: "Authorization")
         
@@ -267,7 +250,7 @@ class TuzlanskiHttpClient {
     func report(comment: Comment, reason type: CommentReportType) async throws -> CommentReportResponse {
         guard let url = URL(string: host + "comments/report/\(comment.id)") else { throw TuzlanskiHttpClientError.invalidURL }
         
-        var request = URLRequest(url: url)
+        var request = createRequest(url: url)
         request.httpMethod = "POST"
         let userAuthHeader = getAuthHeader()
         if !userAuthHeader.isEmpty {
@@ -283,7 +266,7 @@ class TuzlanskiHttpClient {
     func post(comment: String, article: Article, replyToComment: Comment? = nil) async throws -> Comment {
         guard let url = URL(string: host + "comments") else { throw TuzlanskiHttpClientError.invalidURL }
         
-        var request = URLRequest(url: url)
+        var request = createRequest(url: url)
         request.httpMethod = "POST"
         request.setValue(getAuthHeader(), forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
@@ -313,7 +296,7 @@ class TuzlanskiHttpClient {
     func getUserComments() async throws -> [UserCommentsResponse.UserComment] {
         guard let url = URL(string: host + "account/comments") else { throw TuzlanskiHttpClientError.invalidURL }
         
-        var request = URLRequest(url: url)
+        var request = createRequest(url: url)
         request.setValue(getAuthHeader(), forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         
@@ -325,7 +308,7 @@ class TuzlanskiHttpClient {
     func changePassword(password: String, passwordConfirmation: String) async throws -> Result<PasswordChangeResponse, InputErrorResponse> {
         guard let url = URL(string: host + "account/password") else { throw TuzlanskiHttpClientError.invalidURL }
         
-        var request = URLRequest(url: url)
+        var request = createRequest(url: url)
         request.httpMethod = "PUT"
         request.setValue(getAuthHeader(), forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
@@ -350,7 +333,7 @@ class TuzlanskiHttpClient {
     func fetchUserInfo() async throws -> User {
         guard let url = URL(string: host + "account/profile") else { throw TuzlanskiHttpClientError.invalidURL }
         
-        var request = URLRequest(url: url)
+        var request = createRequest(url: url)
         request.setValue(getAuthHeader(), forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         
@@ -360,6 +343,13 @@ class TuzlanskiHttpClient {
     }
     
     // MARK: - Private methods
+    
+    private func createRequest(url: URL) -> URLRequest {
+        var request = URLRequest(url: url)
+        request.setValue(authToken, forHTTPHeaderField: "ApiToken")
+        
+        return request
+    }
     
     private func execute<T: Codable>(request: URLRequest) async throws -> T {
         let response = try await URLSession.shared.data(for: request)

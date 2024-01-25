@@ -201,6 +201,10 @@ class ProfileViewController: UIViewController {
         
         addSwiftUIView(profileView)
     }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
 }
 
 struct ProfileView: View {

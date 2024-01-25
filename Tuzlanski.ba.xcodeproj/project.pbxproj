@@ -47,6 +47,8 @@
 		F34046F22B28E79E00E16723 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34046F12B28E79E00E16723 /* Storage.swift */; };
 		F34046F42B28E7C700E16723 /* AppStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34046F32B28E7C700E16723 /* AppStorage.swift */; };
 		F34046F62B28E84E00E16723 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34046F52B28E84E00E16723 /* UIViewController+Extension.swift */; };
+		F367D2252B5EEC2D0078FAE7 /* PanDirectionGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F367D2242B5EEC2D0078FAE7 /* PanDirectionGestureRecognizer.swift */; };
+		F367D2272B5EEC7D0078FAE7 /* GalleryImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F367D2262B5EEC7D0078FAE7 /* GalleryImageTableViewCell.swift */; };
 		F378151F2B040A4B005E9FEE /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = F378151E2B040A4B005E9FEE /* Category.swift */; };
 		F3829E5E2B2B48D80060BA9B /* PasswordForgotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3829E5D2B2B48D80060BA9B /* PasswordForgotViewController.swift */; };
 		F3829E632B2B50410060BA9B /* ThemedNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3829E622B2B50410060BA9B /* ThemedNavigationController.swift */; };
@@ -69,6 +71,9 @@
 		F3932B052B34C35700712046 /* EmbeddedCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3932B042B34C35700712046 /* EmbeddedCommentView.swift */; };
 		F3932B072B34C42100712046 /* CommentReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3932B062B34C42100712046 /* CommentReportViewController.swift */; };
 		F3932B092B34C56F00712046 /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3932B082B34C56F00712046 /* RadioButton.swift */; };
+		F394B3772B5D85FA001F5AEF /* PagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F394B3762B5D85FA001F5AEF /* PagingView.swift */; };
+		F394B3792B5D9702001F5AEF /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = F394B3782B5D9702001F5AEF /* RoundedCorner.swift */; };
+		F394B37B2B5DA0F3001F5AEF /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F394B37A2B5DA0F3001F5AEF /* GalleryViewController.swift */; };
 		F3A63AA42B3C681A00BFDA70 /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A63AA32B3C681A00BFDA70 /* UICollectionView+Extension.swift */; };
 		F3B1B5E32B121DA300B70B70 /* Connectivity in Frameworks */ = {isa = PBXBuildFile; productRef = F3B1B5E22B121DA300B70B70 /* Connectivity */; };
 		F3B1B5E52B1226D500B70B70 /* ConnectivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B1B5E42B1226D500B70B70 /* ConnectivityService.swift */; };
@@ -185,6 +190,8 @@
 		F34046F12B28E79E00E16723 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		F34046F32B28E7C700E16723 /* AppStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStorage.swift; sourceTree = "<group>"; };
 		F34046F52B28E84E00E16723 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		F367D2242B5EEC2D0078FAE7 /* PanDirectionGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanDirectionGestureRecognizer.swift; sourceTree = "<group>"; };
+		F367D2262B5EEC7D0078FAE7 /* GalleryImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryImageTableViewCell.swift; sourceTree = "<group>"; };
 		F378151E2B040A4B005E9FEE /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		F3829E5D2B2B48D80060BA9B /* PasswordForgotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordForgotViewController.swift; sourceTree = "<group>"; };
 		F3829E622B2B50410060BA9B /* ThemedNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedNavigationController.swift; sourceTree = "<group>"; };
@@ -207,6 +214,9 @@
 		F3932B042B34C35700712046 /* EmbeddedCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedCommentView.swift; sourceTree = "<group>"; };
 		F3932B062B34C42100712046 /* CommentReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentReportViewController.swift; sourceTree = "<group>"; };
 		F3932B082B34C56F00712046 /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
+		F394B3762B5D85FA001F5AEF /* PagingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingView.swift; sourceTree = "<group>"; };
+		F394B3782B5D9702001F5AEF /* RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
+		F394B37A2B5DA0F3001F5AEF /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		F3A63AA22B3C10DB00BFDA70 /* Tuzlanski.ba.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tuzlanski.ba.entitlements; sourceTree = "<group>"; };
 		F3A63AA32B3C681A00BFDA70 /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
 		F3B1B5E42B1226D500B70B70 /* ConnectivityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityService.swift; sourceTree = "<group>"; };
@@ -475,6 +485,9 @@
 				F3932B042B34C35700712046 /* EmbeddedCommentView.swift */,
 				F3932B082B34C56F00712046 /* RadioButton.swift */,
 				F338FDFD2B54172C002FB405 /* SectionBackgroundDecorationView.swift */,
+				F394B3762B5D85FA001F5AEF /* PagingView.swift */,
+				F394B3782B5D9702001F5AEF /* RoundedCorner.swift */,
+				F367D2242B5EEC2D0078FAE7 /* PanDirectionGestureRecognizer.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -528,6 +541,8 @@
 				F311F0E42B30DB0B007B73B4 /* CommentArticleHeaderView.swift */,
 				F3EB1E902B337BB0008818D7 /* NewCommentViewController.swift */,
 				F3932B062B34C42100712046 /* CommentReportViewController.swift */,
+				F394B37A2B5DA0F3001F5AEF /* GalleryViewController.swift */,
+				F367D2262B5EEC7D0078FAE7 /* GalleryImageTableViewCell.swift */,
 			);
 			path = Article;
 			sourceTree = "<group>";
@@ -782,6 +797,7 @@
 				F3881CEC2B0A88C100AAAAC6 /* WebView.swift in Sources */,
 				F3EDC11E2B001C980050915B /* UIView+Extension.swift in Sources */,
 				F3B2B4172B398413009003DC /* SearchViewController.swift in Sources */,
+				F394B3772B5D85FA001F5AEF /* PagingView.swift in Sources */,
 				F3B2B4192B398D49009003DC /* CommentVote.swift in Sources */,
 				F3EDC1142AFFCD6D0050915B /* Logging.swift in Sources */,
 				F3932B072B34C42100712046 /* CommentReportViewController.swift in Sources */,
@@ -808,10 +824,12 @@
 				F34046F42B28E7C700E16723 /* AppStorage.swift in Sources */,
 				F31C30B82AFF9B10005454FE /* MainTabBarController.swift in Sources */,
 				F3C464FA2B45F2D800794744 /* DispatchQueue+Dedupe.swift in Sources */,
+				F394B37B2B5DA0F3001F5AEF /* GalleryViewController.swift in Sources */,
 				F3EDC1192B00142E0050915B /* ListArticle.swift in Sources */,
 				F3A63AA42B3C681A00BFDA70 /* UICollectionView+Extension.swift in Sources */,
 				F3EB1E912B337BB0008818D7 /* NewCommentViewController.swift in Sources */,
 				F324A62C2B4C957500DB40AF /* SocialAuthenticator.swift in Sources */,
+				F367D2252B5EEC2D0078FAE7 /* PanDirectionGestureRecognizer.swift in Sources */,
 				F38FEF3F2B3B0B4F00757733 /* CommentReportRepository.swift in Sources */,
 				F3EDC11C2B0016500050915B /* Responses.swift in Sources */,
 				F3881CE52B09289100AAAAC6 /* WrappingHStack.swift in Sources */,
@@ -824,6 +842,7 @@
 				F3C06EFA2B0817C300065735 /* NotificationCenter+Extension.swift in Sources */,
 				F3C06EF82B07D31E00065735 /* URL+Extension.swift in Sources */,
 				F34046F22B28E79E00E16723 /* Storage.swift in Sources */,
+				F367D2272B5EEC7D0078FAE7 /* GalleryImageTableViewCell.swift in Sources */,
 				F389F8E12B06980200DFEDB5 /* PillBorderButton.swift in Sources */,
 				F3EDC1452B00D3C20050915B /* UIFont+Extension.swift in Sources */,
 				F3B2B41B2B398EA5009003DC /* CommentVoteRepository.swift in Sources */,
@@ -838,6 +857,7 @@
 				F3881CD62B08A72300AAAAC6 /* ArticleViewController.swift in Sources */,
 				F3D10CA32B473AC800120973 /* NSLayoutConstraint+Extension.swift in Sources */,
 				F3B1B5E52B1226D500B70B70 /* ConnectivityService.swift in Sources */,
+				F394B3792B5D9702001F5AEF /* RoundedCorner.swift in Sources */,
 				F3139AC02B11DFA70084AD31 /* SocialMenuButton.swift in Sources */,
 				F31C30D42AFFCA1D005454FE /* CategoriesMenuViewController.swift in Sources */,
 				F3829E5E2B2B48D80060BA9B /* PasswordForgotViewController.swift in Sources */,
@@ -1012,8 +1032,7 @@
 				INFOPLIST_FILE = Tuzlanski.ba/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1027,9 +1046,13 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tuzlanski.ba.tuzlanski.ba;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1047,8 +1070,7 @@
 				INFOPLIST_FILE = Tuzlanski.ba/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1057,9 +1079,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tuzlanski.ba.tuzlanski.ba;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

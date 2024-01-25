@@ -108,6 +108,10 @@ class HomeViewController: UIViewController {
         collectionView.pin(to: view)
     }
     
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
+    
     // MARK: - Private methods
     
     @objc private func reloadData() {

@@ -76,6 +76,10 @@ class NewCommentViewController: UIViewController {
         
         addSwiftUIView(newCommentView)
     }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
 }
 
 struct NewCommentView: View {

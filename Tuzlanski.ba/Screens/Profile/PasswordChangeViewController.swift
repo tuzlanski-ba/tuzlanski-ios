@@ -28,7 +28,7 @@ class PasswordChangeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Registracija"
+        self.navigationItem.title = "Promijeni šifru"
         addCloseButton()
     }
     
@@ -67,6 +67,10 @@ class PasswordChangeViewController: UIViewController {
         }
         
         addSwiftUIView(passwordChangeView)
+    }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
     }
 }
 

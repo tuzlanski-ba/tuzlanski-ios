@@ -63,6 +63,10 @@ class RegisterViewController: UIViewController {
         
         addSwiftUIView(registerView)
     }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
 }
 
 struct RegisterView: View {

@@ -80,6 +80,10 @@ class CategoriesMenuViewController: UIViewController {
         
         addSwiftUIView(categoriesView)
     }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
 }
 
 struct CategoriesView: View {
