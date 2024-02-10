@@ -55,7 +55,13 @@ struct WebView : UIViewRepresentable {
             guard parent.isLoaded && navigationAction.navigationType == .linkActivated else { return .allow }
             if let url = navigationAction.request.url, url.absoluteString.hasPrefix("http") {
                 await MainActor.run {
-                    UIApplication.shared.open(url, options: [:])
+                    if (url.absoluteString.contains("tuzlanski.ba")) {
+                        let userActivity =  NSUserActivity(activityType: NSUserActivityTypeBrowsingWeb)
+                        userActivity.webpageURL = url
+                        _ = UIApplication.shared.delegate?.application?(UIApplication.shared, continue: userActivity, restorationHandler: { _ in })
+                    } else {
+                        UIApplication.shared.open(url, options: [:])
+                    }
                 }
                 return WKNavigationActionPolicy.cancel
             } else {

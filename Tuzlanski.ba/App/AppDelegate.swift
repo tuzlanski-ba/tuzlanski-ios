@@ -89,11 +89,11 @@ extension AppDelegate: OSNotificationClickListener {
         }
         
         guard let tabBarController = window?.rootViewController as? UITabBarController else { return false }
-        guard let homeNavigationController = tabBarController.viewControllers?[0] as? UINavigationController else { return false }
+        guard let navigationController = tabBarController.viewControllers?[tabBarController.selectedIndex] as? UINavigationController else { return false }
         guard let path = components.path else { return false }
         
         let url = TuzlanskiHttpClient().host + "articles/" + path.deletingPrefix("/")
-        homeNavigationController.pushViewController(ArticleViewController(url: url), animated: true)
+        navigationController.pushViewController(ArticleViewController(url: url), animated: true)
         
         return true
     }

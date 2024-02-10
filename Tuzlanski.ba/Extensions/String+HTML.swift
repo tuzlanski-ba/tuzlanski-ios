@@ -14,6 +14,9 @@ extension String {
         var processedText = self.replacingOccurrences(of: "\r\n", with: "<br>")
         processedText.removingRegexMatches(pattern: "\\[gallery.*\\]")
         
+        processedText = processedText.replacingOccurrences(of: "src=\"https://dev.tuzlanski.ba/assets/img/lazy.png\"", with: "")
+        processedText = processedText.replacingOccurrences(of: "data-src=", with: "src=")
+        
         return """
             <!doctype html>
             <html lang="ba">
@@ -94,7 +97,7 @@ extension String {
                     }
             
                     span {
-                        color: \(UIColor.tintColor.hex) !important;
+                        color: \(linkColor.hex) !important;
                     }
             
                     li:last-child {
@@ -116,6 +119,56 @@ extension String {
             
                     .tiktok-embed {
                         height: 739px !important;
+                    }
+            
+                    .related-article {
+                        margin: 0;
+                        display: block;
+                        width: 100%;
+                        box-sizing: border-box;
+                        display: flex;
+                        align-items: center;
+                        background: \(UIColor.systemGray6.hex);
+                        border-radius: 6px;
+                        padding: 12px;
+                        flex-direction: row;
+                        flex-wrap: wrap;
+                    }
+            
+                    .related-article span {
+                        flex: 0 0 100%;
+                        color: \(linkColor.hex) !important;
+                        font-weight: bolder;
+                        text-transform: uppercase;
+                        font-size: 0.8rem !important;
+                        margin-bottom: 8px;
+                    }
+            
+                    .related-article .related-article-info h3 {
+                        font-size: 0.94rem;
+                        padding: 0;
+                        margin: 0;
+                    }
+            
+                    .related-article p {
+                        display: none;
+                    }
+            
+                    .related-article img {
+                        border-radius: 8px;
+                        width: 110px;
+                        height: 80px;
+                    }
+            
+                    .related-article-info {
+                        flex: 1;
+                        padding: 0;
+                        margin: 0;
+                        margin-left: 12px;
+                    }
+            
+                    .related-article-info span {
+                        display: none;
                     }
                 </style>
             
