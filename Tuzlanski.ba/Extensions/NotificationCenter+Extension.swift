@@ -10,6 +10,7 @@ import Foundation
 extension Notification.Name {
     static let menuCategoryPressed = Notification.Name("menuCategoryPressed")
     static let articleFontSizeChanged = Notification.Name("articleFontSizeChanged")
+    static let pollVoted = Notification.Name("pollVoted")
 }
 
 extension NotificationCenter {

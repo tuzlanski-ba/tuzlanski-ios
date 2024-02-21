@@ -63,6 +63,16 @@ class DatabaseManager {
             }
         }
         
+        migrator.registerMigration("PollVote") { db in
+            try db.create(table: "poll_vote") { t in
+                t.autoIncrementedPrimaryKey("id")
+                t.column("article_id", .integer).notNull().indexed()
+                t.column("poll_id", .integer).notNull()
+                t.column("added_at", .integer).notNull().indexed()
+                t.uniqueKey(["article_id", "poll_id"])
+            }
+        }
+        
         do {
             try migrator.migrate(dbQueue)
         } catch {

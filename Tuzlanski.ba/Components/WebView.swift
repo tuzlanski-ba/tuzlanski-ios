@@ -94,6 +94,9 @@ struct WebView : UIViewRepresentable {
                     self.parent.dynamicHeight = height
                     self.parent.isLoaded = true
                 }
+            } else if message.name == "pollVote" {
+                guard let pollData = message.body as? String else { return }
+                NotificationCenter.dispatch(notification: .pollVoted, payload: ["data": pollData])
             }
         }
     }
@@ -152,6 +155,7 @@ struct WebView : UIViewRepresentable {
         webview.configuration.userContentController.addUserScript(wkuScript)
         webview.configuration.userContentController.add(context.coordinator, contentWorld: .page, name: "loadEvent")
         webview.configuration.userContentController.add(context.coordinator, contentWorld: .page, name: "widgetHeight")
+        webview.configuration.userContentController.add(context.coordinator, contentWorld: .page, name: "pollVote")
         
         return webview
     }

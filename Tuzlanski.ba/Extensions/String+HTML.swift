@@ -9,7 +9,7 @@ import UIKit
 
 extension String {
     
-    func wrappedInHTML(linkColor: UIColor = .tintColor) -> String {
+    func wrappedInHTML(linkColor: UIColor = .tintColor, showPollResults: Bool) -> String {
         
         var processedText = self.replacingOccurrences(of: "\r\n", with: "<br>")
         processedText.removingRegexMatches(pattern: "\\[gallery.*\\]")
@@ -17,7 +17,7 @@ extension String {
         processedText = processedText.replacingOccurrences(of: "src=\"https://dev.tuzlanski.ba/assets/img/lazy.png\"", with: "")
         processedText = processedText.replacingOccurrences(of: "data-src=", with: "src=")
         
-        return """
+        let html = """
             <!doctype html>
             <html lang="ba">
             <head>
@@ -128,7 +128,7 @@ extension String {
                         box-sizing: border-box;
                         display: flex;
                         align-items: center;
-                        background: \(UIColor.systemGray6.hex);
+                        background: \(UIColor.secondaryBackground.hex);
                         border-radius: 6px;
                         padding: 12px;
                         flex-direction: row;
@@ -170,6 +170,109 @@ extension String {
                     .related-article-info span {
                         display: none;
                     }
+            
+                    .article-poll {
+                        margin: 0;
+                        display: block;
+                        width: 100%;
+                        box-sizing: border-box;
+                        background: \(UIColor.secondaryBackground.hex);
+                        border-radius: 6px;
+                        padding: 12px;
+                    }
+            
+                    .article-poll > span {
+                        color: \(UIColor.label.hex) !important;
+                        font-size: 1.1rem;
+                        font-weight: bold;
+                    }
+            
+                    .article-poll form label {
+                        display: block;
+                        width: 100%;
+                        margin-top: 10px;
+                    }
+            
+                    .article-poll form label span {
+                        color: \(UIColor.label.hex) !important;
+                    }
+            
+                    .article-poll form button {
+                        display: block;
+                        width: 100%;
+                        background: none;
+                        color: \(UIColor.label.hex) !important;
+                        text-transform: uppercase;
+                        margin-top: 16px;
+                        padding: 14px 0;
+                        border: 1px solid \(UIColor.systemGray5.hex);
+                        border-radius: 6px;
+                        font-size: 0.8rem;
+                    }
+            
+                    .article-poll form a {
+                        text-align: center;
+                        font-weight: bold;
+                        display: block;
+                        width: 100%;
+                        background: none;
+                        color: \(UIColor.label.hex) !important;
+                        text-transform: uppercase;
+                        margin-top: 16px;
+                        padding: 14px 0;
+                        font-size: 0.8rem;
+                    }
+            
+                    #back-to-poll {
+                        display: block;
+                        text-align: center;
+                        font-weight: bold;
+                        width: 100%;
+                        background: none;
+                        color: \(UIColor.label.hex) !important;
+                        text-transform: uppercase;
+                        margin-top: 16px;
+                        padding: 14px 0;
+                        font-size: 0.8rem;
+                    }
+            
+                    .hidden {
+                        display: none !important;
+                    }
+            
+                    #poll-result {
+                        width: 100%;
+                        margin-top: 12px;
+                    }
+            
+                    #poll-result .relative {
+                        position: relative;
+                        width: 100%;
+                    }
+            
+                    #poll-result .w-full {
+                        width: 100%;
+                        overflow: hidden;
+                    }
+                    
+                    #poll-result div {
+                        width: 100%;
+                    }
+            
+                    #poll-result .relative .h-2\\.5 div {
+                        height: 10px;
+                        background-color: yellow;
+                        margin-top: 2px;
+                        border-radius: 4px;
+                    }
+            
+                    #poll-result span {
+                        display: block;
+                        color: \(UIColor.label.hex) !important;
+                        font-weight: bold;
+                        margin-top: 8px;
+                        font-size: 0.9rem;
+                    }
                 </style>
             
                 <script>
@@ -182,8 +285,41 @@ extension String {
             <body>
                 \(processedText)
             </body>
+            
+            <script>
+                function processForm(e) {
+                    if (e.preventDefault) e.preventDefault();
+
+                    var form = e.target;
+                    var checkedValue = form.querySelector('.form-radio:checked').value;
+            
+                    var pollData = {
+                        'url': form.action,
+                        'value': checkedValue
+                    };
+
+                    window.webkit.messageHandlers.pollVote.postMessage(JSON.stringify(pollData));
+
+                    return false;
+                }
+            
+                var form = document.getElementById('poll-form');
+                if (form.attachEvent) {
+                    form.attachEvent("submit", processForm);
+                } else {
+                    form.addEventListener("submit", processForm);
+                }
+            
+                document.addEventListener("DOMContentLoaded", function(){
+                    if (\(showPollResults)) {
+                        Poll.showResults();
+                    }
+                });
+            </script>
             </html>
             """
+        
+        return html
     }
     
     mutating func removingRegexMatches(pattern: String, replaceWith: String = "") {

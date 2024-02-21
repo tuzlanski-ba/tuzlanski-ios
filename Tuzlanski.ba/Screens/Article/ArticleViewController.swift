@@ -8,12 +8,14 @@
 import UIKit
 import SwiftUI
 import NukeUI
+import AlertKit
 
 class ObservableArticle: ObservableObject {
     @Published var url: String?
     @Published var listArticle: ListArticle?
     @Published var article: Article?
     @Published var relatedArticles: [ListArticle] = []
+    @Published var showPollResults = false
     
     internal init (url: String) {
         self.url = url
@@ -23,6 +25,11 @@ class ObservableArticle: ObservableObject {
         self.listArticle = listArticle
         self.article = article
     }
+}
+
+struct PollVoteData: Codable {
+    var url: String
+    var value: String
 }
 
 class ArticleViewController: UIViewController {
@@ -46,6 +53,7 @@ class ArticleViewController: UIViewController {
     private var observableArticle: ObservableArticle
     private let httpClient = TuzlanskiHttpClient()
     private let bookmarkRepository = BookmarkRepository()
+    private let pollVoteRepository = PollVoteRepository()
     
     // MARK: - Lifecycle
     
@@ -66,19 +74,49 @@ class ArticleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let url = observableArticle.url ?? observableArticle.listArticle?.apiURL ?? ""
-        Task {
-            do {
-                var articleResponse = try await httpClient.getArticle(apiURL: url)
-                articleResponse.article._images = articleResponse.article.images.sorted { $0.is_main > $1.is_main }
-                if observableArticle.listArticle == nil {
-                    observableArticle.listArticle = articleResponse.article.toListArticle()
-                    optionsBarButtonItem.menu = generateOptionsMenu()
+        loadArticle()
+        
+        NotificationCenter.observe(notification: .pollVoted) { [weak self] notification in
+            guard let pollData = notification.userInfo?["data"] as? String else { return }
+            guard let pollVote = try? JSONDecoder().decode(PollVoteData.self, from: Data(pollData.utf8)) else { return }
+            guard let pollID = Int64(pollVote.url.components(separatedBy: "/").last ?? "null") else { return }
+            guard let pollVoteID = Int(pollVote.value) else { return }
+            guard let articleID = self?.observableArticle.listArticle?.id else { return }
+            
+            if let _ = self?.pollVoteRepository.pollVote(articleID: articleID, pollID: pollID) {
+                AlertKitAPI.present(
+                    title: "Već ste glasali na ovu anketu",
+                    icon: .error,
+                    style: .iOS17AppleMusic,
+                    haptic: .error
+                )
+                self?.observableArticle.showPollResults = true
+                self?.loadArticle()
+                
+                return
+            }
+            
+            // TODO: Check if form can be voted?
+            // TODO: Notify lampa about cache clean
+            
+            Task {
+                do {
+                    var _ = try await self?.httpClient.pollVote(id: pollID, voteID: pollVoteID)
+                    
+                    await MainActor.run {
+                        AlertKitAPI.present(
+                            title: "Uspješno ste glasali",
+                            icon: .done,
+                            style: .iOS17AppleMusic,
+                            haptic: .success
+                        )
+                        try? self?.pollVoteRepository.save(poll: PollVote(articleID: articleID, pollID: pollID))
+                        self?.observableArticle.showPollResults = true
+                        self?.loadArticle()
+                    }
+                } catch {
+                    print(error)
                 }
-                observableArticle.relatedArticles = articleResponse.related
-                observableArticle.article = articleResponse.article
-            } catch {
-                print(error)
             }
         }
         
@@ -122,6 +160,24 @@ class ArticleViewController: UIViewController {
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .portrait
+    }
+    
+    private func loadArticle() {
+        let url = observableArticle.url ?? observableArticle.listArticle?.apiURL ?? ""
+        Task {
+            do {
+                var articleResponse = try await httpClient.getArticle(apiURL: url)
+                articleResponse.article._images = articleResponse.article.images.sorted { $0.is_main > $1.is_main }
+                if observableArticle.listArticle == nil {
+                    observableArticle.listArticle = articleResponse.article.toListArticle()
+                    optionsBarButtonItem.menu = generateOptionsMenu()
+                }
+                observableArticle.relatedArticles = articleResponse.related
+                observableArticle.article = articleResponse.article
+            } catch {
+                print(error)
+            }
+        }
     }
     
     // MARK: - Private methods
@@ -290,7 +346,7 @@ struct ArticleView: View {
                 
                 if let article = observableArticle.article {
                     let _ = print("webview height: \(webViewHeight)")
-                    WebView(text: article.body().wrappedInHTML(linkColor: UIColor(hex: article.section.color_hex)), dynamicHeight: $webViewHeight)
+                    WebView(text: article.body().wrappedInHTML(linkColor: UIColor(hex: article.section.color_hex), showPollResults: observableArticle.showPollResults), dynamicHeight: $webViewHeight)
                         .frame(height: webViewHeight)
                         .padding(.top, 8)
                         .padding(.horizontal, 16)

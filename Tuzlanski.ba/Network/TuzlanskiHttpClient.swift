@@ -342,6 +342,17 @@ class TuzlanskiHttpClient {
         return response
     }
     
+    func pollVote(id: Int64, voteID: Int) async throws -> Poll {
+        guard let url = URL(string: host + "polls/\(id)/vote/\(voteID)") else { throw TuzlanskiHttpClientError.invalidURL }
+        
+        var request = createRequest(url: url)
+        request.httpMethod = "POST"
+        
+        let response: Poll = try await execute(request: request)
+        
+        return response
+    }
+    
     // MARK: - Private methods
     
     private func createRequest(url: URL) -> URLRequest {

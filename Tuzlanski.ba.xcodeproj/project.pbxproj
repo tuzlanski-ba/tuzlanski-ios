@@ -54,6 +54,7 @@
 		F3829E632B2B50410060BA9B /* ThemedNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3829E622B2B50410060BA9B /* ThemedNavigationController.swift */; };
 		F3829E652B2B5A330060BA9B /* UIAlertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3829E642B2B5A330060BA9B /* UIAlertController+Extension.swift */; };
 		F3829E672B2BA2C00060BA9B /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3829E662B2BA2C00060BA9B /* RegisterViewController.swift */; };
+		F38768162B8692900041A00B /* PollVoteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38768152B8692900041A00B /* PollVoteRepository.swift */; };
 		F3881CD62B08A72300AAAAC6 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3881CD52B08A72300AAAAC6 /* ArticleViewController.swift */; };
 		F3881CD82B08AC1400AAAAC6 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3881CD72B08AC1400AAAAC6 /* Article.swift */; };
 		F3881CDA2B0905FB00AAAAC6 /* String+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3881CD92B0905FB00AAAAC6 /* String+HTML.swift */; };
@@ -87,6 +88,7 @@
 		F3D10CA32B473AC800120973 /* NSLayoutConstraint+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D10CA22B473AC700120973 /* NSLayoutConstraint+Extension.swift */; };
 		F3DD62CB2B419ACD00E74B5B /* UIScrollView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DD62CA2B419ACD00E74B5B /* UIScrollView+Extension.swift */; };
 		F3EB1E912B337BB0008818D7 /* NewCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EB1E902B337BB0008818D7 /* NewCommentViewController.swift */; };
+		F3ECBF792B781D4300A92BD9 /* Poll.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ECBF782B781D4300A92BD9 /* Poll.swift */; };
 		F3EDC1142AFFCD6D0050915B /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDC1132AFFCD6D0050915B /* Logging.swift */; };
 		F3EDC1172AFFD0B40050915B /* TuzlanskiHttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDC1162AFFD0B40050915B /* TuzlanskiHttpClient.swift */; };
 		F3EDC1192B00142E0050915B /* ListArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDC1182B00142E0050915B /* ListArticle.swift */; };
@@ -197,6 +199,7 @@
 		F3829E622B2B50410060BA9B /* ThemedNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedNavigationController.swift; sourceTree = "<group>"; };
 		F3829E642B2B5A330060BA9B /* UIAlertController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extension.swift"; sourceTree = "<group>"; };
 		F3829E662B2BA2C00060BA9B /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		F38768152B8692900041A00B /* PollVoteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollVoteRepository.swift; sourceTree = "<group>"; };
 		F3881CD52B08A72300AAAAC6 /* ArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
 		F3881CD72B08AC1400AAAAC6 /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		F3881CD92B0905FB00AAAAC6 /* String+HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+HTML.swift"; sourceTree = "<group>"; };
@@ -230,6 +233,7 @@
 		F3D10CA22B473AC700120973 /* NSLayoutConstraint+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+Extension.swift"; sourceTree = "<group>"; };
 		F3DD62CA2B419ACD00E74B5B /* UIScrollView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Extension.swift"; sourceTree = "<group>"; };
 		F3EB1E902B337BB0008818D7 /* NewCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCommentViewController.swift; sourceTree = "<group>"; };
+		F3ECBF782B781D4300A92BD9 /* Poll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poll.swift; sourceTree = "<group>"; };
 		F3EDC1132AFFCD6D0050915B /* Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 		F3EDC1162AFFD0B40050915B /* TuzlanskiHttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuzlanskiHttpClient.swift; sourceTree = "<group>"; };
 		F3EDC1182B00142E0050915B /* ListArticle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListArticle.swift; sourceTree = "<group>"; };
@@ -437,6 +441,7 @@
 				F3FA57D02B386D4F00382A2E /* Bookmark.swift */,
 				F3B2B4182B398D49009003DC /* CommentVote.swift */,
 				F38FEF3C2B3B0AF300757733 /* CommentReport.swift */,
+				F3ECBF782B781D4300A92BD9 /* Poll.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -528,6 +533,7 @@
 				F3FA57D22B386F0200382A2E /* BookmarkRepository.swift */,
 				F3B2B41A2B398EA5009003DC /* CommentVoteRepository.swift */,
 				F38FEF3E2B3B0B4F00757733 /* CommentReportRepository.swift */,
+				F38768152B8692900041A00B /* PollVoteRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -803,6 +809,7 @@
 				F3932B072B34C42100712046 /* CommentReportViewController.swift in Sources */,
 				F3EDC1172AFFD0B40050915B /* TuzlanskiHttpClient.swift in Sources */,
 				F31C30C52AFFA791005454FE /* SideNavigationController.swift in Sources */,
+				F38768162B8692900041A00B /* PollVoteRepository.swift in Sources */,
 				F389F8DF2B06907000DFEDB5 /* CategoryHeaderView.swift in Sources */,
 				F3881CE32B09289100AAAAC6 /* InternalWrappingHStack.swift in Sources */,
 				F3881CE62B09289100AAAAC6 /* NewLine.swift in Sources */,
@@ -834,6 +841,7 @@
 				F3EDC11C2B0016500050915B /* Responses.swift in Sources */,
 				F3881CE52B09289100AAAAC6 /* WrappingHStack.swift in Sources */,
 				F38FEF3D2B3B0AF300757733 /* CommentReport.swift in Sources */,
+				F3ECBF792B781D4300A92BD9 /* Poll.swift in Sources */,
 				F31C30CC2AFFC6D3005454FE /* UIColor+Extension.swift in Sources */,
 				F3BD66492B1FA9E800D4AB3F /* User.swift in Sources */,
 				F319F17D2B2E60F900C81793 /* UIImage+Extension.swift in Sources */,
