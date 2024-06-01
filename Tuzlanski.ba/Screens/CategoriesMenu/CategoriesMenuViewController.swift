@@ -196,6 +196,12 @@ struct CategoryRowView: View {
             }
             .padding(.horizontal, 16)
             .frame(minHeight: 26)
+            .contentShape(Rectangle())
+            .onTapGesture {
+                withAnimation {
+                    collapsed.toggle()
+                }
+            }
             Divider()
             if !collapsed {
                 ForEach(category.subcategories) { subcategory in
@@ -211,6 +217,10 @@ struct CategoryRowView: View {
                     }
                     .padding(.horizontal, 24)
                     .frame(minHeight: 26)
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        onCategoryPressed(subcategory)
+                    }
                     Divider()
                 }
             }

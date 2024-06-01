@@ -184,7 +184,7 @@ class GradientView: UIView {
     private let gradient: CAGradientLayer = {
         let layer = CAGradientLayer()
         let topColor: UIColor = .clear
-        let bottomColor: UIColor = .black
+        let bottomColor: UIColor = .tuzlanskiDarkBlue
         layer.colors = [topColor.cgColor, bottomColor.cgColor]
         layer.locations = [0,1]
         return layer

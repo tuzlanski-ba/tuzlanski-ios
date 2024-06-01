@@ -77,7 +77,7 @@ struct PageControl: View {
 
     var body: some View {
         Text("\(index+1) / \(maxIndex+1)")
-            .font(Font(UIFont.Montserrat(.semibold, size: 13)))
+            .font(Font(UIFont.Montserrat(.semibold, size: 11)))
             .padding(.horizontal, 10)
             .padding(.vertical, 8)
             .background(Color.black.opacity(0.7))

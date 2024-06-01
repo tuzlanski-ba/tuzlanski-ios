@@ -313,8 +313,8 @@ struct ArticleView: View {
                             }
                             .aspectRatio(4.5/3, contentMode: .fill)
                             .frame(width: UIScreen.main.bounds.width)
-                            Text("Autor: \(article.images[index].author)")
-                                .font(Font(UIFont.Montserrat(.semibold, size: 13)))
+                            Text("Foto: \(article.images[index].author)")
+                                .font(Font(UIFont.Montserrat(.semibold, size: 11)))
                                 .padding(.horizontal, 10)
                                 .padding(.vertical, 8)
                                 .background(Color.black.opacity(0.7))
@@ -354,11 +354,7 @@ struct ArticleView: View {
                         Divider()
                             .overlay(Color(UIColor(hex: article.section.color_hex)))
                             .padding(.top, 10)
-                        Text("TAGOVI")
-                            .font(Font(UIFont.Montserrat(.extraBold, size: 13)))
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(.top, 10)
-                            .padding(.horizontal, 16)
+                            .padding(.bottom, 6)
                         WrappingHStack(article.tags, id:\.self, lineSpacing: 8) { tag in
                             Button(action: { onTagPress?(tag) }) {
                                 Text(tag.name.uppercased())
@@ -375,7 +371,7 @@ struct ArticleView: View {
                             Divider()
                                     .overlay(Color(UIColor(hex: article.section.color_hex)))
                                     .padding(.top, 10)
-                            Text("POVEZANO")
+                            Text("ISTAKNUTO")
                                 .font(Font(UIFont.Montserrat(.extraBold, size: 13)))
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(.top, 10)

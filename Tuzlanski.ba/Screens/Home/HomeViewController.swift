@@ -121,9 +121,10 @@ class HomeViewController: UIViewController {
                 let categoriesMap = Dictionary(uniqueKeysWithValues: categories.map{ ($0.slug, $0) })
                 
                 let indexResponse = try await httpClient.getHomeArticles()
+                let topNews = Array(indexResponse.top.prefix(7))
                 
                 homeData = [
-                    .init(articles: indexResponse.top),
+                    .init(articles: topNews),
                     .init(articles: indexResponse.vijesti, category: categoriesMap["vijesti"]),
                     .init(articles: indexResponse.biznis, category: categoriesMap["biznis"]),
                     .init(articles: indexResponse.sport, category: categoriesMap["sport"]),
