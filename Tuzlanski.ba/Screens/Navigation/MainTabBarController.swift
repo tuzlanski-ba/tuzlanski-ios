@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AppTrackingTransparency
 
 protocol ScrollableViewController {
     func scrollToTop()
@@ -51,6 +52,11 @@ class MainTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // TODO: Uncomment after first release
+        //GoogleMobileAdsConsentManager.shared.gatherConsent(from: self) { [weak self] consentError in
+        //    guard let self else { return }
+        //}
     }
     
     // MARK: - Rotation

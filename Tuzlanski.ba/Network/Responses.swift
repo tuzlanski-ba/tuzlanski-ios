@@ -47,6 +47,15 @@ struct LatestArticleResponse: Codable {
 struct ArticleResponse: Codable {
     var article: Article
     var related: [ListArticle]
+    var latestNewsPortal: [ListArticle]?
+    var mostReadsPortal: [ListArticle]?
+    
+    private enum CodingKeys: String, CodingKey {
+        case article
+        case related
+        case latestNewsPortal = "latest_news_portal"
+        case mostReadsPortal = "most_reads_portal"
+    }
 }
 
 struct LoginResponse: Codable {

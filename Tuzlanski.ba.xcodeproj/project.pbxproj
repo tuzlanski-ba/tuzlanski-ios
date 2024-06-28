@@ -87,6 +87,8 @@
 		F3C464FA2B45F2D800794744 /* DispatchQueue+Dedupe.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C464F92B45F2D800794744 /* DispatchQueue+Dedupe.swift */; };
 		F3D10CA32B473AC800120973 /* NSLayoutConstraint+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D10CA22B473AC700120973 /* NSLayoutConstraint+Extension.swift */; };
 		F3DD62CB2B419ACD00E74B5B /* UIScrollView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DD62CA2B419ACD00E74B5B /* UIScrollView+Extension.swift */; };
+		F3DDF5112C18DF270070F5D3 /* GoogleMobileAdsConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DDF5102C18DF270070F5D3 /* GoogleMobileAdsConsentManager.swift */; };
+		F3DDF5132C18E17F0070F5D3 /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3DDF5122C18E17F0070F5D3 /* AppTrackingTransparency.framework */; };
 		F3EB1E912B337BB0008818D7 /* NewCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EB1E902B337BB0008818D7 /* NewCommentViewController.swift */; };
 		F3ECBF792B781D4300A92BD9 /* Poll.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ECBF782B781D4300A92BD9 /* Poll.swift */; };
 		F3EDC1142AFFCD6D0050915B /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDC1132AFFCD6D0050915B /* Logging.swift */; };
@@ -121,6 +123,8 @@
 		F3EDC1522B00EC970050915B /* UIKit+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDC1512B00EC970050915B /* UIKit+Extension.swift */; };
 		F3EDC1542B00F7600050915B /* UIDate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDC1532B00F7600050915B /* UIDate+Extension.swift */; };
 		F3EDC1562B0109A20050915B /* FeaturedArticleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDC1552B0109A20050915B /* FeaturedArticleCollectionViewCell.swift */; };
+		F3F2C7162C12391F008A5CA6 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F2C7152C12391F008A5CA6 /* BannerView.swift */; };
+		F3F2C7192C123C88008A5CA6 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = F3F2C7182C123C88008A5CA6 /* GoogleMobileAds */; };
 		F3FA57C52B3611F900382A2E /* UserCommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FA57C42B3611F900382A2E /* UserCommentsViewController.swift */; };
 		F3FA57C72B36144D00382A2E /* UserCommentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FA57C62B36144D00382A2E /* UserCommentCollectionViewCell.swift */; };
 		F3FA57C92B361F6200382A2E /* PasswordChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FA57C82B361F6200382A2E /* PasswordChangeViewController.swift */; };
@@ -232,6 +236,8 @@
 		F3C464F92B45F2D800794744 /* DispatchQueue+Dedupe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+Dedupe.swift"; sourceTree = "<group>"; };
 		F3D10CA22B473AC700120973 /* NSLayoutConstraint+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+Extension.swift"; sourceTree = "<group>"; };
 		F3DD62CA2B419ACD00E74B5B /* UIScrollView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Extension.swift"; sourceTree = "<group>"; };
+		F3DDF5102C18DF270070F5D3 /* GoogleMobileAdsConsentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMobileAdsConsentManager.swift; sourceTree = "<group>"; };
+		F3DDF5122C18E17F0070F5D3 /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTrackingTransparency.framework; path = System/Library/Frameworks/AppTrackingTransparency.framework; sourceTree = SDKROOT; };
 		F3EB1E902B337BB0008818D7 /* NewCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCommentViewController.swift; sourceTree = "<group>"; };
 		F3ECBF782B781D4300A92BD9 /* Poll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poll.swift; sourceTree = "<group>"; };
 		F3EDC1132AFFCD6D0050915B /* Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
@@ -262,6 +268,7 @@
 		F3EDC1512B00EC970050915B /* UIKit+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIKit+Extension.swift"; sourceTree = "<group>"; };
 		F3EDC1532B00F7600050915B /* UIDate+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDate+Extension.swift"; sourceTree = "<group>"; };
 		F3EDC1552B0109A20050915B /* FeaturedArticleCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedArticleCollectionViewCell.swift; sourceTree = "<group>"; };
+		F3F2C7152C12391F008A5CA6 /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		F3FA57C42B3611F900382A2E /* UserCommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCommentsViewController.swift; sourceTree = "<group>"; };
 		F3FA57C62B36144D00382A2E /* UserCommentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCommentCollectionViewCell.swift; sourceTree = "<group>"; };
 		F3FA57C82B361F6200382A2E /* PasswordChangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordChangeViewController.swift; sourceTree = "<group>"; };
@@ -276,12 +283,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3DDF5132C18E17F0070F5D3 /* AppTrackingTransparency.framework in Frameworks */,
 				F339CBD22B3E10C300F93F25 /* OneSignalInAppMessages in Frameworks */,
 				F3FA57CC2B382A0D00382A2E /* GRDB in Frameworks */,
 				F31C30D12AFFC95C005454FE /* SideMenu in Frameworks */,
 				F339CBB52B3D79EC00F93F25 /* FirebaseAppCheck in Frameworks */,
 				F3EDC1482B00EBAE0050915B /* Nuke in Frameworks */,
 				F339CBD02B3E10C300F93F25 /* OneSignalFramework in Frameworks */,
+				F3F2C7192C123C88008A5CA6 /* GoogleMobileAds in Frameworks */,
 				F3EDC14E2B00EBAE0050915B /* NukeVideo in Frameworks */,
 				F34046EF2B28E43F00E16723 /* KeychainSwift in Frameworks */,
 				F319F1752B2DEDE400C81793 /* AlertKit in Frameworks */,
@@ -309,6 +318,7 @@
 				F31C309F2AFF9729005454FE /* Tuzlanski.ba */,
 				F339CBC02B3E0FB200F93F25 /* OneSignalNotificationServiceExtension */,
 				F31C309E2AFF9729005454FE /* Products */,
+				F3F2C7172C123C88008A5CA6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -493,6 +503,7 @@
 				F394B3762B5D85FA001F5AEF /* PagingView.swift */,
 				F394B3782B5D9702001F5AEF /* RoundedCorner.swift */,
 				F367D2242B5EEC2D0078FAE7 /* PanDirectionGestureRecognizer.swift */,
+				F3F2C7152C12391F008A5CA6 /* BannerView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -504,6 +515,7 @@
 				F3EDC1132AFFCD6D0050915B /* Logging.swift */,
 				F34046F12B28E79E00E16723 /* Storage.swift */,
 				F324A62B2B4C957500DB40AF /* SocialAuthenticator.swift */,
+				F3DDF5102C18DF270070F5D3 /* GoogleMobileAdsConsentManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -598,6 +610,14 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		F3F2C7172C123C88008A5CA6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F3DDF5122C18E17F0070F5D3 /* AppTrackingTransparency.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F3FA57CD2B382C3F00382A2E /* Database */ = {
 			isa = PBXGroup;
 			children = (
@@ -647,6 +667,7 @@
 				F339CBB42B3D79EC00F93F25 /* FirebaseAppCheck */,
 				F339CBCF2B3E10C300F93F25 /* OneSignalFramework */,
 				F339CBD12B3E10C300F93F25 /* OneSignalInAppMessages */,
+				F3F2C7182C123C88008A5CA6 /* GoogleMobileAds */,
 			);
 			productName = Tuzlanski.ba;
 			productReference = F31C309D2AFF9729005454FE /* Tuzlanski.ba.app */;
@@ -708,6 +729,7 @@
 				F3FA57CA2B382A0D00382A2E /* XCRemoteSwiftPackageReference "GRDB" */,
 				F339CBAB2B3D79EC00F93F25 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				F339CBCC2B3E10C300F93F25 /* XCRemoteSwiftPackageReference "OneSignal-XCFramework" */,
+				F3F2C7142C12314C008A5CA6 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			productRefGroup = F31C309E2AFF9729005454FE /* Products */;
 			projectDirPath = "";
@@ -810,6 +832,7 @@
 				F3EDC1172AFFD0B40050915B /* TuzlanskiHttpClient.swift in Sources */,
 				F31C30C52AFFA791005454FE /* SideNavigationController.swift in Sources */,
 				F38768162B8692900041A00B /* PollVoteRepository.swift in Sources */,
+				F3DDF5112C18DF270070F5D3 /* GoogleMobileAdsConsentManager.swift in Sources */,
 				F389F8DF2B06907000DFEDB5 /* CategoryHeaderView.swift in Sources */,
 				F3881CE32B09289100AAAAC6 /* InternalWrappingHStack.swift in Sources */,
 				F3881CE62B09289100AAAAC6 /* NewLine.swift in Sources */,
@@ -842,6 +865,7 @@
 				F3881CE52B09289100AAAAC6 /* WrappingHStack.swift in Sources */,
 				F38FEF3D2B3B0AF300757733 /* CommentReport.swift in Sources */,
 				F3ECBF792B781D4300A92BD9 /* Poll.swift in Sources */,
+				F3F2C7162C12391F008A5CA6 /* BannerView.swift in Sources */,
 				F31C30CC2AFFC6D3005454FE /* UIColor+Extension.swift in Sources */,
 				F3BD66492B1FA9E800D4AB3F /* User.swift in Sources */,
 				F319F17D2B2E60F900C81793 /* UIImage+Extension.swift in Sources */,
@@ -1240,6 +1264,14 @@
 				minimumVersion = 12.1.6;
 			};
 		};
+		F3F2C7142C12314C008A5CA6 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.5.0;
+			};
+		};
 		F3FA57CA2B382A0D00382A2E /* XCRemoteSwiftPackageReference "GRDB" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/groue/GRDB.swift";
@@ -1315,6 +1347,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F3EDC1462B00EBAE0050915B /* XCRemoteSwiftPackageReference "Nuke" */;
 			productName = NukeVideo;
+		};
+		F3F2C7182C123C88008A5CA6 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F3F2C7142C12314C008A5CA6 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
 		};
 		F3FA57CB2B382A0D00382A2E /* GRDB */ = {
 			isa = XCSwiftPackageProductDependency;

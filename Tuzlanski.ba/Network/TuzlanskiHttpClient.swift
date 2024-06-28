@@ -59,9 +59,9 @@ class TuzlanskiHttpClient {
         return dataResponse.data
     }
     
-    func getLatestArticles(page: Int = 1, sectionID: Int64? = nil) async throws -> [ListArticle] {
+    func getLatestArticles(page: Int = 1, sectionID: Int64? = nil, limit: Int = TuzlanskiHttpClient.pageLimit) async throws -> [ListArticle] {
         guard var url = URL(string: host + "articles/latest") else { throw TuzlanskiHttpClientError.invalidURL }
-        url.appendQueryItem(name: "limit", value: "\(Self.pageLimit)")
+        url.appendQueryItem(name: "limit", value: "\(limit)")
         url.appendQueryItem(name: "page", value: String(page))
         if let sectionID {
             url.appendQueryItem(name: "section_id", value: String(sectionID))
@@ -84,9 +84,9 @@ class TuzlanskiHttpClient {
         return latestArticlesResponse.articles.data
     }
     
-    func getMostReadsArticles(page: Int = 1) async throws -> [ListArticle] {
+    func getMostReadsArticles(page: Int = 1, limit: Int = TuzlanskiHttpClient.pageLimit) async throws -> [ListArticle] {
         guard var url = URL(string: host + "articles/most-reads") else { throw TuzlanskiHttpClientError.invalidURL }
-        url.appendQueryItem(name: "limit", value: "\(Self.pageLimit)")
+        url.appendQueryItem(name: "limit", value: "\(limit)")
         url.appendQueryItem(name: "page", value: String(page))
         
         let request = createRequest(url: url)

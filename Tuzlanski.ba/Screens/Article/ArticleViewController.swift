@@ -9,6 +9,7 @@ import UIKit
 import SwiftUI
 import NukeUI
 import AlertKit
+import GoogleMobileAds
 
 class ObservableArticle: ObservableObject {
     @Published var url: String?
@@ -16,6 +17,7 @@ class ObservableArticle: ObservableObject {
     @Published var article: Article?
     @Published var relatedArticles: [ListArticle] = []
     @Published var showPollResults = false
+    @Published var suggestedArticles: [ListArticle] = []
     
     internal init (url: String) {
         self.url = url
@@ -54,6 +56,7 @@ class ArticleViewController: UIViewController {
     private let httpClient = TuzlanskiHttpClient()
     private let bookmarkRepository = BookmarkRepository()
     private let pollVoteRepository = PollVoteRepository()
+    private var interstitial: GAMInterstitialAd?
     
     // MARK: - Lifecycle
     
@@ -123,6 +126,10 @@ class ArticleViewController: UIViewController {
         (navigationController as? SideNavigationController)?.addLogoToCurrentViewController()
         
         self.navigationItem.rightBarButtonItems = [optionsBarButtonItem, shareBarButtonItem]
+        
+        Task {
+            await self.loadInterstitial()
+        }
     }
     
     override func loadView() {
@@ -174,6 +181,7 @@ class ArticleViewController: UIViewController {
                 }
                 observableArticle.relatedArticles = articleResponse.related
                 observableArticle.article = articleResponse.article
+                observableArticle.suggestedArticles = (articleResponse.latestNewsPortal ?? []) + (articleResponse.mostReadsPortal ?? [])
             } catch {
                 print(error)
             }
@@ -234,6 +242,20 @@ class ArticleViewController: UIViewController {
         let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
         present(ac, animated: true)
     }
+    
+    private func loadInterstitial() async {
+        // TODO: Uncomment after first release
+//        do {
+//            interstitial = try await GAMInterstitialAd.load(
+//                withAdManagerAdUnitID: "/6499/example/interstitial", request: GAMRequest())
+//            interstitial?.fullScreenContentDelegate = self
+//            if let ad = self.interstitial {
+//                ad.present(fromRootViewController: self)
+//            }
+//        } catch {
+//            print("Failed to load interstitial ad with error: \(error.localizedDescription)")
+//        }
+    }
 }
 
 struct ArticleView: View {
@@ -251,6 +273,11 @@ struct ArticleView: View {
     var onCommentPress: (() -> Void)?
     var onArticlePress: ((ListArticle) -> Void)?
     var onImagePress: ((Int) -> Void)?
+    
+    private let columns = [
+        GridItem(.flexible(), spacing: 12),
+        GridItem(.flexible())
+    ]
     
     var body: some View {
         ScrollView {
@@ -273,9 +300,16 @@ struct ArticleView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.horizontal, 16)
                     HStack(alignment: .center, spacing: 1) {
-                        Text(Date.formatToFullDate(apiDate: listArticle.publishedAt))
-                            .font(Font(UIFont.Montserrat(.semibold, size: 13)))
-                            .foregroundStyle(Color(UIColor.systemGray))
+                        VStack(alignment: .leading, spacing: 1) {
+                            if let author = observableArticle.article?.author.name {
+                                Text(author)
+                                    .font(Font(UIFont.Montserrat(.semibold, size: 14)))
+                                    .foregroundStyle(Color(UIColor.systemGray))
+                            }
+                            Text(Date.formatToFullDate(apiDate: listArticle.publishedAt))
+                                .font(Font(UIFont.Montserrat(.semibold, size: 12)))
+                                .foregroundStyle(Color(UIColor.systemGray2))
+                        }
                         Spacer()
                         if observableArticle.article?.hasComments?.bool ?? true {
                             Button {
@@ -313,7 +347,7 @@ struct ArticleView: View {
                             }
                             .aspectRatio(4.5/3, contentMode: .fill)
                             .frame(width: UIScreen.main.bounds.width)
-                            Text("Foto: \(article.images[index].author)")
+                            Text("Foto: \(article.images[index].author)\(article.images[index].title.isEmpty ? "" : " / \(article.images[index].title)")")
                                 .font(Font(UIFont.Montserrat(.semibold, size: 11)))
                                 .padding(.horizontal, 10)
                                 .padding(.vertical, 8)
@@ -344,6 +378,10 @@ struct ArticleView: View {
                         .padding(.top, 18)
                 }
                 
+                // TODO: Uncomment after first release
+                //AdView().frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 300)
+                    //.frame(width: GADAdSizeBanner.size.width, height: GADAdSizeBanner.size.height)
+                
                 if let article = observableArticle.article {
                     let _ = print("webview height: \(webViewHeight)")
                     WebView(text: article.body().wrappedInHTML(linkColor: UIColor(hex: article.section.color_hex), showPollResults: observableArticle.showPollResults), dynamicHeight: $webViewHeight)
@@ -369,8 +407,8 @@ struct ArticleView: View {
                         .padding(.horizontal, 16)
                         if !observableArticle.relatedArticles.isEmpty {
                             Divider()
-                                    .overlay(Color(UIColor(hex: article.section.color_hex)))
-                                    .padding(.top, 10)
+                                .overlay(Color(UIColor(hex: article.section.color_hex)))
+                                .padding(.top, 10)
                             Text("ISTAKNUTO")
                                 .font(Font(UIFont.Montserrat(.extraBold, size: 13)))
                                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -418,8 +456,46 @@ struct ArticleView: View {
                             .padding(.vertical, 12)
                             .padding(.horizontal, 16)
                         }
-                        Spacer()
-                            .frame(height: 10)
+                        Text("Pročitaj još".uppercased())
+                            .font(Font(UIFont.Montserrat(.extraBold, size: 13)))
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.top, 10)
+                            .padding(.horizontal, 16)
+                        LazyVGrid(columns: columns, spacing: 12) {
+                            ForEach(Array(observableArticle.suggestedArticles.enumerated()), id: \.offset) { index, suggestedArticle in
+                                Button {
+                                    onArticlePress?(suggestedArticle)
+                                } label: {
+                                    VStack(spacing: 0) {
+                                        LazyImage(url: URL(string: suggestedArticle.image.original ?? "")) { state in
+                                            if let image = state.image {
+                                                image.resizable().aspectRatio(contentMode: .fill)
+                                                    .frame(width: (UIScreen.main.bounds.width - 32 - 12) / 2, height: 110)
+                                                    .clipped()
+                                            } else {
+                                                Color.clear
+                                            }
+                                        }
+                                        .cornerRadius(8)
+                                        Text((suggestedArticle.preTitle ?? suggestedArticle.section.path.replacingOccurrences(of: ">", with: "/")).uppercased())
+                                            .font(Font(UIFont.Montserrat(.bold, size: 10)))
+                                            .foregroundStyle(Color(UIColor(hex: suggestedArticle.section.color_hex)))
+                                            .frame(maxWidth: .infinity, alignment: .leading)
+                                            .lineLimit(1)
+                                            .padding(.top, 5)
+                                        Text(suggestedArticle.title)
+                                            .font(Font(UIFont.Montserrat(.semibold, size: 13)))
+                                            .foregroundStyle(Color.primary)
+                                            .multilineTextAlignment(.leading)
+                                            .frame(maxWidth: .infinity, alignment: .leading)
+                                            .lineLimit(2)
+                                            .padding(.top, 2)
+                                    }
+                                }
+                            }
+                        }
+                        .padding(.top, 10)
+                        .padding(.horizontal, 16)
                     } else if observableArticle.listArticle != nil {
                         ProgressView()
                             .progressViewStyle(CircularProgressViewStyle())

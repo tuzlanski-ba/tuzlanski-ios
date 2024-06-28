@@ -40,6 +40,11 @@ struct GalleryImage: Identifiable, Codable {
 }
 
 struct Article: Codable {
+    
+    struct Author: Codable {
+        var name: String
+    }
+    
     var id: Int64
     var title: String
     var preTitle: String?
@@ -58,6 +63,7 @@ struct Article: Codable {
     var commentsCount: Int
     var url: String
     var _images: [GalleryImage]?
+    var author: Author
     
     var images: [GalleryImage] {
         return _images ?? []
@@ -82,6 +88,7 @@ struct Article: Codable {
         case commentsCount = "comments_count"
         case url
         case _images = "images"
+        case author
     }
     
     func toListArticle() -> ListArticle {

@@ -8,6 +8,7 @@
 import UIKit
 import SideMenu
 import OneSignalFramework
+import GoogleMobileAds
 
 public protocol ApplicationService: UIApplicationDelegate {}
 
@@ -44,6 +45,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("User accepted notifications: \(accepted)")
         }, fallbackToSettings: true)
         OneSignal.Notifications.addClickListener(self)
+        
+        // TODO: Uncomment after first release
+        //GADMobileAds.sharedInstance().requestConfiguration.testDeviceIdentifiers = [ "441dce8a04f4b4323aabea86083efe7a" ]
+        //GADMobileAds.sharedInstance().start(completionHandler: nil)
         
         return true
     }

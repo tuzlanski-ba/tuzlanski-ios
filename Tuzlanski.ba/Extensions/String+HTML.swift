@@ -273,6 +273,10 @@ extension String {
                         margin-top: 8px;
                         font-size: 0.9rem;
                     }
+            
+                    p > img {
+                        padding: 20px 0px;
+                    }
                 </style>
             
                 <script>

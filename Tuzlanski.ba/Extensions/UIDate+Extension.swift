@@ -23,6 +23,7 @@ extension Date {
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         formatter.timeZone = NSTimeZone(name: "UTC")! as TimeZone
         formatter.formatterBehavior = .default
+        formatter.locale = Locale(identifier: "bs")
         
         guard let date = formatter.date(from: apiDate) else { return apiDate }
        
@@ -36,7 +37,8 @@ extension Date {
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         formatter.timeZone = NSTimeZone(name: "UTC")! as TimeZone
         formatter.formatterBehavior = .default
-        
+        formatter.locale = Locale(identifier: "bs")
+
         guard let date = formatter.date(from: apiDate) else { return apiDate }
        
         formatter.dateFormat = "dd.MM.yyyy."
@@ -49,7 +51,8 @@ extension Date {
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         formatter.timeZone = NSTimeZone(name: "UTC")! as TimeZone
         formatter.formatterBehavior = .default
-        
+        formatter.locale = Locale(identifier: "bs")
+
         guard let date = formatter.date(from: apiDate) else { return apiDate }
        
         formatter.dateFormat = "dd.MM.yyyy. HH:mm"
@@ -79,6 +82,7 @@ extension Date {
             // More than 24 hours, display full date
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd.MM.yyyy. HH:mm"
+            dateFormatter.locale = Locale(identifier: "bs")
             return dateFormatter.string(from: date)
         } else if let hourDifference = components.hour, hourDifference > 0 {
             // More than 1 hour, display hours and minutes ago
