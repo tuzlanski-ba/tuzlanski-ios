@@ -81,7 +81,9 @@ class CommentArticleHeaderView: UICollectionReusableView {
             containerView.leadingAnchor.constraint(equalTo: leadingAnchor),
             containerView.trailingAnchor.constraint(equalTo: trailingAnchor),
             containerView.topAnchor.constraint(equalTo: topAnchor),
-            containerView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16)
+            containerView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
+            
+            containerView.heightAnchor.constraint(greaterThanOrEqualToConstant: 95)
         ])
     }
 

@@ -44,7 +44,6 @@ class FeaturedArticleCollectionViewCell: UICollectionViewCell {
         imageView.placeholderView = UIActivityIndicatorView()
         imageView.priority = .high
         imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 8
         
         return imageView
     }()
@@ -52,7 +51,7 @@ class FeaturedArticleCollectionViewCell: UICollectionViewCell {
     private lazy var galleryContainerView: UIView = {
         let galleryContainerView = UIView().forAutoLayout()
         galleryContainerView.backgroundColor = .tintColor
-        galleryContainerView.round(corners: [.topLeft, .bottomRight], radius: 8)
+        galleryContainerView.round(corners: [.bottomRight], radius: 8)
         
         let galleryImageView = UIImageView().forAutoLayout()
         galleryImageView.image = UIImage(named: "camera")
@@ -106,7 +105,6 @@ class FeaturedArticleCollectionViewCell: UICollectionViewCell {
         backgroundColor = .clear
         
         let containerView = UIView().forAutoLayout()
-        containerView.layer.cornerRadius = 8
         
         contentView.addSubview(containerView)
         
@@ -118,7 +116,6 @@ class FeaturedArticleCollectionViewCell: UICollectionViewCell {
         contentStackView.addArrangedSubview(dateLabel)
         
         let gradientView = GradientView().forAutoLayout()
-        gradientView.layer.cornerRadius = 8
         
         containerView.addSubview(imageView)
         containerView.addSubview(gradientView)
@@ -131,12 +128,12 @@ class FeaturedArticleCollectionViewCell: UICollectionViewCell {
         
         NSLayoutConstraint.activate([
             containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).with(priority: .defaultHigh),
+            containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
+            containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
+            containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0).with(priority: .defaultHigh),
             containerView.heightAnchor.constraint(equalToConstant: ceil((UIScreen.main.bounds.width - 16 - 16) / 4 * 3)),
             
-            contentStackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -8),
+            contentStackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10),
             contentStackView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10),
             contentStackView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10),
             
@@ -154,9 +151,8 @@ class FeaturedArticleCollectionViewCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        imageView.layer.cornerRadius = 8
         galleryContainerView.relayout()
-        galleryContainerView.round(corners: [.topLeft, .bottomRight], radius: 8)
+        galleryContainerView.round(corners: [.bottomRight], radius: 8)
     }
     
     override func prepareForReuse() {
