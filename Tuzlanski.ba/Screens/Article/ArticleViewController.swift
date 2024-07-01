@@ -347,7 +347,7 @@ struct ArticleView: View {
                             }
                             .aspectRatio(4.5/3, contentMode: .fill)
                             .frame(width: UIScreen.main.bounds.width)
-                            Text("Foto: \(article.images[index].author)\(article.images[index].title.isEmpty ? "" : " / \(article.images[index].title)")")
+                            Text("Foto: \(article.images[index].author)\(article.images[index].description?.count ?? 0 == 0 ? "" : " | \(article.images[index].description ?? "")")")
                                 .font(Font(UIFont.Montserrat(.semibold, size: 11)))
                                 .padding(.horizontal, 10)
                                 .padding(.vertical, 8)

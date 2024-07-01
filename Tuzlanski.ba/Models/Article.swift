@@ -33,7 +33,8 @@ struct GalleryImage: Identifiable, Codable {
     
     var id: Int64
     var is_main: Int
-    var title: String
+    var title: String?
+    var description: String?
     var image_file_name: String
     var author: String
     var styles: Style

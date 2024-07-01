@@ -10,22 +10,28 @@ import SwiftUI
 import SafariServices
 
 enum GenericLink: String {
-    case about = "https://dev.tuzlanski.ba/stranica/o-nama/3"
-    case impressum = "https://dev.tuzlanski.ba/stranica/impressum/2"
-    case marketing = "https://dev.tuzlanski.ba/stranica/marketing/4"
-    case terms = "https://dev.tuzlanski.ba/stranica/uslovi-koristenja/1"
-    case sendNews = "https://dev.tuzlanski.ba/stranica/posalji-vijest/6"
+    case about = "https://tuzlanski.ba/stranica/o-nama/3"
+    case contact = "https://tuzlanski.ba/stranica/kontakt/5"
+    case impressum = "https://tuzlanski.ba/stranica/impressum/2"
+    case marketing = "https://tuzlanski.ba/stranica/marketing/4"
+    case terms = "https://tuzlanski.ba/stranica/uslovi-koristenja/1"
+    case privacy = "https://tuzlanski.ba/stranica/politika-privatnosti/10"
+    case sendNews = "https://tuzlanski.ba/stranica/posalji-vijest/6"
     
     var title: String {
         switch self {
         case .about:
             return "O nama"
+        case .contact:
+            return "Kontakt"
         case .impressum:
             return "Impressum"
         case .marketing:
             return "Marketing"
         case .terms:
             return "Uslovi korištenja"
+        case .privacy:
+            return "Politika privatnosti"
         case .sendNews:
             return "Pošalji vijest"
         }
@@ -113,15 +119,20 @@ struct CategoriesView: View {
                         }
                         genericLinkRow(.about)
                         Divider()
+                        genericLinkRow(.contact)
+                        Divider()
                         genericLinkRow(.impressum)
                         Divider()
                         genericLinkRow(.marketing)
                         Divider()
                         genericLinkRow(.terms)
                         Divider()
+                        genericLinkRow(.privacy)
+                        Divider()
                         genericLinkRow(.sendNews)
                         Spacer()
                         HStack(alignment: .center, spacing: 18, content: {
+                            Spacer()
                             SocialMenuButton(socialNetwork: .facebook)
                             SocialMenuButton(socialNetwork: .instagram)
                             SocialMenuButton(socialNetwork: .youtube)
@@ -130,9 +141,8 @@ struct CategoriesView: View {
                             SocialMenuButton(socialNetwork: .threads)
                             Spacer()
                         })
-                        .padding(.horizontal, 16)
                     }
-                    .frame(minHeight: geo.size.height)
+                    .frame(maxWidth: geo.size.width, minHeight: geo.size.height)
                 }
                 .padding(.top, 60)
                 .ignoresSafeArea()
