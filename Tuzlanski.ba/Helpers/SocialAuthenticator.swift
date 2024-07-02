@@ -27,11 +27,11 @@ enum SocialAuthType: CaseIterable {
     var url: URL {
         switch self {
         case .google:
-            return URL(string: "https://dev.tuzlanski.ba/auth/social-auth/redirect/google/api")!
+            return URL(string: "https://tuzlanski.ba/auth/social-auth/redirect/google/api")!
         case .facebook:
-            return URL(string: "https://dev.tuzlanski.ba/auth/social-auth/redirect/facebook/api")!
+            return URL(string: "https://tuzlanski.ba/auth/social-auth/redirect/facebook/api")!
         case .apple:
-            return URL(string: "https://dev.tuzlanski.ba/auth/social-auth/redirect/apple/api")!
+            return URL(string: "https://tuzlanski.ba/auth/social-auth/redirect/apple/api")!
         }
     }
 }

@@ -23,7 +23,7 @@ class TuzlanskiHttpClient {
     // MARK: - Properties
    
     static let pageLimit = 25
-    let host = "https://dev.tuzlanski.ba/api/v1/"
+    let host = "https://tuzlanski.ba/api/v1/"
     
     private let authToken = "6e49696f0e4fd2002bc9379118da031be581cb48"
     

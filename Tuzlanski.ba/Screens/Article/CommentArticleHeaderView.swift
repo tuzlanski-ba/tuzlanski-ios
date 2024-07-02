@@ -31,6 +31,7 @@ class CommentArticleHeaderView: UICollectionReusableView {
     private lazy var articleImageView: LazyImageView = {
         let articleImageView = LazyImageView().forAutoLayout()
         articleImageView.contentMode = .scaleAspectFill
+        articleImageView.imageView.contentMode = .scaleAspectFill
         articleImageView.placeholderView = UIActivityIndicatorView()
         articleImageView.priority = .high
         articleImageView.clipsToBounds = true
@@ -103,6 +104,6 @@ class CommentArticleHeaderView: UICollectionReusableView {
         titleLabel.text = article.title
         subtitleLabel.text = article.preTitle?.uppercased() ?? article.section.name.uppercased()
         subtitleLabel.textColor = UIColor(hex: article.section.color_hex)
-        articleImageView.url = URL(string: article.image.original ?? "")
+        articleImageView.url = URL(string: article.image._440x272 ?? article.image.original ?? "")
     }
 }

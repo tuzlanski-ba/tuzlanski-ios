@@ -17,7 +17,7 @@ struct IndexResponse: Codable {
     var automoto: [ListArticle]
     var scitech: [ListArticle]
     var viral: [ListArticle]
-    var promo: [ListArticle]
+    var promo: [ListArticle]?
 }
 
 struct MenuItem: Codable {

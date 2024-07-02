@@ -107,6 +107,7 @@ struct WebView : UIViewRepresentable {
 
     func makeUIView(context: Context) -> WKWebView  {
         webview.scrollView.bounces = false
+        webview.scrollView.isScrollEnabled = false
         webview.navigationDelegate = context.coordinator
         webview.uiDelegate = context.coordinator
         

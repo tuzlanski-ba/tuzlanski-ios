@@ -309,7 +309,7 @@ struct ProfileView: View {
                         
                         Spacer()
                         
-                        Text("Verzija 0.1 (1)")
+                        Text("Verzija 1.0 (1)")
                             .foregroundStyle(Color.gray.opacity(0.6))
                             .font(Font(UIFont.Montserrat(.semibold, size: 12)))
                             .frame(maxWidth: .infinity, alignment: .center)
@@ -429,7 +429,7 @@ struct ProfileView: View {
             
             Spacer()
             
-            Text("Verzija 0.1 (1)")
+            Text("Verzija 1.0 (1)")
                 .foregroundStyle(Color.gray.opacity(0.6))
                 .font(Font(UIFont.Montserrat(.semibold, size: 12)))
                 .frame(maxWidth: .infinity, alignment: .center)

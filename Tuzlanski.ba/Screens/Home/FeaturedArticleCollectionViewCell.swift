@@ -41,6 +41,7 @@ class FeaturedArticleCollectionViewCell: UICollectionViewCell {
     private lazy var imageView: LazyImageView = {
         let imageView = LazyImageView().forAutoLayout()
         imageView.contentMode = .scaleAspectFill
+        imageView.imageView.contentMode = .scaleAspectFill
         imageView.placeholderView = UIActivityIndicatorView()
         imageView.priority = .high
         imageView.clipsToBounds = true

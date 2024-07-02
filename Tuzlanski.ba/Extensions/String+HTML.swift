@@ -11,10 +11,11 @@ extension String {
     
     func wrappedInHTML(linkColor: UIColor = .tintColor, showPollResults: Bool) -> String {
         
-        var processedText = self.replacingOccurrences(of: "\r\n", with: "<br>")
+        var processedText = self.replacingOccurrences(of: "</figcaption>\r\n</figure>", with: "</figcaption></figure>")
+        processedText = processedText.replacingOccurrences(of: "\r\n", with: "<br>")
         processedText.removingRegexMatches(pattern: "\\[gallery.*\\]")
         
-        processedText = processedText.replacingOccurrences(of: "src=\"https://dev.tuzlanski.ba/assets/img/lazy.png\"", with: "")
+        processedText = processedText.replacingOccurrences(of: "src=\"https://tuzlanski.ba/assets/img/lazy.png\"", with: "")
         processedText = processedText.replacingOccurrences(of: "data-src=", with: "src=")
         
         let html = """
@@ -110,6 +111,20 @@ extension String {
                         width: 100%;
                         object-fit: cover;
                         height: auto;
+                    }
+            
+                    figure {
+                        width: 100%;
+                        margin: 0;
+                        padding: 0;
+                        max-width: 100% !important;
+                    }
+            
+                    figure figcaption {
+                        font-size: 0.7rem;
+                        margin: 0;
+                        padding: 0;
+                        opacity: 0.7;
                     }
             
                     iframe {

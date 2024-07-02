@@ -9,6 +9,12 @@ import Foundation
 
 struct ListArticleImage: Codable {
     var original: String?
+    var _440x272: String?
+    
+    private enum CodingKeys: String, CodingKey {
+        case original
+        case _440x272 = "440x272"
+    }
 }
 
 struct ListArticleSection: Codable {
