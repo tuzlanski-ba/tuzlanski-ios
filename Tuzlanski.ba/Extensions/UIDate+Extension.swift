@@ -27,6 +27,7 @@ extension Date {
         
         guard let date = formatter.date(from: apiDate) else { return apiDate }
        
+        formatter.timeZone = Calendar.current.timeZone
         formatter.dateFormat = "dd. MMM • HH:mm"
         
         return formatter.string(from: date)
@@ -41,6 +42,7 @@ extension Date {
 
         guard let date = formatter.date(from: apiDate) else { return apiDate }
        
+        formatter.timeZone = Calendar.current.timeZone
         formatter.dateFormat = "dd.MM.yyyy."
         
         return formatter.string(from: date)
@@ -55,6 +57,7 @@ extension Date {
 
         guard let date = formatter.date(from: apiDate) else { return apiDate }
        
+        formatter.timeZone = Calendar.current.timeZone
         formatter.dateFormat = "dd.MM.yyyy. HH:mm"
         
         return formatter.string(from: date)
@@ -68,6 +71,7 @@ extension Date {
         
         guard let date = formatter.date(from: apiDate) else { return apiDate }
        
+        formatter.timeZone = Calendar.current.timeZone
         formatter.dateFormat = "HH:mm"
         
         return formatter.string(from: date)

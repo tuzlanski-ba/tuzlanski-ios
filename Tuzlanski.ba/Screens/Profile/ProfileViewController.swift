@@ -309,7 +309,7 @@ struct ProfileView: View {
                         
                         Spacer()
                         
-                        Text("Verzija 1.0 (1)")
+                        Text("Verzija \(version())")
                             .foregroundStyle(Color.gray.opacity(0.6))
                             .font(Font(UIFont.Montserrat(.semibold, size: 12)))
                             .frame(maxWidth: .infinity, alignment: .center)
@@ -429,7 +429,7 @@ struct ProfileView: View {
             
             Spacer()
             
-            Text("Verzija 1.0 (1)")
+            Text("Verzija \(version())")
                 .foregroundStyle(Color.gray.opacity(0.6))
                 .font(Font(UIFont.Montserrat(.semibold, size: 12)))
                 .frame(maxWidth: .infinity, alignment: .center)
@@ -448,6 +448,14 @@ struct ProfileView: View {
                 .frame(maxWidth: .infinity, alignment: .trailing)
             }
         }
+    }
+    
+    private func version() -> String {
+        guard let dictionary = Bundle.main.infoDictionary else { return "" }
+        guard let version = dictionary["CFBundleShortVersionString"] as? String else { return "" }
+        guard let build = dictionary["CFBundleVersion"] as? String else { return "" }
+        
+        return "\(version) (\(build))"
     }
 }
 

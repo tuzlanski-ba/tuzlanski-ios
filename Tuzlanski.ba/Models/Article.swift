@@ -99,7 +99,7 @@ struct Article: Codable {
     func body() -> String {
         var shortText = self.shortText ?? ""
         if !shortText.isEmpty {
-            shortText = "<strong>\(shortText)</strong>\r\n"
+            shortText = "<strong class=\"firstParagraph\">\(shortText)</strong>\r\n"
         }
         
         return shortText + self.longText

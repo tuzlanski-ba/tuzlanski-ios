@@ -467,7 +467,7 @@ struct ArticleView: View {
                                     onArticlePress?(suggestedArticle)
                                 } label: {
                                     VStack(spacing: 0) {
-                                        LazyImage(url: URL(string: suggestedArticle.image.original ?? "")) { state in
+                                        LazyImage(url: URL(string: suggestedArticle.image._440x272 ?? suggestedArticle.image.original ?? "")) { state in
                                             if let image = state.image {
                                                 image.resizable().aspectRatio(contentMode: .fill)
                                                     .frame(width: (UIScreen.main.bounds.width - 32 - 12) / 2, height: 110)

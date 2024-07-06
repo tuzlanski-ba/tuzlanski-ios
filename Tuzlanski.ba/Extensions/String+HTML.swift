@@ -12,7 +12,7 @@ extension String {
     func wrappedInHTML(linkColor: UIColor = .tintColor, showPollResults: Bool) -> String {
         
         var processedText = self.replacingOccurrences(of: "</figcaption>\r\n</figure>", with: "</figcaption></figure>")
-        processedText = processedText.replacingOccurrences(of: "\r\n", with: "<br>")
+        processedText = processedText.replacingOccurrences(of: "<p></p>", with: "")
         processedText.removingRegexMatches(pattern: "\\[gallery.*\\]")
         
         processedText = processedText.replacingOccurrences(of: "src=\"https://tuzlanski.ba/assets/img/lazy.png\"", with: "")
@@ -95,6 +95,19 @@ extension String {
                     p {
                         padding: 0;
                         margin: 0;
+                        padding-top: 8px;
+                    }
+            
+                    strong.firstParagraph p {
+                        padding-bottom: 8px;
+                    }
+            
+                    p + p, strong.firstParagraph + p {
+                        padding: 8px 0;
+                    }
+            
+                    p:has(img) {
+                        padding: 0;
                     }
             
                     span {
@@ -111,6 +124,8 @@ extension String {
                         width: 100%;
                         object-fit: cover;
                         height: auto;
+                        margin: 0;
+                        padding: 0;
                     }
             
                     figure {
@@ -118,6 +133,8 @@ extension String {
                         margin: 0;
                         padding: 0;
                         max-width: 100% !important;
+                        margin-top: 8px;
+                        margin-bottom: 8px;
                     }
             
                     figure figcaption {
@@ -137,7 +154,7 @@ extension String {
                     }
             
                     .related-article {
-                        margin: 0;
+                        margin: 8px 0;
                         display: block;
                         width: 100%;
                         box-sizing: border-box;
@@ -187,7 +204,7 @@ extension String {
                     }
             
                     .article-poll {
-                        margin: 0;
+                        margin: 8px 0;
                         display: block;
                         width: 100%;
                         box-sizing: border-box;
