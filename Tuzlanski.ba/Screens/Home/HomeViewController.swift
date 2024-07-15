@@ -133,7 +133,7 @@ class HomeViewController: UIViewController {
                     .init(articles: indexResponse.automoto, category: categoriesMap["automoto"]),
                     .init(articles: indexResponse.scitech, category: categoriesMap["sci-tech"]),
                     .init(articles: indexResponse.viral, category: categoriesMap["viral"]),
-                    .init(articles: indexResponse.promo ?? []),
+                    .init(articles: indexResponse.promo ?? [], category: categoriesMap["biznis"]?.subcategories.first(where: { $0.name == "Promo" }))
                 ]
                 
                 await MainActor.run {

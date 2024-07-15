@@ -97,6 +97,11 @@ extension AppDelegate: OSNotificationClickListener {
         guard let navigationController = tabBarController.viewControllers?[tabBarController.selectedIndex] as? UINavigationController else { return false }
         guard let path = components.path else { return false }
         
+        // If it is homepage or some other screen with short URL just open the app
+        if path.count < 15 {
+            return true
+        }
+        
         let url = TuzlanskiHttpClient().host + "articles/" + path.deletingPrefix("/")
         navigationController.pushViewController(ArticleViewController(url: url), animated: true)
         
