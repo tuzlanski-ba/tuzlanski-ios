@@ -23,7 +23,7 @@ class DatabaseManager {
         var config = Configuration()
 #if DEBUG
         config.prepareDatabase { db in
-            db.trace { print($0) }
+            //db.trace { print($0) }
         }
 #endif
         

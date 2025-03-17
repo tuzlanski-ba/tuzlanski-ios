@@ -13,4 +13,12 @@ struct Category: Identifiable, Codable {
     var name: String
     var color: String = ""
     var subcategories: [Category] = []
+    
+    static func newAdCategory(id: Int64, adUnitID: String) -> Category {
+        return .init(id: id, slug: adUnitID, name: "Reklama")
+    }
+    
+    func isAdCategory() -> Bool {
+        return name == "Reklama"
+    }
 }

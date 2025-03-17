@@ -378,10 +378,11 @@ struct ArticleView: View {
                         .padding(.top, 18)
                 }
                 
-                // TODO: Uncomment after first release
-                //AdView().frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 300)
-                    //.frame(width: GADAdSizeBanner.size.width, height: GADAdSizeBanner.size.height)
-                
+                let adSizeBelowImage = GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(UIScreen.main.bounds.width)
+                BannerViewContainer(adUnitID: "ca-app-pub-9369140289527677/8645944063", adSize: adSizeBelowImage)
+                    .frame(height: adSizeBelowImage.size.height)
+                    .padding(.top, 8)
+
                 if let article = observableArticle.article {
                     let _ = print("webview height: \(webViewHeight)")
                     WebView(text: article.body().wrappedInHTML(linkColor: UIColor(hex: article.section.color_hex), showPollResults: observableArticle.showPollResults), dynamicHeight: $webViewHeight)
@@ -456,6 +457,11 @@ struct ArticleView: View {
                             .padding(.vertical, 12)
                             .padding(.horizontal, 16)
                         }
+                        
+                        let adSizeBelowComments = GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(UIScreen.main.bounds.width)
+                        BannerViewContainer(adUnitID: "ca-app-pub-9369140289527677/5843988079", adSize: adSizeBelowComments)
+                            .frame(height: adSizeBelowComments.size.height)
+                        
                         Text("Pročitaj još".uppercased())
                             .font(Font(UIFont.Montserrat(.extraBold, size: 13)))
                             .frame(maxWidth: .infinity, alignment: .leading)

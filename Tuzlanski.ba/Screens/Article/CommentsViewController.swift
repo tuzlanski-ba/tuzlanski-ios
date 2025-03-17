@@ -36,6 +36,7 @@ class CommentsViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(CommentCollectionViewCell.self, forCellWithReuseIdentifier: CommentCollectionViewCell.identifier)
+        collectionView.register(AdMobCollectionViewCell.self, forCellWithReuseIdentifier: AdMobCollectionViewCell.identifier)
         collectionView.register(CommentArticleHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CommentArticleHeaderView.identifier)
         collectionView.backgroundColor = .screenBackground
         
@@ -265,7 +266,7 @@ extension CommentsViewController: UICollectionViewDataSource, UICollectionViewDe
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return comments.count
+        return comments.count > 0 ? comments.count + 1 : 0
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -275,9 +276,16 @@ extension CommentsViewController: UICollectionViewDataSource, UICollectionViewDe
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if indexPath.item == 0 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AdMobCollectionViewCell.identifier, for: indexPath) as! AdMobCollectionViewCell
+            cell.configure(adUnitID: "ca-app-pub-9369140289527677/3728960626")
+            
+            return cell
+        }
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CommentCollectionViewCell.identifier, for: indexPath) as! CommentCollectionViewCell
         cell.delegate = self
-        cell.configure(comment: comments[indexPath.row])
+        cell.configure(comment: comments[indexPath.row - 1])
         
         return cell
     }
@@ -315,7 +323,7 @@ extension CommentsViewController: CommentCollectionViewCellDelegate {
                     comments[index] = comment
                     
                     self.comments = comments
-                    collectionView.reloadItems(at: [IndexPath(item: index, section: 0)])
+                    collectionView.reloadItems(at: [IndexPath(item: index + 1, section: 0)])
                 }
             } catch {
                 print("Error:", error)
@@ -343,7 +351,7 @@ extension CommentsViewController: CommentCollectionViewCellDelegate {
                     comments[index] = comment
                     
                     self.comments = comments
-                    collectionView.reloadItems(at: [IndexPath(item: index, section: 0)])
+                    collectionView.reloadItems(at: [IndexPath(item: index + 1, section: 0)])
                 }
             } catch {
                 print("Error:", error)

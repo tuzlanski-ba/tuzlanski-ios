@@ -53,10 +53,11 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // TODO: Uncomment after first release
-        //GoogleMobileAdsConsentManager.shared.gatherConsent(from: self) { [weak self] consentError in
-        //    guard let self else { return }
-        //}
+        GoogleMobileAdsConsentManager.shared.gatherConsent(from: self) { consentError in
+            if let consentError {
+                print(consentError)
+            }
+        }
     }
     
     // MARK: - Rotation

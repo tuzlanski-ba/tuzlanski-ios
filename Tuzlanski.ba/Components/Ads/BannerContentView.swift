@@ -1,0 +1,65 @@
+//
+//  BannerContentView.swift
+//  Tuzlanski.ba
+//
+//  Created by Tarik Dahic on 16. 3. 2025..
+//
+
+
+import GoogleMobileAds
+import SwiftUI
+
+struct BannerViewContainer: UIViewRepresentable {
+    let adUnitID: String
+    let adSize: GADAdSize
+    
+    init(adUnitID: String, adSize: GADAdSize) {
+        self.adUnitID = adUnitID
+        self.adSize = adSize
+    }
+    
+    func makeUIView(context: Context) -> UIView {
+        // Wrap the GADBannerView in a UIView. GADBannerView automatically reloads a new ad when its
+        // frame size changes; wrapping in a UIView container insulates the GADBannerView from size
+        // changes that impact the view returned from makeUIView.
+        let view = UIView()
+        view.addSubview(context.coordinator.bannerView)
+        return view
+    }
+    
+    func updateUIView(_ uiView: UIView, context: Context) {
+        context.coordinator.bannerView.adSize = adSize
+    }
+    
+    func makeCoordinator() -> BannerCoordinator {
+        return BannerCoordinator(self)
+    }
+    
+    class BannerCoordinator: NSObject, GADBannerViewDelegate {
+        
+        private(set) lazy var bannerView: GADBannerView = {
+            let banner = GADBannerView(adSize: parent.adSize)
+            banner.adUnitID = self.parent.adUnitID
+            banner.load(GADRequest())
+            banner.delegate = self
+            
+            return banner
+        }()
+        
+        let parent: BannerViewContainer
+        
+        init(_ parent: BannerViewContainer) {
+            self.parent = parent
+        }
+        
+        // MARK: - GADBannerViewDelegate methods
+        
+        func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
+            print("(\(self.parent.adUnitID) DID RECEIVE AD")
+        }
+        
+        func bannerView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: Error) {
+            print("(\(self.parent.adUnitID) FAILED TO RECEIVE AD: \(error.localizedDescription)")
+        }
+    }
+}

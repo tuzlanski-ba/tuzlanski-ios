@@ -47,7 +47,7 @@ class HomeViewController: UIViewController {
                 elementKind: SectionBackgroundDecorationView.kind)
             section.decorationItems = [sectionBackground]
             
-            if self.homeData[index].category != nil {
+            if self.homeData[index].category != nil && self.homeData[index].category?.isAdCategory() == false {
                 configuration.headerMode = .supplementary
                 section.boundarySupplementaryItems = [sectionHeader]
             }
@@ -62,6 +62,7 @@ class HomeViewController: UIViewController {
         collectionView.delegate = self
         collectionView.register(ArticleCollectionViewCell.self, forCellWithReuseIdentifier: ArticleCollectionViewCell.identifier)
         collectionView.register(FeaturedArticleCollectionViewCell.self, forCellWithReuseIdentifier: FeaturedArticleCollectionViewCell.identifier)
+        collectionView.register(AdMobCollectionViewCell.self, forCellWithReuseIdentifier: AdMobCollectionViewCell.identifier)
         collectionView.register(CategoryHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CategoryHeaderView.identifier)
         collectionView.backgroundColor = .screenBackground
         
@@ -125,6 +126,7 @@ class HomeViewController: UIViewController {
                 
                 homeData = [
                     .init(articles: topNews),
+                    .init(articles: [], category: Category.newAdCategory(id: -1, adUnitID: "ca-app-pub-9369140289527677/4156837047")),
                     .init(articles: indexResponse.vijesti, category: categoriesMap["vijesti"]),
                     .init(articles: indexResponse.biznis, category: categoriesMap["biznis"]),
                     .init(articles: indexResponse.sport, category: categoriesMap["sport"]),
@@ -160,10 +162,20 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if homeData[section].category?.isAdCategory() ?? false {
+            return 1
+        }
         return homeData[section].articles.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if homeData[indexPath.section].category?.isAdCategory() ?? false {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AdMobCollectionViewCell.identifier, for: indexPath) as! AdMobCollectionViewCell
+            cell.configure(adUnitID: homeData[indexPath.section].category?.slug ?? "")
+            
+            return cell
+        }
+        
         if indexPath.row == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeaturedArticleCollectionViewCell.identifier, for: indexPath) as! FeaturedArticleCollectionViewCell
             cell.configure(article: homeData[indexPath.section].articles[indexPath.row])
@@ -187,6 +199,9 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if homeData[indexPath.section].category?.isAdCategory() ?? false {
+            return
+        }
         let articleViewController = ArticleViewController(listArticle: homeData[indexPath.section].articles[indexPath.row])
         navigationController?.pushViewController(articleViewController, animated: true)
     }

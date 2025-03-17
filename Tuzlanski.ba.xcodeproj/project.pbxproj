@@ -81,6 +81,8 @@
 		F3B2B4172B398413009003DC /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B2B4162B398413009003DC /* SearchViewController.swift */; };
 		F3B2B4192B398D49009003DC /* CommentVote.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B2B4182B398D49009003DC /* CommentVote.swift */; };
 		F3B2B41B2B398EA5009003DC /* CommentVoteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B2B41A2B398EA5009003DC /* CommentVoteRepository.swift */; };
+		F3BD0C9C2D8762BE00EA05D5 /* BannerContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BD0C9B2D8762BE00EA05D5 /* BannerContentView.swift */; };
+		F3BD0C9E2D876CE600EA05D5 /* AdMobCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BD0C9D2D876CE000EA05D5 /* AdMobCollectionViewCell.swift */; };
 		F3BD66492B1FA9E800D4AB3F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BD66482B1FA9E800D4AB3F /* User.swift */; };
 		F3C06EF82B07D31E00065735 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C06EF72B07D31E00065735 /* URL+Extension.swift */; };
 		F3C06EFA2B0817C300065735 /* NotificationCenter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C06EF92B0817C300065735 /* NotificationCenter+Extension.swift */; };
@@ -123,7 +125,6 @@
 		F3EDC1522B00EC970050915B /* UIKit+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDC1512B00EC970050915B /* UIKit+Extension.swift */; };
 		F3EDC1542B00F7600050915B /* UIDate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDC1532B00F7600050915B /* UIDate+Extension.swift */; };
 		F3EDC1562B0109A20050915B /* FeaturedArticleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDC1552B0109A20050915B /* FeaturedArticleCollectionViewCell.swift */; };
-		F3F2C7162C12391F008A5CA6 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F2C7152C12391F008A5CA6 /* BannerView.swift */; };
 		F3F2C7192C123C88008A5CA6 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = F3F2C7182C123C88008A5CA6 /* GoogleMobileAds */; };
 		F3FA57C52B3611F900382A2E /* UserCommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FA57C42B3611F900382A2E /* UserCommentsViewController.swift */; };
 		F3FA57C72B36144D00382A2E /* UserCommentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FA57C62B36144D00382A2E /* UserCommentCollectionViewCell.swift */; };
@@ -230,6 +231,8 @@
 		F3B2B4162B398413009003DC /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		F3B2B4182B398D49009003DC /* CommentVote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentVote.swift; sourceTree = "<group>"; };
 		F3B2B41A2B398EA5009003DC /* CommentVoteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentVoteRepository.swift; sourceTree = "<group>"; };
+		F3BD0C9B2D8762BE00EA05D5 /* BannerContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerContentView.swift; sourceTree = "<group>"; };
+		F3BD0C9D2D876CE000EA05D5 /* AdMobCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdMobCollectionViewCell.swift; sourceTree = "<group>"; };
 		F3BD66482B1FA9E800D4AB3F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F3C06EF72B07D31E00065735 /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
 		F3C06EF92B0817C300065735 /* NotificationCenter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationCenter+Extension.swift"; sourceTree = "<group>"; };
@@ -268,7 +271,6 @@
 		F3EDC1512B00EC970050915B /* UIKit+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIKit+Extension.swift"; sourceTree = "<group>"; };
 		F3EDC1532B00F7600050915B /* UIDate+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDate+Extension.swift"; sourceTree = "<group>"; };
 		F3EDC1552B0109A20050915B /* FeaturedArticleCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedArticleCollectionViewCell.swift; sourceTree = "<group>"; };
-		F3F2C7152C12391F008A5CA6 /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		F3FA57C42B3611F900382A2E /* UserCommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCommentsViewController.swift; sourceTree = "<group>"; };
 		F3FA57C62B36144D00382A2E /* UserCommentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCommentCollectionViewCell.swift; sourceTree = "<group>"; };
 		F3FA57C82B361F6200382A2E /* PasswordChangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordChangeViewController.swift; sourceTree = "<group>"; };
@@ -491,6 +493,7 @@
 		F31C30C92AFFC5BF005454FE /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				F3BD0C912D8616AF00EA05D5 /* Ads */,
 				F3881CDD2B09287C00AAAAC6 /* WrappingHStack */,
 				F389F8E02B06980200DFEDB5 /* PillBorderButton.swift */,
 				F3881CDB2B09063400AAAAC6 /* AttributedText.swift */,
@@ -503,7 +506,6 @@
 				F394B3762B5D85FA001F5AEF /* PagingView.swift */,
 				F394B3782B5D9702001F5AEF /* RoundedCorner.swift */,
 				F367D2242B5EEC2D0078FAE7 /* PanDirectionGestureRecognizer.swift */,
-				F3F2C7152C12391F008A5CA6 /* BannerView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -583,6 +585,15 @@
 				F3B2B4162B398413009003DC /* SearchViewController.swift */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		F3BD0C912D8616AF00EA05D5 /* Ads */ = {
+			isa = PBXGroup;
+			children = (
+				F3BD0C9D2D876CE000EA05D5 /* AdMobCollectionViewCell.swift */,
+				F3BD0C9B2D8762BE00EA05D5 /* BannerContentView.swift */,
+			);
+			path = Ads;
 			sourceTree = "<group>";
 		};
 		F3EDC11F2B00CF0B0050915B /* Fonts */ = {
@@ -701,7 +712,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1500;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 1620;
 				TargetAttributes = {
 					F31C309C2AFF9729005454FE = {
 						CreatedOnToolsVersion = 15.0.1;
@@ -820,6 +831,7 @@
 				F31C30C32AFFA68F005454FE /* ProfileViewController.swift in Sources */,
 				F31C30A52AFF9729005454FE /* HomeViewController.swift in Sources */,
 				F3FA57C72B36144D00382A2E /* UserCommentCollectionViewCell.swift in Sources */,
+				F3BD0C9E2D876CE600EA05D5 /* AdMobCollectionViewCell.swift in Sources */,
 				F3881CDC2B09063400AAAAC6 /* AttributedText.swift in Sources */,
 				F3FA57D62B3870FC00382A2E /* BookmarksViewController.swift in Sources */,
 				F3881CEC2B0A88C100AAAAC6 /* WebView.swift in Sources */,
@@ -839,6 +851,7 @@
 				F3EDC1562B0109A20050915B /* FeaturedArticleCollectionViewCell.swift in Sources */,
 				F3829E632B2B50410060BA9B /* ThemedNavigationController.swift in Sources */,
 				F31C30A12AFF9729005454FE /* AppDelegate.swift in Sources */,
+				F3BD0C9C2D8762BE00EA05D5 /* BannerContentView.swift in Sources */,
 				F3932B052B34C35700712046 /* EmbeddedCommentView.swift in Sources */,
 				F3881CE72B09289100AAAAC6 /* ViewType.swift in Sources */,
 				F34046F62B28E84E00E16723 /* UIViewController+Extension.swift in Sources */,
@@ -865,7 +878,6 @@
 				F3881CE52B09289100AAAAC6 /* WrappingHStack.swift in Sources */,
 				F38FEF3D2B3B0AF300757733 /* CommentReport.swift in Sources */,
 				F3ECBF792B781D4300A92BD9 /* Poll.swift in Sources */,
-				F3F2C7162C12391F008A5CA6 /* BannerView.swift in Sources */,
 				F31C30CC2AFFC6D3005454FE /* UIColor+Extension.swift in Sources */,
 				F3BD66492B1FA9E800D4AB3F /* User.swift in Sources */,
 				F319F17D2B2E60F900C81793 /* UIImage+Extension.swift in Sources */,
@@ -1056,7 +1068,6 @@
 		F31C30B22AFF972B005454FE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Tuzlanski.ba/Tuzlanski.ba.entitlements;
@@ -1095,7 +1106,6 @@
 		F31C30B32AFF972B005454FE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Tuzlanski.ba/Tuzlanski.ba.entitlements;
