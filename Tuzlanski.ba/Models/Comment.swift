@@ -38,4 +38,12 @@ struct Comment: Codable {
     var author_id: Int64
     var thread_id: Int64
     var subcomments: [Comment]?
+    
+    static func adComment(adUnitID: String) -> Comment {
+        return Comment(id: 0, name: adUnitID, content: "", upvotes: 0, downvotes: 0, created_at: "", author_id: 0, thread_id: 0)
+    }
+    
+    func isAdComment() -> Bool {
+        return name.hasPrefix("ca-app-pub")
+    }
 }

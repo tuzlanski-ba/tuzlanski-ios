@@ -91,6 +91,7 @@
 		F3DD62CB2B419ACD00E74B5B /* UIScrollView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DD62CA2B419ACD00E74B5B /* UIScrollView+Extension.swift */; };
 		F3DDF5112C18DF270070F5D3 /* GoogleMobileAdsConsentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DDF5102C18DF270070F5D3 /* GoogleMobileAdsConsentManager.swift */; };
 		F3DDF5132C18E17F0070F5D3 /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3DDF5122C18E17F0070F5D3 /* AppTrackingTransparency.framework */; };
+		F3DFE4FF2D8A057D001F1B4F /* AdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DFE4FE2D8A057D001F1B4F /* AdManager.swift */; };
 		F3EB1E912B337BB0008818D7 /* NewCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EB1E902B337BB0008818D7 /* NewCommentViewController.swift */; };
 		F3ECBF792B781D4300A92BD9 /* Poll.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ECBF782B781D4300A92BD9 /* Poll.swift */; };
 		F3EDC1142AFFCD6D0050915B /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EDC1132AFFCD6D0050915B /* Logging.swift */; };
@@ -241,6 +242,7 @@
 		F3DD62CA2B419ACD00E74B5B /* UIScrollView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Extension.swift"; sourceTree = "<group>"; };
 		F3DDF5102C18DF270070F5D3 /* GoogleMobileAdsConsentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMobileAdsConsentManager.swift; sourceTree = "<group>"; };
 		F3DDF5122C18E17F0070F5D3 /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTrackingTransparency.framework; path = System/Library/Frameworks/AppTrackingTransparency.framework; sourceTree = SDKROOT; };
+		F3DFE4FE2D8A057D001F1B4F /* AdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdManager.swift; sourceTree = "<group>"; };
 		F3EB1E902B337BB0008818D7 /* NewCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCommentViewController.swift; sourceTree = "<group>"; };
 		F3ECBF782B781D4300A92BD9 /* Poll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poll.swift; sourceTree = "<group>"; };
 		F3EDC1132AFFCD6D0050915B /* Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
@@ -590,6 +592,7 @@
 		F3BD0C912D8616AF00EA05D5 /* Ads */ = {
 			isa = PBXGroup;
 			children = (
+				F3DFE4FE2D8A057D001F1B4F /* AdManager.swift */,
 				F3BD0C9D2D876CE000EA05D5 /* AdMobCollectionViewCell.swift */,
 				F3BD0C9B2D8762BE00EA05D5 /* BannerContentView.swift */,
 			);
@@ -869,6 +872,7 @@
 				F3C464FA2B45F2D800794744 /* DispatchQueue+Dedupe.swift in Sources */,
 				F394B37B2B5DA0F3001F5AEF /* GalleryViewController.swift in Sources */,
 				F3EDC1192B00142E0050915B /* ListArticle.swift in Sources */,
+				F3DFE4FF2D8A057D001F1B4F /* AdManager.swift in Sources */,
 				F3A63AA42B3C681A00BFDA70 /* UICollectionView+Extension.swift in Sources */,
 				F3EB1E912B337BB0008818D7 /* NewCommentViewController.swift in Sources */,
 				F324A62C2B4C957500DB40AF /* SocialAuthenticator.swift in Sources */,

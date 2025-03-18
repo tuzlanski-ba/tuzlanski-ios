@@ -366,7 +366,7 @@ class TuzlanskiHttpClient {
         let response = try await URLSession.shared.data(for: request)
         let data = try mapResponse(response: response)
         
-        Log.api.info("Fetched data: \(String(data: data, encoding: .utf8) ?? "null")")
+        //Log.api.info("Fetched data: \(String(data: data, encoding: .utf8) ?? "null")")
         
         return try JSONDecoder().decode(T.self, from: data)
     }

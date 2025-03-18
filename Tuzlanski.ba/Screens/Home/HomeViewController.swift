@@ -124,6 +124,8 @@ class HomeViewController: UIViewController {
                 let indexResponse = try await httpClient.getHomeArticles()
                 let topNews = Array(indexResponse.top.prefix(7))
                 
+                AdManager.shared.resetBannerCache(for: "ca-app-pub-9369140289527677/4156837047")
+                
                 homeData = [
                     .init(articles: topNews),
                     .init(articles: [], category: Category.newAdCategory(id: -1, adUnitID: "ca-app-pub-9369140289527677/4156837047")),
@@ -172,6 +174,13 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         if homeData[indexPath.section].category?.isAdCategory() ?? false {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AdMobCollectionViewCell.identifier, for: indexPath) as! AdMobCollectionViewCell
             cell.configure(adUnitID: homeData[indexPath.section].category?.slug ?? "")
+            cell.onAdLoadFailed = { [weak self] in
+                guard let self else { return }
+                homeData.remove(at: indexPath.section)
+                self.collectionView.performBatchUpdates({
+                    self.collectionView.deleteSections([indexPath.section])
+                }, completion: nil)
+            }
             
             return cell
         }

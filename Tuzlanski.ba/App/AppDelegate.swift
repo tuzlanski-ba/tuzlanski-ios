@@ -62,6 +62,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         for service in services {
             service.applicationDidEnterBackground?(application)
         }
+        
+        AdManager.shared.resetAll()
     }
     
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {

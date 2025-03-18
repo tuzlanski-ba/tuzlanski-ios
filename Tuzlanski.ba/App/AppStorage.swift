@@ -17,4 +17,7 @@ struct AppStorage {
     
     @Storage(key: "categories", defaultValue: [])
     static var categories: [Category]
+    
+    @Storage(key: "interstitial_display_count", defaultValue: 0)
+    static var interstitialDisplayCount: Int
 }

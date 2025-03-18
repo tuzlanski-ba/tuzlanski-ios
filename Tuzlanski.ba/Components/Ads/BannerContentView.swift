@@ -12,10 +12,12 @@ import SwiftUI
 struct BannerViewContainer: UIViewRepresentable {
     let adUnitID: String
     let adSize: GADAdSize
+    @Binding var isBannerVisible: Bool
     
-    init(adUnitID: String, adSize: GADAdSize) {
+    init(adUnitID: String, adSize: GADAdSize, bannerVisible: Binding<Bool>) {
         self.adUnitID = adUnitID
         self.adSize = adSize
+        self._isBannerVisible = bannerVisible
     }
     
     func makeUIView(context: Context) -> UIView {
@@ -56,10 +58,16 @@ struct BannerViewContainer: UIViewRepresentable {
         
         func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
             print("(\(self.parent.adUnitID) DID RECEIVE AD")
+            DispatchQueue.main.async {
+                self.parent.isBannerVisible = true
+            }
         }
         
         func bannerView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: Error) {
             print("(\(self.parent.adUnitID) FAILED TO RECEIVE AD: \(error.localizedDescription)")
+            DispatchQueue.main.async {
+                self.parent.isBannerVisible = false
+            }
         }
     }
 }

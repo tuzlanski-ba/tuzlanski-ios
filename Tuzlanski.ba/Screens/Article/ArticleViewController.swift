@@ -56,7 +56,7 @@ class ArticleViewController: UIViewController {
     private let httpClient = TuzlanskiHttpClient()
     private let bookmarkRepository = BookmarkRepository()
     private let pollVoteRepository = PollVoteRepository()
-    private var interstitial: GAMInterstitialAd?
+    private var interstitial: GADInterstitialAd?
     
     // MARK: - Lifecycle
     
@@ -243,18 +243,35 @@ class ArticleViewController: UIViewController {
         present(ac, animated: true)
     }
     
-    private func loadInterstitial() async {
-        // TODO: Uncomment after first release
-//        do {
-//            interstitial = try await GAMInterstitialAd.load(
-//                withAdManagerAdUnitID: "/6499/example/interstitial", request: GAMRequest())
-//            interstitial?.fullScreenContentDelegate = self
-//            if let ad = self.interstitial {
-//                ad.present(fromRootViewController: self)
-//            }
-//        } catch {
-//            print("Failed to load interstitial ad with error: \(error.localizedDescription)")
-//        }
+    fileprivate func loadInterstitial() async {
+        AppStorage.interstitialDisplayCount = (AppStorage.interstitialDisplayCount + 1) % 6
+        let count = AppStorage.interstitialDisplayCount
+
+        guard count == 0 else {
+            print("Skipping interstitial ad. Count: \(count)")
+            return
+        }
+        
+        print("Requesting interstitial ad...")
+        
+        do {
+            interstitial = try await GADInterstitialAd.load(withAdUnitID: "ca-app-pub-9369140289527677/5214003508", request: GADRequest())
+            interstitial?.fullScreenContentDelegate = self
+            interstitial?.present(fromRootViewController: self)
+        } catch {
+            print("Failed to load interstitial ad with error: \(error.localizedDescription)")
+        }
+    }
+}
+
+extension ArticleViewController: GADFullScreenContentDelegate {
+    func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
+      print("\(#function) called with error: \(error.localizedDescription)")
+      interstitial = nil
+    }
+    
+    func adDidRecordImpression(_ ad: GADFullScreenPresentingAd) {
+      print("\(#function) called")
     }
 }
 
@@ -266,7 +283,9 @@ struct ArticleView: View {
     
     @State private var webViewHeight: CGFloat = .zero
     @State private var index = 0
-    
+    @State private var isBannerBelowImageVisible = true
+    @State private var isBannerBelowArticleTextVisible = true
+
     var onCategoryPress: (() -> Void)?
     var onTagPress: ((Tag) -> Void)?
     var fetchArticle: (() async throws -> ArticleResponse)?
@@ -378,10 +397,12 @@ struct ArticleView: View {
                         .padding(.top, 18)
                 }
                 
-                let adSizeBelowImage = GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(UIScreen.main.bounds.width)
-                BannerViewContainer(adUnitID: "ca-app-pub-9369140289527677/8645944063", adSize: adSizeBelowImage)
-                    .frame(height: adSizeBelowImage.size.height)
-                    .padding(.top, 8)
+                if isBannerBelowImageVisible {
+                    let adSizeBelowImage = GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(UIScreen.main.bounds.width)
+                    BannerViewContainer(adUnitID: "ca-app-pub-9369140289527677/8645944063", adSize: adSizeBelowImage, bannerVisible: $isBannerBelowImageVisible)
+                        .frame(height: adSizeBelowImage.size.height)
+                        .padding(.top, 8)
+                }
 
                 if let article = observableArticle.article {
                     let _ = print("webview height: \(webViewHeight)")
@@ -458,9 +479,14 @@ struct ArticleView: View {
                             .padding(.horizontal, 16)
                         }
                         
-                        let adSizeBelowComments = GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(UIScreen.main.bounds.width)
-                        BannerViewContainer(adUnitID: "ca-app-pub-9369140289527677/5843988079", adSize: adSizeBelowComments)
-                            .frame(height: adSizeBelowComments.size.height)
+                        if isBannerBelowArticleTextVisible {
+                            HStack {
+                                Spacer()
+                                BannerViewContainer(adUnitID: "ca-app-pub-9369140289527677/5843988079", adSize: GADAdSizeMediumRectangle, bannerVisible: $isBannerBelowArticleTextVisible)
+                                    .frame(width: GADAdSizeMediumRectangle.size.width, height: GADAdSizeMediumRectangle.size.height)
+                                Spacer()
+                            }
+                        }
                         
                         Text("Pročitaj još".uppercased())
                             .font(Font(UIFont.Montserrat(.extraBold, size: 13)))

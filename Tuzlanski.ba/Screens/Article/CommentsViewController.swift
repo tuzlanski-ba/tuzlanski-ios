@@ -181,6 +181,9 @@ class CommentsViewController: UIViewController {
                 }
                 
                 await MainActor.run {
+                    if page == 1 && comments.count > 0 {
+                        self.comments.append(Comment.adComment(adUnitID: "ca-app-pub-9369140289527677/3728960626"))
+                    }
                     self.comments.append(contentsOf: comments)
                     collectionView.reloadData()
                     collectionView.refreshControl?.endRefreshing()
@@ -212,6 +215,9 @@ class CommentsViewController: UIViewController {
                 }
                 
                 await MainActor.run {
+                    if page == 1 && comments.count > 0 {
+                        self.comments.append(Comment.adComment(adUnitID: "ca-app-pub-9369140289527677/3728960626"))
+                    }
                     self.comments = comments
                     collectionView.reloadData()
                     isFetching = false
@@ -266,7 +272,7 @@ extension CommentsViewController: UICollectionViewDataSource, UICollectionViewDe
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return comments.count > 0 ? comments.count + 1 : 0
+        return comments.count
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -276,16 +282,24 @@ extension CommentsViewController: UICollectionViewDataSource, UICollectionViewDe
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if indexPath.item == 0 {
+        let comment = comments[indexPath.row]
+        if comment.isAdComment() {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AdMobCollectionViewCell.identifier, for: indexPath) as! AdMobCollectionViewCell
-            cell.configure(adUnitID: "ca-app-pub-9369140289527677/3728960626")
+            cell.configure(adUnitID: comment.name)
+            cell.onAdLoadFailed = { [weak self] in
+                guard let self else { return }
+                self.comments.remove(at: indexPath.item)
+                collectionView.performBatchUpdates {
+                    collectionView.deleteItems(at: [indexPath])
+                }
+            }
             
             return cell
         }
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CommentCollectionViewCell.identifier, for: indexPath) as! CommentCollectionViewCell
         cell.delegate = self
-        cell.configure(comment: comments[indexPath.row - 1])
+        cell.configure(comment: comment)
         
         return cell
     }
