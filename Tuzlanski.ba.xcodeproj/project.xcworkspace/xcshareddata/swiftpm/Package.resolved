@@ -79,7 +79,7 @@
       "location" : "https://github.com/groue/GRDB.swift",
       "state" : {
         "branch" : "master",
-        "revision" : "6eba24d16952452a8a54f6a639491f3c8215527f"
+        "revision" : "aa0079aeb82a4bf00324561a40bffe68c6fe1c26"
       }
     },
     {
@@ -150,8 +150,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/OneSignal/OneSignal-XCFramework",
       "state" : {
-        "revision" : "a7df0fa1cb25ae2920b6ee01fe703fec50639256",
-        "version" : "5.2.10"
+        "revision" : "8fcd9c4dbc8ab8bb6383dd4e9bde068a6b6d4f93",
+        "version" : "5.2.15"
       }
     },
     {
@@ -195,8 +195,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-protobuf.git",
       "state" : {
-        "revision" : "d72aed98f8253ec1aa9ea1141e28150f408cf17f",
-        "version" : "1.29.0"
+        "revision" : "c169a5744230951031770e27e475ff6eefe51f9d",
+        "version" : "1.33.3"
       }
     }
   ],

@@ -10,16 +10,16 @@ import SideMenu
 
 class SideNavigationController: UINavigationController {
     
-    // MARK: - UI Components
-    
-    private lazy var logoImageView: UIImageView = {
+    // MARK: - Private methods
+
+    private func createLogoImageView() -> UIImageView {
         let logoImageView = UIImageView(image: UIImage(named: "tuzlanski-logo"))
         logoImageView.contentMode = .scaleAspectFit
         logoImageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
         logoImageView.heightAnchor.constraint(equalToConstant: 24).isActive = true
-        
+
         return logoImageView
-    }()
+    }
     
     // MARK: - Lifecycle
     
@@ -53,7 +53,7 @@ class SideNavigationController: UINavigationController {
     
     func addLogoToCurrentViewController() {
         guard let viewController = viewControllers.last else { return }
-        viewController.navigationItem.titleView = logoImageView
+        viewController.navigationItem.titleView = createLogoImageView()
     }
     
     func addSideMenuBarButton(viewController: UIViewController) {
@@ -79,7 +79,7 @@ extension SideNavigationController: UINavigationControllerDelegate {
         }
         
         if viewControllers.first == viewController && viewController.navigationItem.title?.isEmpty ?? true {
-            viewController.navigationItem.titleView = logoImageView
+            viewController.navigationItem.titleView = createLogoImageView()
             addSideMenuBarButton(viewController: viewController)
         }
     }

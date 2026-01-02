@@ -135,6 +135,7 @@
 		F3FA57D12B386D4F00382A2E /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FA57D02B386D4F00382A2E /* Bookmark.swift */; };
 		F3FA57D32B386F0200382A2E /* BookmarkRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FA57D22B386F0200382A2E /* BookmarkRepository.swift */; };
 		F3FA57D62B3870FC00382A2E /* BookmarksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FA57D52B3870FC00382A2E /* BookmarksViewController.swift */; };
+		F3FFA8342D949D5F00BE573F /* AdBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FFA8332D949D5F00BE573F /* AdBannerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -280,6 +281,7 @@
 		F3FA57D02B386D4F00382A2E /* Bookmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bookmark.swift; sourceTree = "<group>"; };
 		F3FA57D22B386F0200382A2E /* BookmarkRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkRepository.swift; sourceTree = "<group>"; };
 		F3FA57D52B3870FC00382A2E /* BookmarksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksViewController.swift; sourceTree = "<group>"; };
+		F3FFA8332D949D5F00BE573F /* AdBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdBannerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -592,6 +594,7 @@
 		F3BD0C912D8616AF00EA05D5 /* Ads */ = {
 			isa = PBXGroup;
 			children = (
+				F3FFA8332D949D5F00BE573F /* AdBannerView.swift */,
 				F3DFE4FE2D8A057D001F1B4F /* AdManager.swift */,
 				F3BD0C9D2D876CE000EA05D5 /* AdMobCollectionViewCell.swift */,
 				F3BD0C9B2D8762BE00EA05D5 /* BannerContentView.swift */,
@@ -875,6 +878,7 @@
 				F3DFE4FF2D8A057D001F1B4F /* AdManager.swift in Sources */,
 				F3A63AA42B3C681A00BFDA70 /* UICollectionView+Extension.swift in Sources */,
 				F3EB1E912B337BB0008818D7 /* NewCommentViewController.swift in Sources */,
+				F3FFA8342D949D5F00BE573F /* AdBannerView.swift in Sources */,
 				F324A62C2B4C957500DB40AF /* SocialAuthenticator.swift in Sources */,
 				F367D2252B5EEC2D0078FAE7 /* PanDirectionGestureRecognizer.swift in Sources */,
 				F38FEF3F2B3B0B4F00757733 /* CommentReportRepository.swift in Sources */,

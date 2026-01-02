@@ -73,10 +73,7 @@ class LatestViewController: UIViewController {
         NotificationCenter.observe(notification: UIApplication.willEnterForegroundNotification) { [weak self] _ in
             self?.reloadData(refreshControl: self?.collectionView.refreshControl ?? UIRefreshControl())
         }
-    }
-    
-    override func viewIsAppearing(_ animated: Bool) {
-        super.viewIsAppearing(animated)
+        
         if articles.isEmpty {
             collectionView.refreshControl?.beginRefreshing()
             loadNextPage()

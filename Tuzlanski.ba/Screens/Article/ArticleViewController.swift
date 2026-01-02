@@ -244,7 +244,7 @@ class ArticleViewController: UIViewController {
     }
     
     fileprivate func loadInterstitial() async {
-        AppStorage.interstitialDisplayCount = (AppStorage.interstitialDisplayCount + 1) % 6
+        AppStorage.interstitialDisplayCount = (AppStorage.interstitialDisplayCount + 1) % 3
         let count = AppStorage.interstitialDisplayCount
 
         guard count == 0 else {
@@ -398,11 +398,19 @@ struct ArticleView: View {
                 }
                 
                 if isBannerBelowImageVisible {
-                    let adSizeBelowImage = GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(UIScreen.main.bounds.width)
-                    BannerViewContainer(adUnitID: "ca-app-pub-9369140289527677/8645944063", adSize: adSizeBelowImage, bannerVisible: $isBannerBelowImageVisible)
-                        .frame(height: adSizeBelowImage.size.height)
-                        .padding(.top, 8)
+//                    let adSizeBelowImage = GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(UIScreen.main.bounds.width)
+//                    BannerViewContainer(adUnitID: "ca-app-pub-9369140289527677/8645944063", adSize: adSizeBelowImage, bannerVisible: $isBannerBelowImageVisible)
+//                        .frame(height: adSizeBelowImage.size.height)
+//                        .padding(.top, 8)
+                    
+                  
+                    
                 }
+                
+                AdBannerView(adUnitID: "ca-app-pub-3940256099942544/2934735716", isAdVisible: $isBannerBelowImageVisible)
+                    .frame(height: isBannerBelowImageVisible ? 250 : 0)
+                    .clipped()
+                    .transition(.move(edge: .bottom).combined(with: .opacity))
 
                 if let article = observableArticle.article {
                     let _ = print("webview height: \(webViewHeight)")

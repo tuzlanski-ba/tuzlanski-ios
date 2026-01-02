@@ -182,7 +182,7 @@ class CommentsViewController: UIViewController {
                 
                 await MainActor.run {
                     if page == 1 && comments.count > 0 {
-                        self.comments.append(Comment.adComment(adUnitID: "ca-app-pub-9369140289527677/3728960626"))
+//                        self.comments.append(Comment.adComment(adUnitID: "ca-app-pub-9369140289527677/3728960626"))
                     }
                     self.comments.append(contentsOf: comments)
                     collectionView.reloadData()
@@ -216,7 +216,7 @@ class CommentsViewController: UIViewController {
                 
                 await MainActor.run {
                     if page == 1 && comments.count > 0 {
-                        self.comments.append(Comment.adComment(adUnitID: "ca-app-pub-9369140289527677/3728960626"))
+                        //self.comments.append(Comment.adComment(adUnitID: "ca-app-pub-9369140289527677/3728960626"))
                     }
                     self.comments = comments
                     collectionView.reloadData()

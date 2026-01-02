@@ -25,7 +25,13 @@ struct BannerViewContainer: UIViewRepresentable {
         // frame size changes; wrapping in a UIView container insulates the GADBannerView from size
         // changes that impact the view returned from makeUIView.
         let view = UIView()
-        view.addSubview(context.coordinator.bannerView)
+        let bannerView = context.coordinator.bannerView
+        bannerView.rootViewController = UIApplication.shared.connectedScenes
+            .compactMap { $0 as? UIWindowScene }
+            .flatMap { $0.windows }
+            .first { $0.isKeyWindow }?.rootViewController
+        bannerView.load(GADRequest())
+        view.addSubview(bannerView)
         return view
     }
     
@@ -41,10 +47,9 @@ struct BannerViewContainer: UIViewRepresentable {
         
         private(set) lazy var bannerView: GADBannerView = {
             let banner = GADBannerView(adSize: parent.adSize)
-            banner.adUnitID = self.parent.adUnitID
-            banner.load(GADRequest())
+            banner.adUnitID = parent.adUnitID
             banner.delegate = self
-            
+
             return banner
         }()
         

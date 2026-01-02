@@ -128,7 +128,7 @@ class HomeViewController: UIViewController {
                 
                 homeData = [
                     .init(articles: topNews),
-                    .init(articles: [], category: Category.newAdCategory(id: -1, adUnitID: "ca-app-pub-9369140289527677/4156837047")),
+                    //.init(articles: [], category: Category.newAdCategory(id: -1, adUnitID: "ca-app-pub-9369140289527677/4156837047")),
                     .init(articles: indexResponse.vijesti, category: categoriesMap["vijesti"]),
                     .init(articles: indexResponse.biznis, category: categoriesMap["biznis"]),
                     .init(articles: indexResponse.sport, category: categoriesMap["sport"]),

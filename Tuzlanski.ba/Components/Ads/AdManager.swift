@@ -32,6 +32,7 @@ class AdManager: NSObject {
     }
     
     func resetBannerCache(for adUnitID: String) {
+        print("AdManager: Resetting banner cache for: \(adUnitID)")
         cache.removeValue(forKey: adUnitID)
     }
     
@@ -45,7 +46,7 @@ class AdManager: NSObject {
 extension AdManager: GADBannerViewDelegate {
     
     func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
-        print("AdManager: (\(bannerView.adUnitID ?? "") DID RECEIVE AD")
+        print("AdManager: (\(bannerView.adUnitID ?? "")) DID RECEIVE AD")
     }
     
     func bannerView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: any Error) {
