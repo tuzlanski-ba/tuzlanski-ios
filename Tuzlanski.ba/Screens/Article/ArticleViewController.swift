@@ -407,7 +407,7 @@ struct ArticleView: View {
                     
                 }
                 
-                AdBannerView(adUnitID: "ca-app-pub-3940256099942544/2934735716", isAdVisible: $isBannerBelowImageVisible)
+                AdBannerView(adUnitID: "ca-app-pub-9369140289527677/8645944063", isAdVisible: $isBannerBelowImageVisible)
                     .frame(height: isBannerBelowImageVisible ? 250 : 0)
                     .clipped()
                     .transition(.move(edge: .bottom).combined(with: .opacity))
