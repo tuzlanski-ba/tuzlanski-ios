@@ -7,9 +7,19 @@
 
 import UIKit
 
+fileprivate func fontDataURL(name: String, ext: String = "ttf") -> String? {
+    guard let url = Bundle.main.url(forResource: name, withExtension: ext),
+          let data = try? Data(contentsOf: url) else { return nil }
+    return "data:font/ttf;base64,\(data.base64EncodedString())"
+}
+
 extension String {
     
     func wrappedInHTML(linkColor: UIColor = .tintColor, showPollResults: Bool) -> String {
+        
+        let montserrat400 = fontDataURL(name: "Montserrat-Medium") ?? ""
+        let montserrat600 = fontDataURL(name: "Montserrat-SemiBold") ?? ""
+        let montserrat700 = fontDataURL(name: "Montserrat-Bold") ?? ""
         
         var processedText = self.replacingOccurrences(of: "</figcaption>\r\n</figure>", with: "</figcaption></figure>")
         processedText = processedText.replacingOccurrences(of: "<p></p>", with: "")
@@ -41,9 +51,9 @@ extension String {
                   return t;
                 }(document, "script", "twitter-wjs"));</script>
                 <style type="text/css">
-                    @font-face { font-family: 'Montserrat'; src: url('Montserrat-Medium.ttf') format('truetype'); font-weight: 400; }
-                    @font-face { font-family: 'Montserrat'; src: url('Montserrat-SemiBold.ttf') format('truetype'); font-weight: 600; }
-                    @font-face { font-family: 'Montserrat'; src: url('Montserrat-Bold.ttf') format('truetype'); font-weight: 700; }
+                    @font-face { font-family: 'Montserrat'; url('\(montserrat400)') format('truetype'); font-weight: 400; }
+                    @font-face { font-family: 'Montserrat'; src: url('\(montserrat600)') format('truetype'); font-weight: 600; }
+                    @font-face { font-family: 'Montserrat'; src: url('\(montserrat700)') format('truetype'); font-weight: 700; }
             
                     :root {
                         font-size:\(AppStorage.articleFontSize)px;

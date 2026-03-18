@@ -162,6 +162,6 @@ struct WebView : UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: WKWebView, context: Context) {
-        uiView.loadHTMLString(text, baseURL: Bundle.main.bundleURL)
+        uiView.loadHTMLString(text, baseURL: URL(string: "https://tuzlanski.ba"))
     }
 }
